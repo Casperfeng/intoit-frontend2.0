@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Courses from '../../components/Courses/Courses';
+import Navbar from '../../components/Navbar/Navbar';
 
 const PageContent = styled.div`
   margin: auto;
