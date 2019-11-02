@@ -14,7 +14,7 @@ export default function CourseCard(props: CourseProps) {
     background-color: ${props.color ? props.color : 'white'};
     cursor: pointer;
     :hover {
-      border-bottom: 10px solid red;
+      border-bottom: 12px solid black;
     }
   `;
 
