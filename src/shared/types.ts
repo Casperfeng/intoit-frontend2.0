@@ -6,7 +6,7 @@ export interface CourseProps {
   color?: string;
 }
 
-export interface LinkProps {
+export interface IntoitLinkProps {
   text: string;
   to: string;
 }

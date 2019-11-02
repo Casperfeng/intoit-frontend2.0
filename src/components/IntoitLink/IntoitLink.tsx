@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LinkProps } from '../../shared/types';
+import { IntoitLinkProps } from '../../shared/types';
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -13,6 +13,6 @@ const StyledLink = styled.a`
     text-decoration: underline;
   }
 `;
-export default function Link(props: LinkProps) {
+export default function Link(props: IntoitLinkProps) {
   return <StyledLink href={props.to}>{props.text}</StyledLink>;
 }

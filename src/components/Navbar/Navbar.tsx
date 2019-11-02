@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Burgermenu from '../Burgermenu/Burgermenu';
-import Link from '../Link/Link';
+import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 
 const NavbarContent = styled.nav`
@@ -47,9 +47,9 @@ export default function Navbar() {
     <NavbarContent>
       <NavbarIcon src={IntoitLogo} />
       <NavbarLinkContainer>
-        <Link text={'Hjem'} to={'#'} />
-        <Link text={'Om Intoit'} to={'#'} />
-        <Link text={'Teamet bak'} to={'#'} />
+        <IntoitLink text={'Hjem'} to={'#'} />
+        <IntoitLink text={'Om Intoit'} to={'#'} />
+        <IntoitLink text={'Teamet bak'} to={'#'} />
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
         <Burgermenu />
