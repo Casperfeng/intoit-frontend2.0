@@ -4,43 +4,48 @@ import { CourseProps } from '../../shared/types';
 
 export default function CourseCard(props: CourseProps) {
   const CourseBox = styled.div`
+    position: relative;
     width: 200px;
     height: 225px;
     background-color: white;
     box-shadow: 0.3px 0.1px 0.3px 0.3px #d3d3d3;
     border: 0.5px solid #d3d3d3;
-    border-radius: 25px;
+    border-radius: 15px;
     margin: 10px 10px;
     background-color: ${props.color ? props.color : 'white'};
     cursor: pointer;
     :hover {
-      margin: 0px;
-      width: 220px;
-      height: 245px;
+      border: 3px solid black;
+      margin: 7px 7px;
     }
   `;
 
   const CourseBoxContent = styled.div`
     position: relative;
-    color: ${props.color ? 'white' : 'black'};
+    color: white;
+    background-color: rgba(70, 70, 70, 0.6);
+    border-radius: 12px 12px 0px 0px;
     display: flex;
     flex-direction: column;
   `;
 
   const CourseBoxText = styled.p`
-    padding: 10px;
+    height: 30px;
+    padding: 1% 0 1% 4%;
     font-weight: bold;
-    margin: 0px auto 5px auto;
     font-size: 18px;
   `;
 
   const CourseBoxInfo = styled.p`
+    overflow: hidden;
+    background-color: rgba(70, 70, 70, 0.6);
     position: absolute;
     height: 100%;
-    width: 100%;
-    top: 140px;
+    width: 96%;
+    padding: 2% 0 0 4%;
+    top: 150px;
     margin: auto;
-    padding: 10px;
+    border-radius: 0px 0px 15px 15px;
   `;
 
   const CourseBoxSchool = styled.p`
