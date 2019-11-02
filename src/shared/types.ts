@@ -5,3 +5,8 @@ export interface CourseProps {
   description?: string;
   color?: string;
 }
+
+export interface LinkProps {
+  text: string;
+  to: string;
+}

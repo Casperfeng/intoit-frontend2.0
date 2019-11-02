@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Burgermenu from '../Burgermenu/Burgermenu';
+import Link from '../Link/Link';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 
 const NavbarContent = styled.nav`
@@ -31,15 +32,6 @@ const NavbarLinkContainer = styled.div`
   }
 `;
 
-const NavbarLink = styled.p`
-  font-size: 20px;
-  font-weight: bold;
-  width: fit-content;
-  cursor: pointer;
-  :hover {
-    text-decoration: underline;
-  }
-`;
 const NavBurgermenuContainer = styled.div`
   align-items: center;
   justify-items: flex-end;
@@ -55,9 +47,9 @@ export default function Navbar() {
     <NavbarContent>
       <NavbarIcon src={IntoitLogo} />
       <NavbarLinkContainer>
-        <NavbarLink>Hjem</NavbarLink>
-        <NavbarLink>Om Intoit</NavbarLink>
-        <NavbarLink>Om oss</NavbarLink>
+        <Link text={'Hjem'} to={'#'} />
+        <Link text={'Om Intoit'} to={'#'} />
+        <Link text={'Teamet bak'} to={'#'} />
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
         <Burgermenu />
