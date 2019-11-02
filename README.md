@@ -18,6 +18,12 @@ Pull request:
 - At least two collaborators have to approve a pull request before it is merged in to dev-branch
 - Always use "Squash and merge" as merge-options
 
+# Technologies
+
+GUI is developed with ReactJS using functional components and hooks. Redux is used for state management and TypeScript is used for the entire application.
+
+Styling is done with styled-components.
+
 # Resources
 
 [Subject](#subject)
