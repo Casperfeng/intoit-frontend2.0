@@ -12,6 +12,8 @@ const CourseBox = styled.div`
   border: 0.5px solid #d3d3d3;
   border-radius: 25px;
   margin: 10px 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   cursor: pointer;
   :hover {
     margin: 0px;
