@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import LandingPage from './views/LandingPage/LandingPage';
 
-const App: React.FC = () => {
+export default function App() {
   return (
-    <div className='App'>
-      <h1>Hello world from Intoit</h1>
+    <div>
+      <LandingPage />
     </div>
   );
-};
-
-export default App;
+}
