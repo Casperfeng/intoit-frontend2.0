@@ -32,7 +32,7 @@ const NavbarLinkContainer = styled.div`
 `;
 
 const NavbarLink = styled.p`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   width: fit-content;
   cursor: pointer;

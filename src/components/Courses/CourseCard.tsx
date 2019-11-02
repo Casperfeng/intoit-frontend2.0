@@ -7,6 +7,7 @@ export default function CourseCard(props: CourseProps) {
     position: relative;
     width: 200px;
     height: 225px;
+    min-width: 200px;
     background-color: white;
     box-shadow: 0.3px 0.1px 0.3px 0.3px #d3d3d3;
     border: 0.5px solid #d3d3d3;
@@ -66,7 +67,7 @@ export default function CourseCard(props: CourseProps) {
     display: flex;
     margin: auto;
     font-size: 12px;
-    font-weight: 300px;
+    font-weight: 500px;
   `;
 
   return (
