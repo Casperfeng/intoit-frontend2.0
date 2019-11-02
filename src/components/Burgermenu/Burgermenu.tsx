@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import Dropdownmenu from '../Dropdownmenu/Dropdownmenu';
 
 const BurgermenuWrapper = styled.div`
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,10 +45,13 @@ const MenubarThree = styled(Menubar)`
 export default function Burgermenu() {
   const [clicked, setClicked] = useState(false);
   return (
-    <BurgermenuWrapper onClick={() => setClicked(!clicked)}>
-      <MenubarOne animation={clicked} />
-      <MenubarTwo animation={clicked} />
-      <MenubarThree animation={clicked} />
-    </BurgermenuWrapper>
+    <>
+      <BurgermenuWrapper onClick={() => setClicked(!clicked)}>
+        <MenubarOne animation={clicked} />
+        <MenubarTwo animation={clicked} />
+        <MenubarThree animation={clicked} />
+      </BurgermenuWrapper>
+      <Dropdownmenu clicked={clicked} />
+    </>
   );
 }

@@ -14,6 +14,7 @@ const NavbarContent = styled.nav`
 `;
 
 const NavbarIcon = styled.img`
+  z-index: 2;
   object-fit: contain;
   width: 175px;
   height: auto;

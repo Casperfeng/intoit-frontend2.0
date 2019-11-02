@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CourseProps } from '../../shared/types';
+import { CourseProps } from '../../shared/props/propTypes';
 
 export default function CourseCard(props: CourseProps) {
   const CourseBox = styled.div`
@@ -15,6 +15,9 @@ export default function CourseCard(props: CourseProps) {
     cursor: pointer;
     :hover {
       border-bottom: 12px solid black;
+    }
+    @media (max-width: 440px) {
+      margin: 10px auto;
     }
   `;
 
