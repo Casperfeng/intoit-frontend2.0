@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 const PageContent = styled.div`
   margin: auto;
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-self: center;
