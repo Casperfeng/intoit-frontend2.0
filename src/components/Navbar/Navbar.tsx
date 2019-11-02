@@ -18,6 +18,9 @@ const NavbarContainer = styled.div`
   display: flex;
   place-items: center;
   justify-content: space-around;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const NavbarLink = styled.p`
