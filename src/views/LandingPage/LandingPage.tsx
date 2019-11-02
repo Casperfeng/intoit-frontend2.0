@@ -14,17 +14,6 @@ const PageContent = styled.div`
 
 const CoursesContainer = styled.div``;
 
-const PageContent = styled.div`
-  margin: auto;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  justify-content: center;
-`;
-
-const CoursesContainer = styled.div``;
-
 export default function LandingPage() {
   return (
     <PageContent>
