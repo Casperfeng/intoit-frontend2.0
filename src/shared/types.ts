@@ -3,4 +3,5 @@ export interface CourseProps {
   code: string;
   name: string;
   description?: string;
+  color?: string;
 }
