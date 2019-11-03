@@ -14,7 +14,8 @@ export default function CourseCard(props: CourseProps) {
     background-color: ${props.color ? props.color : 'white'};
     cursor: pointer;
     :hover {
-      border-bottom: 12px solid black;
+      width: 220px;
+      margin: 0px;
     }
     @media (max-width: 440px) {
       margin: 10px auto;
