@@ -5,7 +5,7 @@ import CourseCard from './CourseCard';
 const CoursesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-items: center;
+  justify-content: center;
 `;
 
 export function Courses() {

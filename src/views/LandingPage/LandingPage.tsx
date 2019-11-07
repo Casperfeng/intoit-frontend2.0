@@ -12,7 +12,9 @@ const PageContent = styled.div`
   place-content: center;
 `;
 
-const CoursesContainer = styled.div``;
+const CoursesContainer = styled.div`
+  margin: 0 auto;
+`;
 
 export default function LandingPage() {
   return (

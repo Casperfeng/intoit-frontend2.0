@@ -10,7 +10,7 @@ const BurgermenuWrapper = styled.div`
 `;
 
 const Menubar = styled.div`
-  transition: 0.9s;
+  transition: 0.6s;
   margin-top: 3px;
   margin-bottom: 2px;
   background-color: black;

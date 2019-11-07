@@ -18,7 +18,7 @@ const DropdownWrapper = styled.div`
   ${props =>
     props.animation &&
     css`
-      transition: 0.9s;
+      transition: 0.6s;
       top: 0px;
     `}
 `;
