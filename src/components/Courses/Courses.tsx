@@ -9,88 +9,91 @@ const CoursesWrapper = styled.div`
 `;
 
 export function Courses() {
-  const courses = [
+  let courses = [
     {
       id: 123,
       name: 'Databaser og datamodellering',
       code: 'tdt4145',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 127,
       name: 'Algoritmer og datastrukturer',
       code: 'tdt4100',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 128,
       name: 'Matematikk 1',
       code: 'tma4100',
-      color: 'blue'
+      color: 'aqua'
     },
     {
       id: 121,
       name: 'Matematikk 2',
       code: 'tma4105',
-      color: 'blue'
+      color: 'aqua'
     },
     {
       id: 131,
       name: 'Generell kjemi',
       code: 'tmt4100',
-      color: 'green'
+      color: 'SpringGreen'
     },
     {
       id: 132,
       name: 'Organisk kjemi',
       code: 'tmt4110',
-      color: 'green'
+      color: 'SpringGreen'
     },
     {
       id: 137,
       name: 'Programvareutvikling',
       code: 'tdt4140',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 138,
       name: 'Diskret matematikk',
       code: 'tma4140',
-      color: 'blue'
+      color: 'aqua'
     },
     {
       id: 139,
       name: 'Objektorientert programmering',
       code: 'tdt4100',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 140,
       name: 'IT Grunnkurs',
       code: 'tdt4110',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 141,
       name: 'Exphil',
       code: 'exph004',
-      color: 'red'
+      color: 'IndianRed'
     },
     {
       id: 145,
       name: 'Menneske-maskin interaksjon',
       code: 'tdt4180',
-      color: 'purple'
+      color: 'teal'
     },
     {
       id: 146,
       name: 'Kommunikasjon, tjenester og nett',
       code: 'ttm4100',
-      color: 'yellow'
+      color: 'Bisque'
     }
   ];
 
   function getCourses() {
+    console.log(courses);
+    courses = sortCourses(courses);
+    console.log(courses);
     const courseCardList = courses.map(course => (
       <CourseCard
         id={course.id}
@@ -101,6 +104,11 @@ export function Courses() {
     ));
     return courseCardList;
   }
+
+  function sortCourses(courses) {
+    return courses.sort((a, b) => a.code.localeCompare(b.code));
+  }
+
   return <CoursesWrapper>{getCourses()}</CoursesWrapper>;
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { DropdownProps } from '../../shared/props/propTypes';
 import IntoitLink from '../IntoitLink/IntoitLink';
 
 const DropdownWrapper = styled.div`
