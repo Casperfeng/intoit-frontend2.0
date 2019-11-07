@@ -5,9 +5,9 @@ import { CourseProps } from '../../shared/props/propTypes';
 export default function CourseCard(props: CourseProps) {
   const CourseBox = styled.div`
     position: relative;
-    width: 200px;
-    height: 225px;
-    min-width: 200px;
+    width: 250px;
+    height: 300px;
+    min-width: 250px;
     background-color: white;
     box-shadow: 0.3px 0.1px 0.3px 0.3px #d3d3d3;
     margin: 10px 10px;
@@ -40,11 +40,11 @@ export default function CourseCard(props: CourseProps) {
   const CourseBoxInfo = styled.p`
     margin-left: 30px;
     overflow: hidden;
-    background-color: rgba(70, 70, 70, 0.6);
+    background-color: rgba(50, 50, 50, 0.2);
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 160px;
+    top: 235px;
     margin: auto;
   `;
 
