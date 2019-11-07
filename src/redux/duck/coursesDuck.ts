@@ -31,3 +31,5 @@ export default function coursesReducer(state = initialState, action: Action) {
       return state;
   }
 }
+
+//Action creators

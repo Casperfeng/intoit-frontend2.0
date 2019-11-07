@@ -1,5 +1,10 @@
 interface ReduxState {
   courses: Courses;
+  login: FacebookLogin;
+}
+
+interface FacebookLogin {
+  token: string;
 }
 
 interface CoursesResponse {
