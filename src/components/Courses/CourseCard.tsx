@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CourseProps } from '../../shared/props/propTypes';
 
 export default function CourseCard(props: CourseProps) {
   const CourseBox = styled.div`

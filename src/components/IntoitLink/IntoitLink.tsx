@@ -1,6 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { IntoitLinkProps } from '../../shared/props/propTypes';
+import styled from 'styled-components';
 
 export default function Link(props: IntoitLinkProps) {
   const isDropdown = props.linkType === 'Dropdown';
