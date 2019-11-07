@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Background from '../../components/Background/Background';
-import { FacebookButton } from '../../components/Auth/Auth';
 
 const PageContent = styled.div`
   margin: auto;
@@ -16,7 +15,6 @@ export default function LoginPage() {
   return (
     <PageContent>
       <Background />
-      <FacebookButton>Logg inn</FacebookButton>
     </PageContent>
   );
 }

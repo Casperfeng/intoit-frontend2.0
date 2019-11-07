@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FACEBOOK_APP_ID, FACEBOOK_REDIRECT_URL } from '../../constants';
 
-const FacebookButton = styled.button`
+const FacebookButton = styled.a`
   background-color: #4c69ba;
   background-image: linear-gradient(#4c69ba, #3b55a0);
   box-sizing: border-box;
@@ -37,9 +37,18 @@ interface AuthProps {
 
 export default function Auth(props: AuthProps) {
   const browserIsSafariOrChrome = !/CriOS/.test(navigator.userAgent);
+  const connectGuest = this.props.connect ? 'connect=true' : '';
 
   if (browserIsSafariOrChrome) {
     return <p>Siden er optimalisert for Chrome og Safari</p>;
   }
-  return;
+  return (
+    <FacebookButton
+      href={`https://www.facebook.com/v3.2/dialog/oauth?client_id=${FACEBOOK_APP_ID}&redirect_uri=${FACEBOOK_REDIRECT_URL}&state={${connectGuest}}&scope=public_profile,user_friends,email&response_type=token`}
+    >
+      {props.connect
+        ? 'Koble gjestekontoen til Facebook'
+        : 'Logg inn med Facebook'}
+    </FacebookButton>
+  );
 }
