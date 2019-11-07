@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
@@ -18,6 +19,7 @@ const NavbarIcon = styled.img`
   object-fit: contain;
   width: 175px;
   height: auto;
+  cursor: pointer;
   @media (max-width: 700px) {
     width: 120px;
   }
@@ -46,11 +48,13 @@ const NavBurgermenuContainer = styled.div`
 export default function Navbar() {
   return (
     <NavbarContent>
-      <NavbarIcon src={IntoitLogo} />
+      <Link to='/'>
+        <NavbarIcon src={IntoitLogo} />
+      </Link>
       <NavbarLinkContainer>
-        <IntoitLink text={'Hjem'} to={'#'} />
-        <IntoitLink text={'Om Intoit'} to={'#'} />
-        <IntoitLink text={'Teamet bak'} to={'#'} />
+        <IntoitLink text={'Hjem'} to={'/hjem'} />
+        <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
+        <IntoitLink text={'Teamet bak'} to={'/teamet'} />
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
         <Burgermenu />

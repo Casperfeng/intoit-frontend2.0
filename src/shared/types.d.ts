@@ -28,21 +28,9 @@ interface Course {
   n_favorites_this_semester: number;
   favorite?: boolean;
 }
-
-interface CourseProps {
-  id: number;
-  code: string;
-  name: string;
-  description?: string;
-  color?: string;
-}
-
-interface IntoitLinkProps {
-  text: string;
-  to: string;
-  linkType?: string;
-}
-
-interface DropdownProps {
-  clicked: boolean;
+interface User {
+  id: string;
+  username: string;
+  experience: number;
+  facebook_id: string;
 }

@@ -1,7 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Link(props: IntoitLinkProps) {
+interface IntoitLinkProps {
+  text: string;
+  to: string;
+  linkType?: string;
+}
+
+export default function IntoitLink(props: IntoitLinkProps) {
   const isDropdown = props.linkType === 'Dropdown';
   const StyledLink = styled.a`
     text-decoration: none;
@@ -18,5 +25,9 @@ export default function Link(props: IntoitLinkProps) {
     }
   `;
 
-  return <StyledLink href={props.to}>{props.text}</StyledLink>;
+  return (
+    <Link to={props.to}>
+      <StyledLink>{props.text}</StyledLink>
+    </Link>
+  );
 }

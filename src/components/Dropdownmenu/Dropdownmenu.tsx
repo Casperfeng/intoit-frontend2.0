@@ -22,6 +22,10 @@ const DropdownWrapper = styled.div`
     `}
 `;
 
+interface DropdownProps {
+  clicked: boolean;
+}
+
 export default function Dropdownmenu(props: DropdownProps) {
   return (
     <DropdownWrapper animation={props.clicked}>
