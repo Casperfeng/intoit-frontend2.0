@@ -29,9 +29,9 @@ interface DropdownProps {
 export default function Dropdownmenu(props: DropdownProps) {
   return (
     <DropdownWrapper animation={props.clicked}>
-      <IntoitLink text={'Hjem'} to={'#'} linkType='Dropdown' />
-      <IntoitLink text={'Om Intoit'} to={'#'} linkType='Dropdown' />
-      <IntoitLink text={'Teamet bak'} to={'#'} linkType='Dropdown' />
+      <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />
+      <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
+      <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />
     </DropdownWrapper>
   );
 }

@@ -10,7 +10,7 @@ interface IntoitLinkProps {
 
 export default function IntoitLink(props: IntoitLinkProps) {
   const isDropdown = props.linkType === 'Dropdown';
-  const StyledLink = styled.a`
+  const StyledLink = styled(Link)`
     text-decoration: none;
     color: black;
     /*@TODO: find a better solution to overwrite styling*/
@@ -25,9 +25,5 @@ export default function IntoitLink(props: IntoitLinkProps) {
     }
   `;
 
-  return (
-    <Link to={props.to}>
-      <StyledLink>{props.text}</StyledLink>
-    </Link>
-  );
+  return <StyledLink to={props.to}>{props.text} </StyledLink>;
 }

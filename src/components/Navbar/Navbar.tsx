@@ -52,7 +52,7 @@ export default function Navbar() {
         <NavbarIcon src={IntoitLogo} />
       </Link>
       <NavbarLinkContainer>
-        <IntoitLink text={'Hjem'} to={'/hjem'} />
+        <IntoitLink text={'Hjem'} to={'/'} />
         <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
         <IntoitLink text={'Teamet bak'} to={'/teamet'} />
       </NavbarLinkContainer>
