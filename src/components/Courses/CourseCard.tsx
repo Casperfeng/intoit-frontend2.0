@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface CourseProps {
+  id: number;
+  code: string;
+  name: string;
+  description?: string;
+  color?: string;
+}
+
 export default function CourseCard(props: CourseProps) {
   const CourseBox = styled.div`
     position: relative;
@@ -13,7 +21,7 @@ export default function CourseCard(props: CourseProps) {
     background-color: ${props.color ? props.color : 'white'};
     cursor: pointer;
     :hover {
-      width: 270px;
+      width: 260px;
       margin: 0px;
     }
   `;
