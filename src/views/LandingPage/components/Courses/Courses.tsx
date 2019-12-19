@@ -90,24 +90,17 @@ export function Courses() {
     }
   ];
 
-  function getCourses() {
-    courses = sortCourses(courses);
-    const courseCardList = courses.map(course => (
-      <CourseCard
-        id={course.id}
-        name={course.name}
-        code={course.code}
-        color={course.color}
-      />
-    ));
-    return courseCardList;
-  }
+  const courseCardList = courses.map(course => (
+    <CourseCard
+      key={course.id}
+      id={course.id}
+      name={course.name}
+      code={course.code}
+      color={course.color}
+    />
+  ));
 
-  function sortCourses(courses) {
-    return courses.sort((a, b) => a.code.localeCompare(b.code));
-  }
-
-  return <CoursesWrapper>{getCourses()}</CoursesWrapper>;
+  return <CoursesWrapper>{courseCardList}</CoursesWrapper>;
 }
 
 export default Courses;
