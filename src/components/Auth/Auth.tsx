@@ -36,10 +36,10 @@ interface AuthProps {
 }
 
 export default function Auth(props: AuthProps) {
-  const browserIsSafariOrChrome = !/CriOS/.test(navigator.userAgent);
+  const browserIsSafariOrChrome = /CriOS/.test(navigator.userAgent);
   const connectGuest = props.connect ? 'connect=true' : '';
 
-  if (browserIsSafariOrChrome) {
+  if (!browserIsSafariOrChrome) {
     return <p>Siden er optimalisert for Chrome og Safari</p>;
   }
   return (

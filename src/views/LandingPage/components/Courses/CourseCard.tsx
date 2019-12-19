@@ -34,7 +34,7 @@ export default function CourseCard(props: CourseProps) {
     flex-direction: column;
   `;
 
-  const CourseBoxText = styled.p`
+  const CourseBoxText = styled.div`
     padding: 0 10px;
     height: 30px;
     margin-left: 10px;
@@ -53,13 +53,13 @@ export default function CourseCard(props: CourseProps) {
     margin: auto;
   `;
 
-  const CourseBoxSchool = styled.p`
+  const CourseBoxSchool = styled.div`
     display: flex;
     font-size: 12px;
     margin: 10px auto 0 10px;
   `;
 
-  const CourseBoxCode = styled.p`
+  const CourseBoxCode = styled.div`
     display: flex;
     text-transform: uppercase;
     font-size: 18px;
@@ -67,7 +67,7 @@ export default function CourseCard(props: CourseProps) {
     margin: 0 auto 0 10px;
   `;
 
-  const CourseBoxUpdated = styled.p`
+  const CourseBoxUpdated = styled.div`
     display: flex;
     font-size: 12px;
     font-weight: 500px;
