@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Background from '../../components/Background/Background';
-import Courses from '../../components/Courses/Courses';
 
 const PageContent = styled.div`
   margin: auto;
@@ -12,17 +11,10 @@ const PageContent = styled.div`
   place-content: center;
 `;
 
-const CoursesContainer = styled.div`
-  margin: 0 auto;
-`;
-
-export default function LandingPage() {
+export default function Login() {
   return (
     <PageContent>
       <Background />
-      <CoursesContainer>
-        <Courses />
-      </CoursesContainer>
     </PageContent>
   );
 }

@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './components/Navbar/Navbar';
-import LoginPage from './views/LoginPage/LoginPage';
-import LandingPage from './views/LandingPage/LandingPage';
-import AboutUsPage from './views/AboutUsPage/AboutUsPage';
+import Login from './views/Login/Login';
+import Home from './views/Home/Home';
+import AboutUs from './views/AboutUs/AboutUs';
+import Course from './views/Course/Course';
 
 const Main = styled.div`
   min-height: 1000px;
@@ -19,9 +20,10 @@ export default function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/teamet' component={AboutUsPage} />
-          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/teamet' component={AboutUs} />
+          <Route exact path='/courses/:id' component={Course} />
+          <Route exact path='/' component={Home} />
         </Switch>
       </Router>
     </Main>

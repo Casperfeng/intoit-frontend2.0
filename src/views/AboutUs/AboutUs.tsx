@@ -11,7 +11,7 @@ const PageContent = styled.div`
   place-content: center;
 `;
 
-export default function AboutUsPage() {
+export default function AboutUs() {
   return (
     <PageContent>
       <TeamMembers />
