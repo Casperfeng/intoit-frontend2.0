@@ -21,7 +21,6 @@ const DropdownWrapper = styled.div`
       top: 0px;
     `}
 `;
-
 interface DropdownProps {
   clicked: boolean;
 }

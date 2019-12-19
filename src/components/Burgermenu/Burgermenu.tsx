@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateDropdown } from '../../redux/duck/dropdownDuck';
 import Dropdownmenu from '../Dropdownmenu/Dropdownmenu';
 
 const BurgermenuWrapper = styled.div`
@@ -43,10 +45,11 @@ const MenubarThree = styled(Menubar)`
 `;
 
 export default function Burgermenu() {
-  const [clicked, setClicked] = useState(false);
+  const clicked = useSelector((state: ReduxState) => state.dropdown);
+  const dispatch = useDispatch();
   return (
     <>
-      <BurgermenuWrapper onClick={() => setClicked(!clicked)}>
+      <BurgermenuWrapper onClick={() => dispatch(updateDropdown())}>
         <MenubarOne animation={clicked} />
         <MenubarTwo animation={clicked} />
         <MenubarThree animation={clicked} />
