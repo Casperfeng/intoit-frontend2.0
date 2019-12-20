@@ -15,7 +15,7 @@ export default function IntoitLink(props: IntoitLinkProps) {
   const isDropdown = props.linkType === 'Dropdown';
   const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black;
+    color: ${isDropdown ? 'white' : 'black'};
     /*@TODO: find a better solution to overwrite styling*/
     font-size: ${isDropdown ? '24px' : '20px'};
     width: ${isDropdown ? '100%' : 'fit-content'};

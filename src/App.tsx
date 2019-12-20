@@ -10,6 +10,7 @@ import Course from './views/Course/Course';
 
 const Main = styled.div`
   min-height: 1000px;
+  background-color: #f5f5f5;
   width: 100%;
   display: column;
   align-content: center;

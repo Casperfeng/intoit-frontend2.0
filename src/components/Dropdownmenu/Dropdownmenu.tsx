@@ -13,7 +13,7 @@ const DropdownWrapper = styled.div`
   width: 100%;
   height: 400px;
   top: -700px;
-  background-color: #d7d7d7;
+  background-color: rgb(53, 152, 219);
   ${props =>
     props.animation &&
     css`
