@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import TeamMembers from './components/TeamMembers/TeamMembers';
 
 const PageContent = styled.div`
   margin: auto;
@@ -11,10 +10,10 @@ const PageContent = styled.div`
   place-content: center;
 `;
 
-export default function AboutUsPage() {
+export default function AboutIntoit() {
   return (
     <PageContent>
-      <TeamMembers />
+      <h3>Den beste måten å teste seg i pensum</h3>
     </PageContent>
   );
 }

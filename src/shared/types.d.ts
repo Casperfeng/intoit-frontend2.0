@@ -1,8 +1,8 @@
 interface ReduxState {
   courses: Courses;
   login: FacebookLogin;
+  dropdown: Dropdown;
 }
-
 interface FacebookLogin {
   token: string;
 }
@@ -12,6 +12,8 @@ interface CoursesResponse {
     [name: string]: Course;
   };
 }
+
+type Dropdown = boolean;
 
 interface Course {
   id: number;

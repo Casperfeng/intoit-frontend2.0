@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { updateDropdown } from '../../redux/duck/dropdownDuck';
 
 interface IntoitLinkProps {
   text: string;
@@ -9,10 +11,11 @@ interface IntoitLinkProps {
 }
 
 export default function IntoitLink(props: IntoitLinkProps) {
+  const dispatch = useDispatch();
   const isDropdown = props.linkType === 'Dropdown';
   const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black;
+    color: ${isDropdown ? 'white' : 'black'};
     /*@TODO: find a better solution to overwrite styling*/
     font-size: ${isDropdown ? '24px' : '20px'};
     width: ${isDropdown ? '100%' : 'fit-content'};
@@ -25,5 +28,12 @@ export default function IntoitLink(props: IntoitLinkProps) {
     }
   `;
 
-  return <StyledLink to={props.to}>{props.text} </StyledLink>;
+  return (
+    <StyledLink
+      onClick={() => isDropdown && dispatch(updateDropdown())}
+      to={props.to}
+    >
+      {props.text}
+    </StyledLink>
+  );
 }

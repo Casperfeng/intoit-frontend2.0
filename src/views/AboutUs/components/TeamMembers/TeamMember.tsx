@@ -15,7 +15,6 @@ const MemberContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px 10px;
-  cursor: pointer;
 `;
 
 const MemberLink = styled.a`

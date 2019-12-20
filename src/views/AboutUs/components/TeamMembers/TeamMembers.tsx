@@ -10,7 +10,7 @@ const TeamMembersContainer = styled.div`
 `;
 
 const TeamTitle = styled.h1`
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
 `;
 
@@ -38,7 +38,7 @@ export default function TeamMembers() {
   ));
   return (
     <TeamMembersContainer>
-      <TeamTitle>Teamet bak:</TeamTitle>
+      <TeamTitle>Teamet bak</TeamTitle>
       <TeamMembersContent>{teamMembers}</TeamMembersContent>
     </TeamMembersContainer>
   );
