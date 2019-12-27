@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Background from '../../components/Background/Background';
-import Courses from '../../components/Courses/Courses';
+import Courses from './components/Courses/Courses';
 
 const PageContent = styled.div`
   margin: auto;
