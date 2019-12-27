@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import styled from 'styled-components';
 import Navbar from './components/Navbar/Navbar';
 import Login from './views/Login/Login';
@@ -22,11 +23,11 @@ export default function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/teamet' component={AboutUs} />
-          <Route exact path='/om-oss' component={AboutIntoit} />
-          <Route exact path='/courses/:id' component={Course} />
-          <Route exact path='/' component={Home} />
+          <ProtectedRoute exact path='/teamet' component={AboutUs} />
+          <ProtectedRoute exact path='/om-oss' component={AboutIntoit} />
+          <ProtectedRoute exact path='/courses/:id' component={Course} />
+          <ProtectedRoute exact path='/' component={Home} />
+          <Route path='/login' component={Login} />
         </Switch>
       </Router>
     </Main>

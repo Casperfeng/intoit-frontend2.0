@@ -1,17 +1,13 @@
 interface ReduxState {
   courses: Courses;
-  login: FacebookLogin;
+  fbLogin: FacebookLogin;
   dropdown: Dropdown;
 }
 interface FacebookLogin {
   token: string;
 }
 
-interface CoursesResponse {
-  entities?: {
-    [name: string]: Course;
-  };
-}
+type Courses = Course[];
 
 type Dropdown = boolean;
 

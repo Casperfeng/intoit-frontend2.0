@@ -1,20 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import Background from '../../components/Background/Background';
-
-const PageContent = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-`;
+import Auth from '../../components/Auth/Auth';
+import ContentLayout from '../../components/ContentLayout/ContentLayout';
 
 export default function Login() {
   return (
-    <PageContent>
-      <Background />
-    </PageContent>
+    <ContentLayout>
+      <Auth connect={false} />
+    </ContentLayout>
   );
 }

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 interface Action {
   type: string;
   payload: any;
@@ -9,7 +11,7 @@ const SET_COURSES = 'SET_COURSES';
 const SET_COURSE = 'SET_COURSE';
 const SET_TOPICS = 'SET_TOPICS';
 
-const initialState: CoursesResponse = {};
+const initialState: Courses = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
   switch (action.type) {
@@ -33,3 +35,14 @@ export default function coursesReducer(state = initialState, action: Action) {
 }
 
 //Action creators
+export const fetchCourses = (
+  searchText = '',
+  schoolId = 0
+) => async dispatch => {
+  const response = await axios.get(
+    `/${
+      schoolId > 0 ? `schools/${schoolId}/` : ''
+    }subjects?search=${searchText}`
+  );
+  dispatch({ type: 'SET_COURSES', ...response.data });
+};
