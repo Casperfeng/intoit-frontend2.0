@@ -8,8 +8,8 @@ const CoursesWrapper = styled.div`
   justify-content: center;
 `;
 
-export function Courses() {
-  let courses = [
+export default function Courses() {
+  const courses = [
     {
       id: 123,
       name: 'Databaser og datamodellering',
@@ -78,10 +78,13 @@ export function Courses() {
   ];
 
   const courseCardList = courses.map(course => (
-    <CourseCard id={course.id} name={course.name} code={course.code} />
+    <CourseCard
+      key={course.id}
+      id={course.id}
+      name={course.name}
+      code={course.code}
+    />
   ));
 
   return <CoursesWrapper>{courseCardList}</CoursesWrapper>;
 }
-
-export default Courses;

@@ -1,16 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Background from '../../components/Background/Background';
+import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Courses from './components/Courses/Courses';
-
-const PageContent = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-`;
 
 const CoursesContainer = styled.div`
   margin: 0 auto;
@@ -18,11 +10,11 @@ const CoursesContainer = styled.div`
 
 export default function Home() {
   return (
-    <PageContent>
+    <ContentLayout>
       <Background />
       <CoursesContainer>
         <Courses />
       </CoursesContainer>
-    </PageContent>
+    </ContentLayout>
   );
 }

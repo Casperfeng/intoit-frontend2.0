@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
   alignment?: string;
 }
 
