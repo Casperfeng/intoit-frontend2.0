@@ -25,9 +25,9 @@ interface DropdownProps {
   clicked: boolean;
 }
 
-export default function Dropdownmenu(props: DropdownProps) {
+export default function Dropdownmenu({ clicked }: DropdownProps) {
   return (
-    <DropdownWrapper animation={props.clicked}>
+    <DropdownWrapper animation={clicked}>
       <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />
       <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
       <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />

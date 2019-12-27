@@ -1,19 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const PageContent = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-`;
+import Title from '../../components/Title/Title';
+import ContentLayout from '../../components/ContentLayout/ContentLayout';
+import AboutIntoitText from './components/AboutIntoitText';
 
 export default function AboutIntoit() {
   return (
-    <PageContent>
-      <h3>Den beste måten å teste seg i pensum</h3>
-    </PageContent>
+    <ContentLayout alignment={'center'}>
+      <Title text={'Den beste måten å teste seg i pensum'} />
+      <AboutIntoitText />
+    </ContentLayout>
   );
 }

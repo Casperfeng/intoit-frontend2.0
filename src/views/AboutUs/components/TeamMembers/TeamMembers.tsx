@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Title from '../../../../components/Title/Title';
 import TeamMember from './TeamMember';
 
 const TeamMembersContainer = styled.div`
@@ -7,11 +8,6 @@ const TeamMembersContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const TeamTitle = styled.h1`
-  font-size: 48px;
-  font-weight: bold;
 `;
 
 const TeamMembersContent = styled.div`
@@ -37,8 +33,8 @@ export default function TeamMembers() {
     />
   ));
   return (
-    <TeamMembersContainer>
-      <TeamTitle>Teamet bak</TeamTitle>
+    <TeamMembersContainer alignment={'center'}>
+      <Title text={'Teamet bak'}></Title>
       <TeamMembersContent>{teamMembers}</TeamMembersContent>
     </TeamMembersContainer>
   );
