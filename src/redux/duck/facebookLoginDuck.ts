@@ -19,9 +19,9 @@ export default function faceBookLoginDuck(
 ) {
   switch (action.type) {
     case SET_TOKEN:
-      return action.payload;
+      return { token: action.payload };
     case LOG_OUT:
-      return '';
+      return { token: '' };
     default:
       return state;
   }
@@ -62,7 +62,7 @@ const fetchTokenByFacebook = (fbToken: string) => async dispatch => {
   dispatch(setToken(response.data.token));
 };
 
-const setToken = (fbToken: string) => dispatch => {
+export const setToken = (fbToken: string) => dispatch => {
   dispatch({ type: 'SET_TOKEN', payload: fbToken });
   axios.defaults.headers.common['X-Access-Token'] = fbToken;
 };
