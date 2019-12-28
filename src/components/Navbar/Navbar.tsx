@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/duck/facebookLoginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
@@ -46,15 +48,22 @@ const NavBurgermenuContainer = styled.div`
 `;
 
 export default function Navbar() {
+  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+  const dispatch = useDispatch();
   return (
     <NavbarContent>
       <Link to='/'>
         <NavbarIcon src={IntoitLogo} />
       </Link>
       <NavbarLinkContainer>
-        <IntoitLink text={'Hjem'} to={'/'} />
-        <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
-        <IntoitLink text={'Teamet bak'} to={'/teamet'} />
+        {token && (
+          <>
+            <IntoitLink text={'Hjem'} to={'/'} />
+            <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
+            <IntoitLink text={'Teamet bak'} to={'/teamet'} />
+            <IntoitLink text={'Logg ut'} to={'/login'} callback={logout} />
+          </>
+        )}
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
         <Burgermenu />

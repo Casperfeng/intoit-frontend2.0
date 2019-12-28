@@ -27,7 +27,7 @@ export default function App() {
           <ProtectedRoute exact path='/om-oss' component={AboutIntoit} />
           <ProtectedRoute exact path='/courses/:id' component={Course} />
           <ProtectedRoute exact path='/' component={Home} />
-          <Route path='/login' component={Login} />
+          <Route exact path='/login' component={Login} />
         </Switch>
       </Router>
     </Main>

@@ -45,16 +45,19 @@ const MenubarThree = styled(Menubar)`
 `;
 
 export default function Burgermenu() {
+  const token = useSelector((state: ReduxState) => state.fbLogin.token);
   const clicked = useSelector((state: ReduxState) => state.dropdown);
   const dispatch = useDispatch();
   return (
-    <>
-      <BurgermenuWrapper onClick={() => dispatch(updateDropdown())}>
-        <MenubarOne animation={clicked} />
-        <MenubarTwo animation={clicked} />
-        <MenubarThree animation={clicked} />
-      </BurgermenuWrapper>
-      <Dropdownmenu clicked={clicked} />
-    </>
+    token && (
+      <>
+        <BurgermenuWrapper onClick={() => dispatch(updateDropdown())}>
+          <MenubarOne animation={clicked} />
+          <MenubarTwo animation={clicked} />
+          <MenubarThree animation={clicked} />
+        </BurgermenuWrapper>
+        <Dropdownmenu clicked={clicked} />
+      </>
+    )
   );
 }

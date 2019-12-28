@@ -53,6 +53,7 @@ export const facebookLogin = (fbToken: string) => async dispatch => {
 };
 
 export const logout = () => dispatch => {
+  console.log('LOG out called!');
   dispatch({ type: 'LOG_OUT' });
   window.location.href = '/login';
 };
