@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import DEFAULT_ICON from '../../../../assets/icons/onlineTestIcon.svg';
-import MATH_ICON from '../../../../assets/icons/mathIcon.svg';
-import PHYSICS_ICON from '../../../../assets/icons/physicsIcon.svg';
-import IT_ICON from '../../../../assets/icons/itIcon.svg';
-import ECONOMY_ICON from '../../../../assets/icons/economyIcon.svg';
-import NETWORK_ICON from '../../../../assets/icons/networkIcon.svg';
+import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
+import MATH_ICON from '../../../assets/icons/mathIcon.svg';
+import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
+import IT_ICON from '../../../assets/icons/itIcon.svg';
+import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
+import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 
 import {
   DEFAULT_BLUE_COLOR,
@@ -16,7 +16,7 @@ import {
   TIØ_COLOR,
   TFY_COLOR,
   TTM_COLOR
-} from '../../../../styles';
+} from '../../../styles';
 
 interface CourseProps {
   id: number;
