@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import DEFAULT_ICON from '../../../../assets/icons/onlineTestIcon.svg';
 import MATH_ICON from '../../../../assets/icons/mathIcon.svg';
 import PHYSICS_ICON from '../../../../assets/icons/physicsIcon.svg';
@@ -145,19 +146,33 @@ export default function CourseCard({
     left: 50px;
   `;
 
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+  `;
+
   return (
-    <CourseBox>
-      <CourseBoxContent>
-        <CourseBoxText>{name}</CourseBoxText>
-        <CourseIcon src={icon}></CourseIcon>
-        <CourseBoxInfo>
-          <CourseBoxSchool>{school}</CourseBoxSchool>
-          <CourseBoxCode>{code}</CourseBoxCode>
-          <CourseBoxUpdated>
-            Sist endret for {moment(modified).fromNow()}
-          </CourseBoxUpdated>
-        </CourseBoxInfo>
-      </CourseBoxContent>
-    </CourseBox>
+    <StyledLink to={`/courses/${id}`}>
+      <CourseBox>
+        <CourseBoxContent>
+          <CourseBoxText>{name}</CourseBoxText>
+          <CourseIcon src={icon}></CourseIcon>
+          <CourseBoxInfo>
+            <CourseBoxSchool>{school}</CourseBoxSchool>
+            <CourseBoxCode>{code}</CourseBoxCode>
+            <CourseBoxUpdated>
+              Sist endret for {moment(modified).fromNow()}
+            </CourseBoxUpdated>
+          </CourseBoxInfo>
+        </CourseBoxContent>
+      </CourseBox>
+    </StyledLink>
   );
 }

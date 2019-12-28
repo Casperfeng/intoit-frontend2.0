@@ -15,7 +15,7 @@ const initialState: any = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
   switch (action.type) {
-    case 'SET_COURSE_FEED':
+    case SET_COURSE_FEED:
       return {
         ...state,
         [action.payload.courseId]: {
@@ -23,11 +23,11 @@ export default function coursesReducer(state = initialState, action: Action) {
           feed: action.payload.result
         }
       };
-    case 'SET_COURSES':
+    case SET_COURSES:
       return action.payload;
-    case 'SET_COURSE':
+    case SET_COURSE:
       return state;
-    case 'SET_TOPICS':
+    case SET_TOPICS:
       return state;
     default:
       return state;
