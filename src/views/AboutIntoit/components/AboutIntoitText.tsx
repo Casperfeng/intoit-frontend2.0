@@ -2,21 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import Animation from '../../../components/Animation/Animation';
 
-const TextContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const TextColumn = styled.div`
-  width: 300px;
-  font-size: 18px;
-  text-align: justify;
-  padding: 20px;
-`;
-
 export default function AboutIntoitText() {
+  const TextContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  `;
+
+  const TextColumn = styled.div`
+    width: 300px;
+    font-size: 18px;
+    text-align: justify;
+    padding: 20px;
+  `;
   return (
     <TextContainer>
       <TextColumn>

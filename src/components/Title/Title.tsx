@@ -5,11 +5,10 @@ interface Props {
   text: string;
 }
 
-const StyledTitle = styled.h1`
-  font-size: 48px;
-  font-weight: bold;
-`;
-
 export default function Title({ text }: Props) {
+  const StyledTitle = styled.h1`
+    font-size: 48px;
+    font-weight: bold;
+  `;
   return <StyledTitle>{text}</StyledTitle>;
 }

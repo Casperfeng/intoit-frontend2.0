@@ -1,4 +1,7 @@
 import axios from 'axios';
+import 'moment/locale/nb';
+import moment from 'moment';
+moment.locale('nb');
 
 const BASE_URL =
   process.env.NODE_ENV === 'production'

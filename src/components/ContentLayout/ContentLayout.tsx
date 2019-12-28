@@ -6,20 +6,19 @@ interface Props {
   alignment?: string;
 }
 
-const PageContent = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-  ${props =>
-    props.textAlign === 'center' &&
-    css`
-      text-align: center;
-    `}
-`;
-
 export default function ContentLayout({ children, alignment }: Props) {
+  const PageContent = styled.div`
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    ${props =>
+      props.textAlign === 'center' &&
+      css`
+        text-align: center;
+      `}
+  `;
   return <PageContent textAlign={alignment}>{children}</PageContent>;
 }
