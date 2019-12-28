@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import TestIcon from '../../../../assets/icons/onlineTestIcon.svg';
+import DEFAULT_ICON from '../../../../assets/icons/onlineTestIcon.svg';
+import MATH_ICON from '../../../../assets/icons/mathIcon.svg';
+import PHYSICS_ICON from '../../../../assets/icons/physicsIcon.svg';
+import IT_ICON from '../../../../assets/icons/itIcon.svg';
+import ECONOMY_ICON from '../../../../assets/icons/economyIcon.svg';
+import NETWORK_ICON from '../../../../assets/icons/networkIcon.svg';
+
 import {
   DEFAULT_BLUE_COLOR,
   TMA_COLOR,
   TDT_COLOR,
   TIØ_COLOR,
-  TFY_COLOR
+  TFY_COLOR,
+  TTM_COLOR
 } from '../../../../styles';
 
 interface CourseProps {
@@ -44,6 +51,28 @@ export default function CourseCard({
   created,
   modified
 }: CourseProps) {
+  let color = DEFAULT_BLUE_COLOR;
+  let icon = DEFAULT_ICON;
+  if (code.toUpperCase().includes('TFY')) {
+    color = TFY_COLOR;
+    icon = PHYSICS_ICON;
+  }
+  if (code.toUpperCase().includes('TIØ')) {
+    color = TIØ_COLOR;
+    icon = ECONOMY_ICON;
+  }
+  if (code.toUpperCase().includes('TMA')) {
+    color = TMA_COLOR;
+    icon = MATH_ICON;
+  }
+  if (code.toUpperCase().includes('TDT')) {
+    color = TDT_COLOR;
+    icon = IT_ICON;
+  }
+  if (code.toUpperCase().includes('TTM')) {
+    color = TTM_COLOR;
+    icon = NETWORK_ICON;
+  }
   const CourseBox = styled.div`
     position: relative;
     width: 250px;
@@ -63,7 +92,7 @@ export default function CourseCard({
   const CourseBoxContent = styled.div`
     position: relative;
     color: white;
-    background-color: ${DEFAULT_BLUE_COLOR};
+    background-color: ${color};
     display: flex;
     flex-direction: column;
   `;
@@ -78,7 +107,7 @@ export default function CourseCard({
   const CourseBoxInfo = styled.div`
     margin-left: 30px;
     overflow: hidden;
-    background-color: ${DEFAULT_BLUE_COLOR};
+    background-color: ${color};
     position: absolute;
     height: 100%;
     width: 100%;
@@ -109,16 +138,16 @@ export default function CourseCard({
 
   const CourseIcon = styled.img`
     position: absolute;
-    height: 175px;
-    width: 175px;
-    top: 65px;
-    left: 40px;
+    height: 155px;
+    width: 155px;
+    top: 70px;
+    left: 50px;
   `;
   return (
     <CourseBox>
       <CourseBoxContent>
         <CourseBoxText>{name}</CourseBoxText>
-        <CourseIcon src={TestIcon}></CourseIcon>
+        <CourseIcon src={icon}></CourseIcon>
         <CourseBoxInfo>
           <CourseBoxSchool>{school}</CourseBoxSchool>
           <CourseBoxCode>{code}</CourseBoxCode>
