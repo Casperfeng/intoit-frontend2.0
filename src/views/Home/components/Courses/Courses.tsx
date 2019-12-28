@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchCourses } from '../../../../redux/duck/coursesDuck';
 import CourseCard from './CourseCard';
 
-const CoursesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
 export default function Courses() {
+  const CoursesWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  `;
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
 
@@ -19,7 +18,6 @@ export default function Courses() {
     // eslint-disable-next-line
   }, []);
 
-  console.log(JSON.stringify(courses));
   const courseCardList = courses.map(course => (
     <CourseCard
       key={course.id}
