@@ -1,5 +1,6 @@
 interface ReduxState {
   courses: Courses;
+  courseInfo: any;
   fbLogin: FacebookLogin;
   dropdown: Dropdown;
 }
