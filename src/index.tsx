@@ -5,6 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from './redux/reducer/rootReducer';
 import thunk from 'redux-thunk';
 
@@ -22,10 +25,20 @@ const enhancer = composeEnhancers(
   applyMiddleware(...middleware)
   // other store enhancers if any
 );
-const store = createStore(rootReducer, enhancer);
+
+const persistConfig = {
+  key: 'root',
+  storage
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, enhancer);
+const persistor = persistStore(store);
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
