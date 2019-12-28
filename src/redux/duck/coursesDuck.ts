@@ -24,7 +24,7 @@ export default function coursesReducer(state = initialState, action: Action) {
         }
       };
     case 'SET_COURSES':
-      return state;
+      return action.payload;
     case 'SET_COURSE':
       return state;
     case 'SET_TOPICS':
@@ -44,5 +44,8 @@ export const fetchCourses = (
       schoolId > 0 ? `schools/${schoolId}/` : ''
     }subjects?search=${searchText}`
   );
-  dispatch({ type: 'SET_COURSES', ...response.data });
+  dispatch({
+    type: 'SET_COURSES',
+    payload: [...Object.entries(response.data.entities.courses)]
+  });
 };
