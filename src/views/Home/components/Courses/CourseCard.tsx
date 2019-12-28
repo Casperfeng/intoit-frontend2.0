@@ -46,7 +46,6 @@ const CourseBoxContent = styled.div`
 `;
 
 const CourseBoxText = styled.p`
-  padding: 0 10px;
   height: 30px;
   margin-left: 10px;
   font-weight: bold;
@@ -97,7 +96,18 @@ export default function CourseCard({
   id,
   code,
   name,
-  description
+  description,
+  isArchived,
+  numExercises,
+  numFavoritesAllTime,
+  numFavoritesThisSemester,
+  numTopics,
+  school,
+  schoolId,
+  progression,
+  favorite,
+  created,
+  modified
 }: CourseProps) {
   return (
     <CourseBox>
@@ -105,7 +115,7 @@ export default function CourseCard({
         <CourseBoxText>{name}</CourseBoxText>
         <CourseIcon src={TestIcon}></CourseIcon>
         <CourseBoxInfo>
-          <CourseBoxSchool>NTNU</CourseBoxSchool>
+          <CourseBoxSchool>{school}</CourseBoxSchool>
           <CourseBoxCode>{code}</CourseBoxCode>
           <CourseBoxUpdated>Sist oppdatert 3 måneder siden</CourseBoxUpdated>
         </CourseBoxInfo>

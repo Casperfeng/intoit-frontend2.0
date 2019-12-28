@@ -37,6 +37,7 @@ export default function Courses() {
       favorite={course.favorite}
       isArchived={course.is_archived}
       progression={course.progression}
+      description={course.description}
     />
   ));
 
