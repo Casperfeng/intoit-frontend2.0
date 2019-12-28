@@ -11,7 +11,7 @@ const SET_COURSES = 'SET_COURSES';
 const SET_COURSE = 'SET_COURSE';
 const SET_TOPICS = 'SET_TOPICS';
 
-const initialState: Courses = [];
+const initialState: any = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
   switch (action.type) {
@@ -46,6 +46,6 @@ export const fetchCourses = (
   );
   dispatch({
     type: 'SET_COURSES',
-    payload: [...Object.entries(response.data.entities.courses)]
+    payload: Object.values(response.data.entities.courses)
   });
 };

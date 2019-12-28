@@ -8,6 +8,17 @@ interface CourseProps {
   code: string;
   name: string;
   description?: string;
+  modified: Date;
+  created: Date;
+  schoolId: number;
+  school: string;
+  favorite: boolean;
+  isArchived: boolean;
+  numExercises: string;
+  numTopics: number;
+  progression: number;
+  numFavoritesAllTime: number;
+  numFavoritesThisSemester: number;
 }
 
 const CourseBox = styled.div`

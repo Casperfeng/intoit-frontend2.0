@@ -13,85 +13,30 @@ const CoursesWrapper = styled.div`
 export default function Courses() {
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
-  /*const courses = [
-    {
-      id: 123,
-      name: 'Databaser og datamodellering',
-      code: 'tdt4145'
-    },
-    {
-      id: 127,
-      name: 'Algoritmer og datastrukturer',
-      code: 'tdt4100'
-    },
-    {
-      id: 128,
-      name: 'Matematikk 1',
-      code: 'tma4100'
-    },
-    {
-      id: 121,
-      name: 'Matematikk 2',
-      code: 'tma4105'
-    },
-    {
-      id: 131,
-      name: 'Generell kjemi',
-      code: 'tmt4100'
-    },
-    {
-      id: 132,
-      name: 'Organisk kjemi',
-      code: 'tmt4110'
-    },
-    {
-      id: 137,
-      name: 'Programvareutvikling',
-      code: 'tdt4140'
-    },
-    {
-      id: 138,
-      name: 'Diskret matematikk',
-      code: 'tma4140'
-    },
-    {
-      id: 139,
-      name: 'Objektorientert programmering',
-      code: 'tdt4100'
-    },
-    {
-      id: 140,
-      name: 'IT Grunnkurs',
-      code: 'tdt4110'
-    },
-    {
-      id: 141,
-      name: 'Exphil',
-      code: 'exph004'
-    },
-    {
-      id: 145,
-      name: 'Menneske-maskin interaksjon',
-      code: 'tdt4180'
-    },
-    {
-      id: 146,
-      name: 'Kommunikasjon, tjenester og nett',
-      code: 'ttm4100'
-    }
-  ];*/
 
   useEffect(() => {
     dispatch(fetchCourses());
     // eslint-disable-next-line
   }, []);
 
+  console.log(JSON.stringify(courses));
   const courseCardList = courses.map(course => (
     <CourseCard
       key={course.id}
       id={course.id}
       name={course.name}
       code={course.code}
+      modified={course.modified}
+      created={course.created}
+      school={course.school}
+      schoolId={course.school_id}
+      numExercises={course.n_exercises}
+      numTopics={course.n_topics}
+      numFavoritesAllTime={course.n_favorites_all_time}
+      numFavoritesThisSemester={course.n_favorites_this_semester}
+      favorite={course.favorite}
+      isArchived={course.is_archived}
+      progression={course.progression}
     />
   ));
 
