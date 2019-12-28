@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCourses } from '../../../../redux/duck/coursesDuck';
 import CourseCard from './CourseCard';
 
 const CoursesWrapper = styled.div`
@@ -9,7 +11,9 @@ const CoursesWrapper = styled.div`
 `;
 
 export default function Courses() {
-  const courses = [
+  const courses = useSelector((state: ReduxState) => state.courses);
+  const dispatch = useDispatch();
+  /*const courses = [
     {
       id: 123,
       name: 'Databaser og datamodellering',
@@ -75,7 +79,12 @@ export default function Courses() {
       name: 'Kommunikasjon, tjenester og nett',
       code: 'ttm4100'
     }
-  ];
+  ];*/
+
+  useEffect(() => {
+    dispatch(fetchCourses());
+    // eslint-disable-next-line
+  }, []);
 
   const courseCardList = courses.map(course => (
     <CourseCard

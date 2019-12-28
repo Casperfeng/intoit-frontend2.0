@@ -1,20 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-import Background from '../../components/Background/Background';
-
-const PageContent = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  place-content: center;
-`;
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import ContentLayout from '../../components/ContentLayout/ContentLayout';
+import FacebookLogin from './components/FacebookLogin';
 
 export default function Login() {
+  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+
+  if (token) {
+    return <Redirect to={'/'} />;
+  }
+
   return (
-    <PageContent>
-      <Background />
-    </PageContent>
+    <ContentLayout>
+      <FacebookLogin />
+    </ContentLayout>
   );
 }

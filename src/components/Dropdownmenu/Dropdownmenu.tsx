@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { logout } from '../../redux/duck/facebookLoginDuck';
 import IntoitLink from '../IntoitLink/IntoitLink';
 
 const DropdownWrapper = styled.div`
@@ -31,6 +32,12 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
       <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />
       <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
       <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />
+      <IntoitLink
+        text={'Logg ut'}
+        to={'/login'}
+        linkType='Dropdown'
+        callback={logout}
+      />
     </DropdownWrapper>
   );
 }
