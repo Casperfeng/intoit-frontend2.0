@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import DEFAULT_ICON from '../../../../assets/icons/onlineTestIcon.svg';
 import MATH_ICON from '../../../../assets/icons/mathIcon.svg';
 import PHYSICS_ICON from '../../../../assets/icons/physicsIcon.svg';
@@ -143,6 +144,7 @@ export default function CourseCard({
     top: 70px;
     left: 50px;
   `;
+
   return (
     <CourseBox>
       <CourseBoxContent>
@@ -151,7 +153,9 @@ export default function CourseCard({
         <CourseBoxInfo>
           <CourseBoxSchool>{school}</CourseBoxSchool>
           <CourseBoxCode>{code}</CourseBoxCode>
-          <CourseBoxUpdated>Sist oppdatert 3 måneder siden</CourseBoxUpdated>
+          <CourseBoxUpdated>
+            Sist endret for {moment(modified).fromNow()}
+          </CourseBoxUpdated>
         </CourseBoxInfo>
       </CourseBoxContent>
     </CourseBox>
