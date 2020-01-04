@@ -33,7 +33,7 @@ export default function TeamMembers() {
   ));
   return (
     <TeamMembersContainer alignment={'center'}>
-      <Title text={'Teamet bak'}></Title>
+      <Title>Teamet bak</Title>
       <TeamMembersContent>{teamMembers}</TeamMembersContent>
     </TeamMembersContainer>
   );

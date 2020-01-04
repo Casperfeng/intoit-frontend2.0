@@ -6,7 +6,7 @@ import AboutIntoitText from './components/AboutIntoitText';
 export default function AboutIntoit() {
   return (
     <ContentLayout alignment={'center'}>
-      <Title text={'Den beste måten å teste seg i pensum'} />
+      <Title>Den beste måten å teste seg i pensum </Title>
       <AboutIntoitText />
     </ContentLayout>
   );

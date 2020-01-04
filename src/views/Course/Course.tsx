@@ -4,6 +4,7 @@ import { match } from 'react-router-dom';
 import { fetchCourse } from '../../redux/duck/courseDetailedDuck';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Title from '../../components/Title/Title';
+import QuizCards from './components/QuizCards';
 
 interface RouterParams {
   id: string;
@@ -16,16 +17,22 @@ interface CourseProps {
 
 export default function Course(props: CourseProps) {
   const id = props.match.params.id;
-  const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
   const dispatch = useDispatch();
+  const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
 
   useEffect(() => {
-    dispatch(fetchCourse(id));
+    if (courseInfo.id !== id) {
+      dispatch(fetchCourse(id));
+    }
     // eslint-disable-next-line
   }, []);
+
+  console.log(courseInfo);
+
   return (
     <ContentLayout alignment={'center'}>
-      <Title text={courseInfo.name}></Title>
+      <Title>{courseInfo.name}</Title>
+      <QuizCards />
     </ContentLayout>
   );
 }

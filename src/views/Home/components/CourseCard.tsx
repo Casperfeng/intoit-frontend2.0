@@ -85,7 +85,7 @@ export default function CourseCard({
     box-shadow: -2px 1px 2px -2px #f2f2f2;
     margin: 10px 10px;
     cursor: pointer;
-    :hover {
+    &:hover {
       width: 260px;
       margin: 0px;
     }
@@ -103,7 +103,11 @@ export default function CourseCard({
     height: 30px;
     margin-left: 10px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
+    text-transform: lowercase;
+    ::first-letter {
+      text-transform: uppercase;
+    }
   `;
 
   const CourseBoxInfo = styled.div`
@@ -115,6 +119,7 @@ export default function CourseCard({
     width: 100%;
     top: 235px;
     margin: auto;
+    padding-bottom: 5px;
   `;
 
   const CourseBoxSchool = styled.p`
