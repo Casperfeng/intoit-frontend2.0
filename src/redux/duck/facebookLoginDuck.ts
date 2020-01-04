@@ -28,37 +28,13 @@ export default function faceBookLoginDuck(
 }
 
 // Action creators
-export const connectToFacebook = (fbToken: string) => async (
-  dispatch,
-  getState
-) => {
-  try {
-    await axios.post('/users/facebook_connection', {
-      deviceId: getState().me.device_id,
-      fbToken
-    });
-    await dispatch(fetchTokenByFacebook(fbToken));
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const facebookLogin = (fbToken: string) => async dispatch => {
-  try {
-    await dispatch(fetchTokenByFacebook(fbToken));
-  } catch (err) {
-    console.log('ERROR');
-    await axios.post(`/users/facebook`, { fbToken });
-  }
-};
-
 export const logout = () => dispatch => {
   console.log('LOG out called!');
   dispatch({ type: 'LOG_OUT' });
   window.location.href = '/login';
 };
 
-const fetchTokenByFacebook = (fbToken: string) => async dispatch => {
+export const fetchTokenByFacebook = (fbToken: string) => async dispatch => {
   const response = await axios.get(`/token?facebook_token=${fbToken}`);
   dispatch(setToken(response.data.token));
 };
