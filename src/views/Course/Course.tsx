@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { match } from 'react-router-dom';
 import { fetchCourse } from '../../redux/duck/courseDetailedDuck';
@@ -19,17 +19,22 @@ export default function Course(props: CourseProps) {
   const id = props.match.params.id;
   const dispatch = useDispatch();
   const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     if (courseInfo.id !== id) {
       dispatch(fetchCourse(id));
     }
     // eslint-disable-next-line
-  }, []);
+  }, [isLoading]);
 
-  console.log(courseInfo);
+  if (courseInfo.id === id) {
+    setLoading(false);
+  }
 
-  return (
+  return isLoading ? (
+    <h1>Loading...</h1>
+  ) : (
     <ContentLayout alignment={'center'}>
       <Title>{courseInfo.name}</Title>
       <QuizCards />
