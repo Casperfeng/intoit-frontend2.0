@@ -15,6 +15,7 @@ export default function Navbar() {
     padding: 20px;
     background-color: white;
     border-bottom: 1px solid gray;
+    z-index: 1;
   `;
 
   const NavbarIcon = styled.img`
@@ -55,12 +56,18 @@ export default function Navbar() {
         <NavbarIcon src={IntoitLogo} />
       </Link>
       <NavbarLinkContainer>
-        {token && (
+        {token ? (
           <>
             <IntoitLink text={'Hjem'} to={'/'} />
             <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
             <IntoitLink text={'Teamet bak'} to={'/teamet'} />
             <IntoitLink text={'Logg ut'} to={'/login'} callback={logout} />
+          </>
+        ) : (
+          <>
+            <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
+            <IntoitLink text={'Teamet bak'} to={'/teamet'} />
+            <IntoitLink text={'Logg inn'} to={'/login'} />
           </>
         )}
       </NavbarLinkContainer>

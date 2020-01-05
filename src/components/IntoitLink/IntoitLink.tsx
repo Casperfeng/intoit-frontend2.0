@@ -21,7 +21,7 @@ export default function IntoitLink({
   const isDropdown = linkType === 'Dropdown';
   const StyledLink = styled(Link)`
     text-decoration: none;
-    color: ${isDropdown ? 'white' : 'black'};
+    color: ${isDropdown ? 'white' : '#293640'};
     font-size: ${isDropdown ? '24px' : '20px'};
     width: ${isDropdown ? '100%' : 'fit-content'};
     margin: ${isDropdown ? '35px auto 0 auto' : 'auto'};

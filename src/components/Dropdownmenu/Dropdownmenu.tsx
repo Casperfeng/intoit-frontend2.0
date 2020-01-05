@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
 import { logout } from '../../redux/duck/facebookLoginDuck';
 import IntoitLink from '../IntoitLink/IntoitLink';
 interface DropdownProps {
@@ -27,17 +28,29 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
       `}
   `;
 
+  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+
   return (
     <DropdownWrapper animation={clicked}>
-      <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />
-      <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
-      <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />
-      <IntoitLink
-        text={'Logg ut'}
-        to={'/login'}
-        linkType='Dropdown'
-        callback={logout}
-      />
+      {token ? (
+        <>
+          <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />
+          <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
+          <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />
+          <IntoitLink
+            text={'Logg ut'}
+            to={'/login'}
+            linkType='Dropdown'
+            callback={logout}
+          />
+        </>
+      ) : (
+        <>
+          <IntoitLink text={'Logg inn'} to={'/'} linkType='Dropdown' />
+          <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType='Dropdown' />
+          <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType='Dropdown' />
+        </>
+      )}
     </DropdownWrapper>
   );
 }
