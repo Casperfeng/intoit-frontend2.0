@@ -26,6 +26,7 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
         top: 0px;
       `}
   `;
+
   return (
     <DropdownWrapper animation={clicked}>
       <IntoitLink text={'Hjem'} to={'/'} linkType='Dropdown' />

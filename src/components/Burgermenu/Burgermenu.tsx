@@ -1,10 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateDropdown } from '../../redux/duck/dropdownDuck';
 import Dropdownmenu from '../Dropdownmenu/Dropdownmenu';
 
-export default function Burgermenu() {
+interface BurgerMenuProps {
+  clicked: boolean;
+}
+
+export default function Burgermenu({ clicked }: BurgerMenuProps) {
   const BurgermenuWrapper = styled.div`
     z-index: 2;
     display: flex;
@@ -46,7 +50,6 @@ export default function Burgermenu() {
   `;
 
   const token = useSelector((state: ReduxState) => state.fbLogin.token);
-  const clicked = useSelector((state: ReduxState) => state.dropdown);
   const dispatch = useDispatch();
   return (
     token && (

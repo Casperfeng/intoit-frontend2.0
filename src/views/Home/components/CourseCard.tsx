@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import DEFAULT_ICON from '../../../../assets/icons/onlineTestIcon.svg';
-import MATH_ICON from '../../../../assets/icons/mathIcon.svg';
-import PHYSICS_ICON from '../../../../assets/icons/physicsIcon.svg';
-import IT_ICON from '../../../../assets/icons/itIcon.svg';
-import ECONOMY_ICON from '../../../../assets/icons/economyIcon.svg';
-import NETWORK_ICON from '../../../../assets/icons/networkIcon.svg';
+import { Link } from 'react-router-dom';
+import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
+import MATH_ICON from '../../../assets/icons/mathIcon.svg';
+import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
+import IT_ICON from '../../../assets/icons/itIcon.svg';
+import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
+import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 
 import {
   DEFAULT_BLUE_COLOR,
@@ -15,7 +16,7 @@ import {
   TIØ_COLOR,
   TFY_COLOR,
   TTM_COLOR
-} from '../../../../styles';
+} from '../../../styles';
 
 interface CourseProps {
   id: number;
@@ -84,7 +85,7 @@ export default function CourseCard({
     box-shadow: -2px 1px 2px -2px #f2f2f2;
     margin: 10px 10px;
     cursor: pointer;
-    :hover {
+    &:hover {
       width: 260px;
       margin: 0px;
     }
@@ -102,7 +103,11 @@ export default function CourseCard({
     height: 30px;
     margin-left: 10px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
+    text-transform: lowercase;
+    ::first-letter {
+      text-transform: uppercase;
+    }
   `;
 
   const CourseBoxInfo = styled.div`
@@ -114,6 +119,7 @@ export default function CourseCard({
     width: 100%;
     top: 235px;
     margin: auto;
+    padding-bottom: 5px;
   `;
 
   const CourseBoxSchool = styled.p`
@@ -145,19 +151,33 @@ export default function CourseCard({
     left: 50px;
   `;
 
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+  `;
+
   return (
-    <CourseBox>
-      <CourseBoxContent>
-        <CourseBoxText>{name}</CourseBoxText>
-        <CourseIcon src={icon}></CourseIcon>
-        <CourseBoxInfo>
-          <CourseBoxSchool>{school}</CourseBoxSchool>
-          <CourseBoxCode>{code}</CourseBoxCode>
-          <CourseBoxUpdated>
-            Sist endret for {moment(modified).fromNow()}
-          </CourseBoxUpdated>
-        </CourseBoxInfo>
-      </CourseBoxContent>
-    </CourseBox>
+    <StyledLink to={`/courses/${id}`}>
+      <CourseBox>
+        <CourseBoxContent>
+          <CourseBoxText>{name}</CourseBoxText>
+          <CourseIcon src={icon}></CourseIcon>
+          <CourseBoxInfo>
+            <CourseBoxSchool>{school}</CourseBoxSchool>
+            <CourseBoxCode>{code}</CourseBoxCode>
+            <CourseBoxUpdated>
+              Sist endret for {moment(modified).fromNow()}
+            </CourseBoxUpdated>
+          </CourseBoxInfo>
+        </CourseBoxContent>
+      </CourseBox>
+    </StyledLink>
   );
 }

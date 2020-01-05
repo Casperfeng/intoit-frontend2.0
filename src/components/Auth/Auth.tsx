@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { facebookLogin } from '../../redux/duck/facebookLoginDuck';
+import { fetchTokenByFacebook } from '../../redux/duck/facebookLoginDuck';
 import { FACEBOOK_APP_ID } from '../../constants';
 
 interface AuthProps {
@@ -42,7 +42,7 @@ export default function Auth({ connect }: AuthProps) {
   `;
   const dispatch = useDispatch();
   function responseFacebook(response) {
-    dispatch(facebookLogin(response.accessToken));
+    dispatch(fetchTokenByFacebook(response.accessToken));
   }
   return (
     <FacebookLogin

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { logout } from '../../redux/duck/facebookLoginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
@@ -48,7 +48,7 @@ export default function Navbar() {
     }
   `;
   const token = useSelector((state: ReduxState) => state.fbLogin.token);
-  const dispatch = useDispatch();
+  const clicked = useSelector((state: ReduxState) => state.dropdown);
   return (
     <NavbarContent>
       <Link to='/'>
@@ -65,7 +65,7 @@ export default function Navbar() {
         )}
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
-        <Burgermenu />
+        <Burgermenu clicked={clicked} />
       </NavBurgermenuContainer>
     </NavbarContent>
   );

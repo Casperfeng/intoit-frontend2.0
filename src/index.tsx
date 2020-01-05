@@ -17,20 +17,16 @@ const composeEnhancers =
   process.env.NODE_ENV === 'development' &&
   typeof (window as any) === 'object' &&
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-const enhancer = composeEnhancers(
-  applyMiddleware(...middleware)
-  // other store enhancers if any
-);
+const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 const persistConfig = {
   key: 'root',
   storage
 };
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, enhancer);
 const persistor = persistStore(store);

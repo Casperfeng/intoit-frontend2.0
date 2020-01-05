@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../../redux/duck/coursesDuck';
+import { fetchCourses } from '../../../redux/duck/coursesDuck';
 import CourseCard from './CourseCard';
 
 export default function Courses() {

@@ -8,26 +8,17 @@ interface Action {
 // Actions
 const SET_COURSE_FEED = 'SET_COURSE_FEED';
 const SET_COURSES = 'SET_COURSES';
-const SET_COURSE = 'SET_COURSE';
 const SET_TOPICS = 'SET_TOPICS';
 
-const initialState: any = [];
+const initialState: Courses = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
   switch (action.type) {
-    case 'SET_COURSE_FEED':
-      return {
-        ...state,
-        [action.payload.courseId]: {
-          ...state[action.payload.courseId],
-          feed: action.payload.result
-        }
-      };
-    case 'SET_COURSES':
+    case SET_COURSE_FEED:
+      return {};
+    case SET_COURSES:
       return action.payload;
-    case 'SET_COURSE':
-      return state;
-    case 'SET_TOPICS':
+    case SET_TOPICS:
       return state;
     default:
       return state;
@@ -45,7 +36,7 @@ export const fetchCourses = (
     }subjects?search=${searchText}`
   );
   dispatch({
-    type: 'SET_COURSES',
+    type: SET_COURSES,
     payload: Object.values(response.data.entities.courses)
   });
 };
