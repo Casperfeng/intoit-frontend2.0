@@ -8,6 +8,8 @@ export default function AboutIntoitText() {
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
+    justify-content: center;
   `;
 
   const TextColumn = styled.div`

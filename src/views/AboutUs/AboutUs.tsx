@@ -4,7 +4,7 @@ import ContentLayout from '../../components/ContentLayout/ContentLayout';
 
 export default function AboutUs() {
   return (
-    <ContentLayout>
+    <ContentLayout alignment={'center'}>
       <TeamMembers />
     </ContentLayout>
   );

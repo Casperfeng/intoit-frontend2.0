@@ -4,7 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faClone } from '@fortawesome/free-solid-svg-icons';
 import { DEFAULT_BLUE_COLOR } from '../../../styles';
 
-export default function QuizCard() {
+interface TopicCardProps {
+  id: number;
+  name: string;
+  subjectId: number;
+  size: number;
+}
+
+export default function TopicCard({
+  id,
+  name,
+  subjectId,
+  size
+}: TopicCardProps) {
   const CardTitle = styled.p`
     height: 60px;
     font-weight: bold;
@@ -63,7 +75,7 @@ export default function QuizCard() {
 
   return (
     <CardContainer>
-      <CardTitle>Tittel</CardTitle>
+      <CardTitle>{name}</CardTitle>
       <IconContainer>
         <Icon>
           <FontAwesomeIcon icon={faList} size='2x' />
@@ -75,7 +87,7 @@ export default function QuizCard() {
         </Icon>
       </IconContainer>
       <HorizontalRow />
-      <SubText>X SPØRSMÅL</SubText>
+      <SubText>{size} SPØRSMÅL</SubText>
     </CardContainer>
   );
 }
