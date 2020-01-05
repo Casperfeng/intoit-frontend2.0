@@ -13,10 +13,7 @@ const initialState: FacebookLogin = {
   token: ''
 };
 
-export default function faceBookLoginDuck(
-  state = initialState,
-  action: Action
-) {
+export default function loginDuck(state = initialState, action: Action) {
   switch (action.type) {
     case SET_TOKEN:
       return { token: action.payload };

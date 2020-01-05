@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logout } from '../../redux/duck/facebookLoginDuck';
+import { logout } from '../../redux/duck/loginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
@@ -48,7 +48,7 @@ export default function Navbar() {
       display: flex;
     }
   `;
-  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+  const token = useSelector((state: ReduxState) => state.login.token);
   const clicked = useSelector((state: ReduxState) => state.dropdown);
   return (
     <NavbarContent>

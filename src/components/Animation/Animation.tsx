@@ -3,9 +3,11 @@ import Lottie from 'react-lottie';
 
 interface Props {
   type: string;
+  size?: number;
 }
 
-export default function Animation({ type }: Props) {
+export default function Animation({ type, size }: Props) {
+  const dimensions = size || 250;
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -14,5 +16,7 @@ export default function Animation({ type }: Props) {
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
-  return <Lottie options={defaultOptions} height={250} width={250} />;
+  return (
+    <Lottie options={defaultOptions} height={dimensions} width={dimensions} />
+  );
 }

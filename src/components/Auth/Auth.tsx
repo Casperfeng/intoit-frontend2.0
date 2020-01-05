@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { fetchTokenByFacebook } from '../../redux/duck/facebookLoginDuck';
+import { fetchTokenByFacebook } from '../../redux/duck/loginDuck';
 import { FACEBOOK_APP_ID } from '../../constants';
 
 interface AuthProps {
@@ -21,7 +21,6 @@ export default function Auth({ connect }: AuthProps) {
     margin: 0.2em;
     padding: 10px;
     border: none;
-    text-align: left;
     line-height: 30px;
     white-space: nowrap;
     border-radius: 0.2em;

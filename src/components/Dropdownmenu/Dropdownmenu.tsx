@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { logout } from '../../redux/duck/facebookLoginDuck';
+import { logout } from '../../redux/duck/loginDuck';
 import IntoitLink from '../IntoitLink/IntoitLink';
 interface DropdownProps {
   clicked: boolean;
@@ -28,7 +28,7 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
       `}
   `;
 
-  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+  const token = useSelector((state: ReduxState) => state.login.token);
 
   return (
     <DropdownWrapper animation={clicked}>
