@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateDropdown } from '../../redux/duck/dropdownDuck';
 import Dropdownmenu from '../Dropdownmenu/Dropdownmenu';
 
@@ -49,18 +49,15 @@ export default function Burgermenu({ clicked }: BurgerMenuProps) {
       `}
   `;
 
-  const token = useSelector((state: ReduxState) => state.fbLogin.token);
   const dispatch = useDispatch();
   return (
-    token && (
-      <>
-        <BurgermenuWrapper onClick={() => dispatch(updateDropdown())}>
-          <MenubarOne animation={clicked} />
-          <MenubarTwo animation={clicked} />
-          <MenubarThree animation={clicked} />
-        </BurgermenuWrapper>
-        <Dropdownmenu clicked={clicked} />
-      </>
-    )
+    <>
+      <BurgermenuWrapper onClick={() => dispatch(updateDropdown())}>
+        <MenubarOne animation={clicked} />
+        <MenubarTwo animation={clicked} />
+        <MenubarThree animation={clicked} />
+      </BurgermenuWrapper>
+      <Dropdownmenu clicked={clicked} />
+    </>
   );
 }

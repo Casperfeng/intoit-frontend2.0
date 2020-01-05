@@ -8,7 +8,7 @@ interface Props {
 
 export default function ContentLayout({ children, alignment }: Props) {
   const PageContent = styled.div`
-    margin: auto;
+    margin: 0;
     width: 100%;
     height: 100%;
     display: flex;

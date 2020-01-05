@@ -13,10 +13,7 @@ const initialState: FacebookLogin = {
   token: ''
 };
 
-export default function faceBookLoginDuck(
-  state = initialState,
-  action: Action
-) {
+export default function loginDuck(state = initialState, action: Action) {
   switch (action.type) {
     case SET_TOKEN:
       return { token: action.payload };
@@ -37,6 +34,11 @@ export const logout = () => dispatch => {
 export const fetchTokenByFacebook = (fbToken: string) => async dispatch => {
   const response = await axios.get(`/token?facebook_token=${fbToken}`);
   dispatch(setToken(response.data.token));
+};
+
+export const fetchTokenByAnon = (accessToken: string) => async dispatch => {
+  const response = await axios.get(`/token?device_id=${accessToken}`);
+  await dispatch(setToken(response.data.token));
 };
 
 export const setToken = (fbToken: string) => dispatch => {

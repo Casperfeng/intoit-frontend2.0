@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logout } from '../../redux/duck/facebookLoginDuck';
+import { logout } from '../../redux/duck/loginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
@@ -15,6 +15,7 @@ export default function Navbar() {
     padding: 20px;
     background-color: white;
     border-bottom: 1px solid gray;
+    z-index: 1;
   `;
 
   const NavbarIcon = styled.img`
@@ -47,7 +48,7 @@ export default function Navbar() {
       display: flex;
     }
   `;
-  const token = useSelector((state: ReduxState) => state.fbLogin.token);
+  const token = useSelector((state: ReduxState) => state.login.token);
   const clicked = useSelector((state: ReduxState) => state.dropdown);
   return (
     <NavbarContent>
@@ -55,12 +56,18 @@ export default function Navbar() {
         <NavbarIcon src={IntoitLogo} />
       </Link>
       <NavbarLinkContainer>
-        {token && (
+        {token ? (
           <>
             <IntoitLink text={'Hjem'} to={'/'} />
             <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
             <IntoitLink text={'Teamet bak'} to={'/teamet'} />
             <IntoitLink text={'Logg ut'} to={'/login'} callback={logout} />
+          </>
+        ) : (
+          <>
+            <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
+            <IntoitLink text={'Teamet bak'} to={'/teamet'} />
+            <IntoitLink text={'Logg inn'} to={'/login'} />
           </>
         )}
       </NavbarLinkContainer>
