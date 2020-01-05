@@ -36,6 +36,11 @@ export const fetchTokenByFacebook = (fbToken: string) => async dispatch => {
   dispatch(setToken(response.data.token));
 };
 
+export const fetchTokenByAnon = (accessToken: string) => async dispatch => {
+  const response = await axios.get(`/token?device_id=${accessToken}`);
+  await dispatch(setToken(response.data.token));
+};
+
 export const setToken = (fbToken: string) => dispatch => {
   dispatch({ type: 'SET_TOKEN', payload: fbToken });
   axios.defaults.headers.common['X-Access-Token'] = fbToken;

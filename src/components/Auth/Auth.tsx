@@ -40,6 +40,7 @@ export default function Auth({ connect }: AuthProps) {
     }
   `;
   const dispatch = useDispatch();
+
   function responseFacebook(response) {
     dispatch(fetchTokenByFacebook(response.accessToken));
   }
