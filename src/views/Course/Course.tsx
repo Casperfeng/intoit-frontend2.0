@@ -4,6 +4,7 @@ import { match } from 'react-router-dom';
 import { fetchCourse } from '../../redux/duck/courseDetailedDuck';
 import { fetchTopics } from '../../redux/duck/topicDuck';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
+import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
 import TopicCards from './components/TopicCards';
 
@@ -35,7 +36,8 @@ export default function Course(props: CourseProps) {
 
   return isLoading ? (
     <ContentLayout alignment={'center'}>
-      <Title>Loading...</Title>
+      <Title>Laster inn fag...</Title>
+      <Animation type={'seagull'} />
     </ContentLayout>
   ) : (
     <ContentLayout alignment={'center'}>
