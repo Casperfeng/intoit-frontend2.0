@@ -3,6 +3,7 @@ interface ReduxState {
   courseInfo: any;
   fbLogin: FacebookLogin;
   dropdown: Dropdown;
+  topics?: Topic[];
 }
 interface FacebookLogin {
   token: string;
@@ -37,4 +38,18 @@ interface User {
   username: string;
   experience: number;
   facebook_id: string;
+}
+
+interface Topic {
+  id: number;
+  name: string;
+  subjectId: number;
+  size: number;
+  modified?: Date;
+  created?: Date;
+  description?: string;
+  correctlyAnswered?: number;
+  mcSize?: number;
+  fcSize?: number;
+  isArchived?: boolean;
 }
