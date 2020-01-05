@@ -22,6 +22,10 @@ export default function TopicCard({
     font-weight: bold;
     font-size: 20px;
     width: 100%;
+    text-transform: lowercase;
+    ::first-letter {
+      text-transform: capitalize;
+    }
   `;
 
   const IconContainer = styled.div`
@@ -50,7 +54,6 @@ export default function TopicCard({
   `;
 
   const SubText = styled.p`
-    text-transform: capitalize;
     font-weight: bold;
   `;
 

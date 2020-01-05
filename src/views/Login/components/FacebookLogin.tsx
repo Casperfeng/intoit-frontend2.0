@@ -8,7 +8,7 @@ export default function FacebookLogin() {
   `;
   return (
     <ButtonContainer>
-      <Auth connect={false}></Auth>
+      <Auth connect={false} />
     </ButtonContainer>
   );
 }
