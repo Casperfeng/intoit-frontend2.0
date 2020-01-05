@@ -48,6 +48,7 @@ export default function Navbar() {
     }
   `;
   const token = useSelector((state: ReduxState) => state.fbLogin.token);
+  const clicked = useSelector((state: ReduxState) => state.dropdown);
   return (
     <NavbarContent>
       <Link to='/'>
@@ -64,7 +65,7 @@ export default function Navbar() {
         )}
       </NavbarLinkContainer>
       <NavBurgermenuContainer>
-        <Burgermenu />
+        <Burgermenu clicked={clicked} />
       </NavBurgermenuContainer>
     </NavbarContent>
   );

@@ -25,6 +25,9 @@ export default function QuizCard() {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    &:hover {
+      color: black;
+    }
   `;
 
   const HorizontalRow = styled.hr`

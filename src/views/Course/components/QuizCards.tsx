@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Title from '../../../components/Title/Title';
+import SubTitle from '../../../components/Title/SubTitle';
 import QuizCard from './QuizCard';
 
 export default function QuizCards() {
@@ -12,6 +12,7 @@ export default function QuizCards() {
 
   return (
     <>
+      <SubTitle>Alle temaer</SubTitle>
       <QuizWrapper>
         <QuizCard />
         <QuizCard />

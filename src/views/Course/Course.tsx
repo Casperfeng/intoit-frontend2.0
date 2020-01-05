@@ -22,18 +22,18 @@ export default function Course(props: CourseProps) {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (courseInfo.id !== id) {
-      dispatch(fetchCourse(id));
+    async function retrieveCourse() {
+      await dispatch(fetchCourse(id));
+      setLoading(false);
     }
+    retrieveCourse();
     // eslint-disable-next-line
-  }, [isLoading]);
-
-  if (courseInfo.id === id) {
-    setLoading(false);
-  }
+  }, []);
 
   return isLoading ? (
-    <h1>Loading...</h1>
+    <ContentLayout alignment={'center'}>
+      <Title>Loading...</Title>
+    </ContentLayout>
   ) : (
     <ContentLayout alignment={'center'}>
       <Title>{courseInfo.name}</Title>
