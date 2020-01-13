@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getPersistor } from "../../index";
 
 interface Action {
   type: string;
@@ -13,7 +14,7 @@ const initialState: FacebookLogin = {
   token: ''
 };
 
-export default function loginDuck(state = initialState, action: Action) {
+export default function (state = initialState, action: Action) {
   switch (action.type) {
     case SET_TOKEN:
       return { token: action.payload };
@@ -24,10 +25,16 @@ export default function loginDuck(state = initialState, action: Action) {
   }
 }
 
+
 // Action creators
-export const logout = () => dispatch => {
-  console.log('LOG out called!');
+
+/**
+* Should purge everything after log out.
+*/
+export const logout = () =>  async dispatch => {
   dispatch({ type: 'LOG_OUT' });
+  const persistor = getPersistor();
+  await persistor.purge();
   window.location.href = '/login';
 };
 
@@ -42,6 +49,7 @@ export const fetchTokenByAnon = (accessToken: string) => async dispatch => {
 };
 
 export const setToken = (fbToken: string) => dispatch => {
+  console.log("SETTING TOKEN")
   dispatch({ type: 'SET_TOKEN', payload: fbToken });
   axios.defaults.headers.common['X-Access-Token'] = fbToken;
 };
