@@ -6,6 +6,9 @@ import { logout } from '../../redux/duck/loginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../redux/duck/loginDuck';
+
 
 export default function Navbar() {
   const NavbarContent = styled.nav`
@@ -48,7 +51,15 @@ export default function Navbar() {
       display: flex;
     }
   `;
+
   const token = useSelector((state: ReduxState) => state.login.token);
+
+  // * Token should be setted on a component that renders on everypage. In our case, this Navbar.
+  const ditpatch = useDispatch();
+  if(token) {
+    ditpatch(setToken(token));
+  }
+
   const clicked = useSelector((state: ReduxState) => state.dropdown);
   return (
     <NavbarContent>

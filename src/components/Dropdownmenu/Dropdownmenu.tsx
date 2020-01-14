@@ -7,29 +7,10 @@ interface DropdownProps {
   clicked: boolean;
 }
 
+
+
 export default function Dropdownmenu({ clicked }: DropdownProps) {
-  const DropdownWrapper = styled.div`
-    z-index: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    place-content: center;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    top: -700px;
-    background-color: rgb(53, 152, 219);
-    ${props =>
-      props.animation &&
-      css`
-        transition: 0.6s;
-        top: 0px;
-      `}
-  `;
-
   const token = useSelector((state: ReduxState) => state.login.token);
-
   return (
     <DropdownWrapper animation={clicked}>
       {token ? (
@@ -54,3 +35,23 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
     </DropdownWrapper>
   );
 }
+
+const DropdownWrapper = styled.div`
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    top: -700px;
+    background-color: rgb(53, 152, 219);
+    ${props =>
+      props.animation &&
+      css`
+        transition: 0.6s;
+        top: 0px;
+      `}
+  `;

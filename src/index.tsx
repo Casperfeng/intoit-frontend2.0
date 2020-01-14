@@ -21,15 +21,18 @@ const composeEnhancers =
     : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(...middleware));
-
 const persistConfig = {
   key: 'root',
   storage
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(persistedReducer, enhancer);
+const store = createStore(persistedReducer,enhancer);
 const persistor = persistStore(store);
+
+export function getPersistor() {
+  return persistor;
+}
 
 ReactDOM.render(
   <Provider store={store}>
