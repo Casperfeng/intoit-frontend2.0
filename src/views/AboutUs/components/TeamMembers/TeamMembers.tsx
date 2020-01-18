@@ -20,7 +20,8 @@ export default function TeamMembers() {
     { name: 'Casper Feng', linkedIn: 'casperfeng' },
     { name: 'Andreas Rikheim', linkedIn: 'andreas-rikheim' },
     { name: 'Håkon Størdal', linkedIn: 'håkons' },
-    { name: 'Gulleik Olsen', linkedIn: 'gulleik-olsen' }
+    { name: 'Gulleik Olsen', linkedIn: 'gulleik-olsen' },
+    { name: 'Eirik Sture', linkedIn: 'eirik-sture'}
   ];
 
   const teamMembers = teamMembersInfo.map((teamMember, index) => (
