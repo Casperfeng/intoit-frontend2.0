@@ -20,6 +20,7 @@ export default function TeamMembers() {
     { name: 'Casper Feng', linkedIn: 'casperfeng' },
     { name: 'Andreas Rikheim', linkedIn: 'andreas-rikheim' },
     { name: 'Håkon Størdal', linkedIn: 'håkons' },
+    { name: 'Eirik Sture', linkedIn: 'eirik-sture'},
     { name: 'Kim Midtlid', linkedIn: 'kimandremidtlid'}
   ];
 
