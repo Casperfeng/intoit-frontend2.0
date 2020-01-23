@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
+import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
 import MATH_ICON from '../../../assets/icons/mathIcon.svg';
@@ -75,81 +75,6 @@ export default function CourseCard({
     color = TTM_COLOR;
     icon = NETWORK_ICON;
   }
-  const CourseBox = styled.div`
-    position: relative;
-    width: 250px;
-    height: 301px;
-    min-width: 250px;
-    border: 1px solid black;
-    background-color: white;
-    box-shadow: -2px 1px 2px -2px #f2f2f2;
-    margin: 10px 10px;
-    cursor: pointer;
-    &:hover {
-      width: 260px;
-      margin: 0px;
-    }
-  `;
-
-  const CourseBoxContent = styled.div`
-    position: relative;
-    color: white;
-    background-color: ${color};
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const CourseBoxText = styled.p`
-    height: 30px;
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: lowercase;
-    ::first-letter {
-      text-transform: uppercase;
-    }
-  `;
-
-  const CourseBoxInfo = styled.div`
-    margin-left: 30px;
-    overflow: hidden;
-    background-color: ${color};
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 235px;
-    margin: auto;
-    padding-bottom: 5px;
-  `;
-
-  const CourseBoxSchool = styled.p`
-    display: flex;
-    font-size: 12px;
-    margin: 10px auto 0 10px;
-  `;
-
-  const CourseBoxCode = styled.p`
-    display: flex;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 auto 0 10px;
-  `;
-
-  const CourseBoxUpdated = styled.p`
-    display: flex;
-    font-size: 12px;
-    font-weight: 500px;
-    margin: 0 auto 0 10px;
-  `;
-
-  const CourseIcon = styled.img`
-    position: absolute;
-    height: 155px;
-    width: 155px;
-    top: 70px;
-    left: 50px;
-  `;
 
   const StyledLink = styled(Link)`
     text-decoration: none;
@@ -163,21 +88,30 @@ export default function CourseCard({
     }
   `;
 
+  const CourseIcon = styled.img`
+    height: 155px;
+    width: 155px;
+    top: 70px;
+    left: 50px;
+  `;
+
+  const CourseCard = styled(Card)`
+    display: flex;
+    flex-direction: column;
+    background: ${color};
+    border: 0;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.3);
+  `;
+
   return (
     <StyledLink to={`/courses/${id}`}>
-      <CourseBox>
-        <CourseBoxContent>
-          <CourseBoxText>{name}</CourseBoxText>
-          <CourseIcon src={icon}></CourseIcon>
-          <CourseBoxInfo>
-            <CourseBoxSchool>{school}</CourseBoxSchool>
-            <CourseBoxCode>{code}</CourseBoxCode>
-            <CourseBoxUpdated>
-              Sist endret for {moment(modified).fromNow()}
-            </CourseBoxUpdated>
-          </CourseBoxInfo>
-        </CourseBoxContent>
-      </CourseBox>
+      <CourseCard>
+        {name}
+        <CourseIcon src={icon} alt="Course icon"/>
+      </CourseCard>
     </StyledLink>
   );
 }
