@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { fetchTokenByFacebook } from '../../redux/duck/loginDuck';
-import { FACEBOOK_APP_ID } from '../../constants';
+import React from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { fetchTokenByFacebook } from "../../redux/duck/loginDuck";
+import { FACEBOOK_APP_ID } from "shared/constants";
 
 interface AuthProps {
   connect: boolean;
@@ -52,8 +52,8 @@ export default function Auth({ connect }: AuthProps) {
       render={renderProps => (
         <FacebookButton onClick={renderProps.onClick}>
           {connect
-            ? 'Koble gjestekontoen til Facebook'
-            : 'Logg inn med Facebook'}
+            ? "Koble gjestekontoen til Facebook"
+            : "Logg inn med Facebook"}
         </FacebookButton>
       )}
     />
