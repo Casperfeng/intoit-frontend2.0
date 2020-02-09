@@ -19,6 +19,7 @@ export default function Login() {
   if (token) {
     return <Redirect to={'/'} />;
   }
+  
   return (
     <ContentLayout>
       <ContentWrapper>
