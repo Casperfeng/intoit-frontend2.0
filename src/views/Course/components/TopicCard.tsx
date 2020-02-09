@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faClone } from "@fortawesome/free-solid-svg-icons";
-import { DEFAULT_BLUE_COLOR } from "shared/colors";
+import React from 'react';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faClone } from '@fortawesome/free-solid-svg-icons';
+import { DEFAULT_BLUE_COLOR } from 'shared/colors';
 
 interface TopicCardProps {
   id: number;
@@ -81,11 +81,11 @@ export default function TopicCard({
       <CardTitle>{name}</CardTitle>
       <IconContainer>
         <Icon>
-          <FontAwesomeIcon icon={faList} size="2x" />
+          <FontAwesomeIcon icon={faList} size='2x' />
           <SubText>Flervalg</SubText>
         </Icon>
         <Icon>
-          <FontAwesomeIcon icon={faClone} size="2x" />
+          <FontAwesomeIcon icon={faClone} size='2x' />
           <SubText>Flashcard</SubText>
         </Icon>
       </IconContainer>

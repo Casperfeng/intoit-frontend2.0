@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { FACEBOOK_APP_ID } from "shared/constants";
+import React from 'react';
+import styled from 'styled-components';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { FACEBOOK_APP_ID } from 'shared/constants';
 
 export default function Auth() {
   const FacebookButton = styled.button`
@@ -34,7 +34,7 @@ export default function Auth() {
   `;
 
   function responseFacebook(response) {
-    console.log("CLICKED");
+    console.log('CLICKED');
   }
 
   return (
@@ -42,7 +42,7 @@ export default function Auth() {
       appId={FACEBOOK_APP_ID}
       autoLoad={false}
       callback={responseFacebook}
-      fields=""
+      fields=''
       render={renderProps => (
         <FacebookButton onClick={renderProps.onClick}>
           Logg inn som gjest
