@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "@material-ui/core";
+import { Card, CardMedia, CardActionArea, CardContent, Typography, CardActions, Icon, Grid, Badge, ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import DEFAULT_ICON from "../../../assets/icons/onlineTestIcon.svg";
 import MATH_ICON from "../../../assets/icons/mathIcon.svg";
@@ -89,29 +91,64 @@ export default function CourseCard({
   `;
 
   const CourseIcon = styled.img`
-    height: 155px;
-    width: 155px;
-    top: 70px;
-    left: 50px;
+    height: 100px;
+    /* width: 168px; */
+    width: 100%;
   `;
+
+  const IconWithText = styled.div`
+    display: flex;
+  `
+
+  const CourseActions = styled(CardActions)`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 16px;
+  `
 
   const CourseCard = styled(Card)`
     display: flex;
     flex-direction: column;
-    background: ${color};
+    align-items: stretch;
+    background: white;
     border: 0;
-    color: white;
-    padding: 10px;
+    color: black;
     margin: 10px;
-    box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    width: 200px;
+    border: 2px solid ${color};
+    transition: 50ms linear;
+    &:hover {
+      box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    }
   `;
 
   return (
     <StyledLink to={`/courses/${id}`}>
-      <CourseCard>
-        {name}
-        <CourseIcon src={icon} alt="Course icon" />
-      </CourseCard>
+        <CourseCard>
+          <Grid container spacing={2} >
+            <Grid item xs={12}>
+              <CourseIcon src={icon} alt="Course icon" />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6" component="h6" noWrap={true}>
+                {name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p" noWrap={true}>
+                {`${code} • ${school}`}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <IconWithText>
+                <FontAwesomeIcon icon={faHeart} size='lg' color={color}/>
+                <Typography variant="body2" component="p" noWrap={true}>
+                  {numFavoritesAllTime}
+                </Typography>
+              </IconWithText>
+            </Grid>
+          </Grid>
+        </CourseCard>
     </StyledLink>
   );
 }
