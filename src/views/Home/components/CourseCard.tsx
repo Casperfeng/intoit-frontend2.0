@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { Card } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import DEFAULT_ICON from "../../../assets/icons/onlineTestIcon.svg";
-import MATH_ICON from "../../../assets/icons/mathIcon.svg";
-import PHYSICS_ICON from "../../../assets/icons/physicsIcon.svg";
-import IT_ICON from "../../../assets/icons/itIcon.svg";
-import ECONOMY_ICON from "../../../assets/icons/economyIcon.svg";
-import NETWORK_ICON from "../../../assets/icons/networkIcon.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Card } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
+import MATH_ICON from '../../../assets/icons/mathIcon.svg';
+import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
+import IT_ICON from '../../../assets/icons/itIcon.svg';
+import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
+import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 
 import {
   DEFAULT_BLUE_COLOR,
@@ -16,7 +16,7 @@ import {
   TIØ_COLOR,
   TFY_COLOR,
   TTM_COLOR
-} from "shared/colors";
+} from 'shared/colors';
 
 interface CourseProps {
   id: number;
@@ -55,23 +55,23 @@ export default function CourseCard({
 }: CourseProps) {
   let color = DEFAULT_BLUE_COLOR;
   let icon = DEFAULT_ICON;
-  if (code.toUpperCase().includes("TFY")) {
+  if (code.toUpperCase().includes('TFY')) {
     color = TFY_COLOR;
     icon = PHYSICS_ICON;
   }
-  if (code.toUpperCase().includes("TIØ")) {
+  if (code.toUpperCase().includes('TIØ')) {
     color = TIØ_COLOR;
     icon = ECONOMY_ICON;
   }
-  if (code.toUpperCase().includes("TMA")) {
+  if (code.toUpperCase().includes('TMA')) {
     color = TMA_COLOR;
     icon = MATH_ICON;
   }
-  if (code.toUpperCase().includes("TDT")) {
+  if (code.toUpperCase().includes('TDT')) {
     color = TDT_COLOR;
     icon = IT_ICON;
   }
-  if (code.toUpperCase().includes("TTM")) {
+  if (code.toUpperCase().includes('TTM')) {
     color = TTM_COLOR;
     icon = NETWORK_ICON;
   }
@@ -110,7 +110,7 @@ export default function CourseCard({
     <StyledLink to={`/courses/${id}`}>
       <CourseCard>
         {name}
-        <CourseIcon src={icon} alt="Course icon" />
+        <CourseIcon src={icon} alt='Course icon' />
       </CourseCard>
     </StyledLink>
   );
