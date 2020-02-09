@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { FACEBOOK_APP_ID } from '../../constants';
+import { FACEBOOK_APP_ID } from 'shared/constants';
 
 export default function Auth() {
   const FacebookButton = styled.button`

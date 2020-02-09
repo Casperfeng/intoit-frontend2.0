@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faClone } from '@fortawesome/free-solid-svg-icons';
-import { DEFAULT_BLUE_COLOR } from '../../../styles';
+import { DEFAULT_BLUE_COLOR } from 'shared/colors';
 
 interface TopicCardProps {
   id: number;

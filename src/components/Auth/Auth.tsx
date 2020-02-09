@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { fetchTokenByFacebook } from '../../redux/duck/loginDuck';
-import { FACEBOOK_APP_ID } from '../../constants';
+import { FACEBOOK_APP_ID } from 'shared/constants';
 
 interface AuthProps {
   connect: boolean;
