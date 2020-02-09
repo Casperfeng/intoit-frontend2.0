@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList, faClone } from '@fortawesome/free-solid-svg-icons';
-import { DEFAULT_BLUE_COLOR } from '../../../styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
