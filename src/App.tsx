@@ -2,7 +2,7 @@ import React from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Navbar from './components/Navbar/Navbar';
 import Login from './views/Login/Login';
 import Home from './views/Home/Home';
@@ -17,7 +17,6 @@ export default function App() {
     height: 100%;
     min-height: 1000px;
     min-width: 200px;
-    background-color: #ececeb;
     display: column;
     align-content: center;
     color: #293640;
@@ -28,11 +27,11 @@ export default function App() {
         <Router>
           <Navbar />
           <Switch>
-            <Route exact path='/teamet' component={AboutUs} />
-            <Route exact path='/om-oss' component={AboutIntoit} />
-            <ProtectedRoute exact path='/courses/:id' component={Course} />
-            <ProtectedRoute exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
+            <Route exact path="/teamet" component={AboutUs} />
+            <Route exact path="/om-oss" component={AboutIntoit} />
+            <ProtectedRoute exact path="/courses/:id" component={Course} />
+            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </Router>
       </Main>
