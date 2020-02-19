@@ -16,11 +16,12 @@ export default function App() {
     width: 100%;
     height: 100%;
     min-height: 1000px;
-    min-width: 200px;
+    margin: auto;
     display: column;
     align-content: center;
     color: #293640;
   `;
+
   return (
     <StylesProvider injectFirst>
       <Main>
