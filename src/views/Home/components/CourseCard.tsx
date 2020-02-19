@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
@@ -9,14 +9,7 @@ import IT_ICON from '../../../assets/icons/itIcon.svg';
 import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
 import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 
-import {
-  DEFAULT_BLUE_COLOR,
-  TMA_COLOR,
-  TDT_COLOR,
-  TIØ_COLOR,
-  TFY_COLOR,
-  TTM_COLOR
-} from 'shared/colors';
+import { DEFAULT_SUBJECT_COLOR, ECONOMY_COLOR, MATH_COLOR, IT_COLOR } from 'shared/colors';
 
 interface CourseProps {
   id: number;
@@ -36,7 +29,7 @@ interface CourseProps {
   numFavoritesThisSemester: number;
 }
 
-export default function CourseCard({
+const CourseCard = ({
   id,
   code,
   name,
@@ -51,67 +44,96 @@ export default function CourseCard({
   progression,
   favorite,
   created,
-  modified
-}: CourseProps) {
-  let color = DEFAULT_BLUE_COLOR;
+  modified,
+}: CourseProps) => {
+  let color = DEFAULT_SUBJECT_COLOR;
   let icon = DEFAULT_ICON;
+
+  // Refactor this after deciding on what color and icons
   if (code.toUpperCase().includes('TFY')) {
-    color = TFY_COLOR;
+    color = MATH_COLOR;
     icon = PHYSICS_ICON;
   }
   if (code.toUpperCase().includes('TIØ')) {
-    color = TIØ_COLOR;
+    color = ECONOMY_COLOR;
     icon = ECONOMY_ICON;
   }
   if (code.toUpperCase().includes('TMA')) {
-    color = TMA_COLOR;
+    color = MATH_COLOR;
     icon = MATH_ICON;
   }
   if (code.toUpperCase().includes('TDT')) {
-    color = TDT_COLOR;
+    color = IT_COLOR;
     icon = IT_ICON;
   }
   if (code.toUpperCase().includes('TTM')) {
-    color = TTM_COLOR;
+    color = IT_COLOR;
     icon = NETWORK_ICON;
   }
 
-  const StyledLink = styled(Link)`
-    text-decoration: none;
-
-    &:focus,
-    &:hover,
-    &:visited,
-    &:link,
-    &:active {
-      text-decoration: none;
-    }
-  `;
-
-  const CourseIcon = styled.img`
-    height: 155px;
-    width: 155px;
-    top: 70px;
-    left: 50px;
-  `;
-
-  const CourseCard = styled(Card)`
-    display: flex;
-    flex-direction: column;
-    background: ${color};
-    border: 0;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.3);
-  `;
-
   return (
     <StyledLink to={`/courses/${id}`}>
-      <CourseCard>
-        {name}
-        <CourseIcon src={icon} alt='Course icon' />
-      </CourseCard>
+      <Wrapper color={color}>
+        <Illustration src={icon} alt="Course icon" />
+        <div>
+          <Name>{name}</Name>
+          <SchoolCode>{code}</SchoolCode>
+        </div>
+        <Status>
+          <p> ICon 1</p>
+          <p>Favorite</p>
+        </Status>
+      </Wrapper>
     </StyledLink>
   );
-}
+};
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
+const Illustration = styled.img`
+  max-width: 70%;
+  max-height: 125px;
+  object-fit: contain;
+  margin: auto;
+`;
+
+const Wrapper = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  min-height: 270px;
+  border: 0;
+  justify-content: space-between;
+  padding: 16px;
+  ${(props: { color: string }) => `
+    border: 2px solid ${props.color};
+  `}
+`;
+
+const Name = styled.p`
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: capitalize;
+  margin-bottom: 7px;
+`;
+
+const SchoolCode = styled.p`
+  font-size: 12px;
+  text-decoration: uppercase;
+`;
+
+const Status = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+export default CourseCard;

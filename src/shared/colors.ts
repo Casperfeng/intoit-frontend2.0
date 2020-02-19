@@ -1,6 +1,10 @@
-export const DEFAULT_BLUE_COLOR = 'rgb(53, 152, 219, 0.8)';
-export const TDT_COLOR = 'rgb(153, 0, 255, 0.8)';
-export const TMA_COLOR = 'rgb(204, 0, 0, 0.8)';
-export const TFY_COLOR = 'rgb(0, 0, 102, 0.8)';
-export const TIØ_COLOR = 'rgb(255, 102, 0, 0.8)';
-export const TTM_COLOR = 'rgb(0, 51, 0, 0.8)';
+const DEFAULT_BLUE_COLOR = '#0CAAD6';
+const GREEN_COLOR = '#009688';
+const RED_COLOR = '#9A0007';
+const YELLOW_COLOR = '#FBBC00';
+const PURPLE_COLOR = '#6C63FF';
+
+export const DEFAULT_SUBJECT_COLOR = DEFAULT_BLUE_COLOR;
+export const ECONOMY_COLOR = YELLOW_COLOR;
+export const MATH_COLOR = RED_COLOR;
+export const IT_COLOR = GREEN_COLOR;
