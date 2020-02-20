@@ -9,7 +9,8 @@ interface Props {
 export default function ContentLayout({ children, alignment }: Props) {
   const PageContent = styled.div`
     margin: auto;
-    max-width: 1224px;
+    max-width: 1272px;
+    padding: 0 24px;
     height: 100%;
     display: flex;
     flex-direction: column;

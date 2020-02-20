@@ -14,7 +14,7 @@ const colors = {
   grey: GREY_COLOR,
 };
 
-const subjectColors = {
+export const subjectColors = {
   default: DEFAULT_BLUE_COLOR,
   it: GREEN_COLOR,
   math: RED_COLOR,
@@ -22,5 +22,3 @@ const subjectColors = {
 };
 
 export default colors;
-
-export { subjectColors };

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCourses } from '../../../redux/duck/coursesDuck';
+import devices from 'shared/media';
 import CourseCard from './CourseCard';
 
 export default function Courses() {
@@ -50,4 +51,16 @@ const Content = styled.div`
   grid-row-gap: 36px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
+
+  @media ${devices.laptopOnly} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${devices.tabletOnly} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${devices.mobileOnly} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
