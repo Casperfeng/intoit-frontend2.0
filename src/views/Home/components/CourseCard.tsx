@@ -125,6 +125,12 @@ const Wrapper = styled(Card)`
   ${(props: { color: string }) => `
     border: 2px solid ${props.color};
   `}
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.025) translateY(-2px);
+  }
 `;
 
 const Name = styled.p`
