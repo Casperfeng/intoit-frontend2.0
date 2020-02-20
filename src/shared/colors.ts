@@ -1,6 +1,24 @@
-export const DEFAULT_BLUE_COLOR = 'rgb(53, 152, 219, 0.8)';
-export const TDT_COLOR = 'rgb(153, 0, 255, 0.8)';
-export const TMA_COLOR = 'rgb(204, 0, 0, 0.8)';
-export const TFY_COLOR = 'rgb(0, 0, 102, 0.8)';
-export const TIØ_COLOR = 'rgb(255, 102, 0, 0.8)';
-export const TTM_COLOR = 'rgb(0, 51, 0, 0.8)';
+const DEFAULT_BLUE_COLOR = '#0CAAD6';
+const GREEN_COLOR = '#009688';
+const RED_COLOR = '#9A0007';
+const YELLOW_COLOR = '#FBBC00';
+const PURPLE_COLOR = '#6C63FF';
+const GREY_COLOR = '#979797';
+
+const colors = {
+  default: DEFAULT_BLUE_COLOR,
+  green: GREEN_COLOR,
+  red: RED_COLOR,
+  yellow: YELLOW_COLOR,
+  purple: PURPLE_COLOR,
+  grey: GREY_COLOR,
+};
+
+export const subjectColors = {
+  default: DEFAULT_BLUE_COLOR,
+  it: GREEN_COLOR,
+  math: RED_COLOR,
+  economy: YELLOW_COLOR,
+};
+
+export default colors;

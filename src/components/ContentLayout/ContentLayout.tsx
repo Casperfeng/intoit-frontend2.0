@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 interface Props {
   children?: ReactElement | ReactElement[];
@@ -8,8 +8,9 @@ interface Props {
 
 export default function ContentLayout({ children, alignment }: Props) {
   const PageContent = styled.div`
-    margin: 0;
-    width: 100%;
+    margin: auto;
+    max-width: 1272px;
+    padding: 0 24px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -20,5 +21,6 @@ export default function ContentLayout({ children, alignment }: Props) {
         text-align: center;
       `}
   `;
+
   return <PageContent textAlign={alignment}>{children}</PageContent>;
 }
