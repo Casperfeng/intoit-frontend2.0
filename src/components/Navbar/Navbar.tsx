@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logout } from '../../redux/duck/loginDuck';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../../redux/duck/loginDuck';
+import { setToken, logout } from 'redux/duck/userDuck';
 
 export default function Navbar() {
-  const token = useSelector((state: ReduxState) => state.login.token);
+  const token = useSelector((state: ReduxState) => state.user.token);
 
   // * Token should be setted on a component that renders on everypage. In our case, this Navbar.
   const ditpatch = useDispatch();
