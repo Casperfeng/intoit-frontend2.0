@@ -8,8 +8,9 @@ import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
 import IT_ICON from '../../../assets/icons/itIcon.svg';
 import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
 import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
+import { AccessTime, Favorite } from 'styled-icons/material';
 
-import { DEFAULT_SUBJECT_COLOR, ECONOMY_COLOR, MATH_COLOR, IT_COLOR } from 'shared/colors';
+import colors, { subjectColors } from 'shared/colors';
 
 interface CourseProps {
   id: number;
@@ -46,28 +47,28 @@ const CourseCard = ({
   created,
   modified,
 }: CourseProps) => {
-  let color = DEFAULT_SUBJECT_COLOR;
+  let color = subjectColors.default;
   let icon = DEFAULT_ICON;
 
   // Refactor this after deciding on what color and icons
   if (code.toUpperCase().includes('TFY')) {
-    color = MATH_COLOR;
+    color = subjectColors.math;
     icon = PHYSICS_ICON;
   }
   if (code.toUpperCase().includes('TIØ')) {
-    color = ECONOMY_COLOR;
+    color = subjectColors.economy;
     icon = ECONOMY_ICON;
   }
   if (code.toUpperCase().includes('TMA')) {
-    color = MATH_COLOR;
+    color = subjectColors.math;
     icon = MATH_ICON;
   }
   if (code.toUpperCase().includes('TDT')) {
-    color = IT_COLOR;
+    color = subjectColors.it;
     icon = IT_ICON;
   }
   if (code.toUpperCase().includes('TTM')) {
-    color = IT_COLOR;
+    color = subjectColors.it;
     icon = NETWORK_ICON;
   }
 
@@ -80,8 +81,15 @@ const CourseCard = ({
           <SchoolCode>{code}</SchoolCode>
         </div>
         <Status>
-          <p> ICon 1</p>
-          <p>Favorite</p>
+          <StyledAccessTime>
+            <AccessTime size={22} />
+            {/* Remove hardcode date. Implement new date system with date-fns */}
+            <p>3d</p>
+          </StyledAccessTime>
+          <StyledFavorite color={color}>
+            <Favorite size={22} />
+            <p>{numFavoritesAllTime}</p>
+          </StyledFavorite>
         </Status>
       </Wrapper>
     </StyledLink>
@@ -131,6 +139,31 @@ const SchoolCode = styled.p`
   text-decoration: uppercase;
 `;
 
+const StyledAccessTime = styled.div`
+  color: ${colors.grey};
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 5px;
+    margin-top: 3px;
+  }
+`;
+
+const StyledFavorite = styled.div`
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 2px;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  ${(props: { color: string }) => `
+    color: ${props.color};
+  `}
+`;
 const Status = styled.div`
   display: flex;
   justify-content: space-between;

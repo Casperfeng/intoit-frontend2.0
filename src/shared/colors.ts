@@ -3,8 +3,24 @@ const GREEN_COLOR = '#009688';
 const RED_COLOR = '#9A0007';
 const YELLOW_COLOR = '#FBBC00';
 const PURPLE_COLOR = '#6C63FF';
+const GREY_COLOR = '#979797';
 
-export const DEFAULT_SUBJECT_COLOR = DEFAULT_BLUE_COLOR;
-export const ECONOMY_COLOR = YELLOW_COLOR;
-export const MATH_COLOR = RED_COLOR;
-export const IT_COLOR = GREEN_COLOR;
+const colors = {
+  default: DEFAULT_BLUE_COLOR,
+  green: GREEN_COLOR,
+  red: RED_COLOR,
+  yellow: YELLOW_COLOR,
+  purple: PURPLE_COLOR,
+  grey: GREY_COLOR,
+};
+
+const subjectColors = {
+  default: DEFAULT_BLUE_COLOR,
+  it: GREEN_COLOR,
+  math: RED_COLOR,
+  economy: YELLOW_COLOR,
+};
+
+export default colors;
+
+export { subjectColors };
