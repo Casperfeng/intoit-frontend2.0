@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
 import courseReducer from '../duck/coursesDuck';
 import courseDetailedReducer from '../duck/courseDetailedDuck';
-import loginReducer from '../duck/loginDuck';
+import userReducer from '../duck/userDuck';
 import dropdownReducer from '../duck/dropdownDuck';
 import topicReducer from '../duck/topicDuck';
-import userReducer from '../duck/userDuck';
 
 const rootReducer = combineReducers({
   courses: courseReducer,
   courseInfo: courseDetailedReducer,
-  login: loginReducer,
+  user: userReducer,
   dropdown: dropdownReducer,
   topics: topicReducer,
-  user: userReducer
 });
 
 export default rootReducer;
