@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { fetchQuiz } from '../../redux/duck/quizDuck';
 import Exercise from './components/Exercise';
 import { LinearProgress } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon } from '@fortawesome/free-regular-svg-icons';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMoon } from "@fortawesome/free-regular-svg-icons";
 
 export default function Quiz() {
   const dispatch = useDispatch();
@@ -21,26 +21,27 @@ export default function Quiz() {
     justify-content: space-between;
   `;
 
-
   useEffect(() => {
     async function retrieveQuiz() {
+      console.log('use efefct in quia');
       await dispatch(fetchQuiz('99662', true, 'mc', false));
     }
     retrieveQuiz();
     // eslint-disable-next-line
   }, []);
 
+  console.log('quiz', quiz);
   if (!quiz.exercises.content && quiz.index === quiz.exercises.length) {
-    return <div>Ferdig med Quiz</div>
+    return <div>Ferdig med Quiz</div>;
   }
 
   return (
     <QuizContainer>
       <Test>
         <div>Tittel</div>
-        <FontAwesomeIcon icon={faMoon} size='2x' />
+        {/* <FontAwesomeIcon icon={faMoon} size="2x" /> */}
       </Test>
-      <LinearProgress variant='determinate' value={100/quiz.exercises.length*quiz.index} />
+      <LinearProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
       <Exercise exercise={quiz.exercises[quiz.index]} />
     </QuizContainer>
   );

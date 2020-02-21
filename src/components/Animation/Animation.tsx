@@ -20,3 +20,4 @@ export default function Animation({ type, size }: Props) {
     <Lottie options={defaultOptions} height={dimensions} width={dimensions} />
   );
 }
+

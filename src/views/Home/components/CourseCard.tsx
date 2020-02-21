@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import moment from 'moment';
+import styled from 'styled-components/macro';
+import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
 import MATH_ICON from '../../../assets/icons/mathIcon.svg';
@@ -8,15 +8,9 @@ import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
 import IT_ICON from '../../../assets/icons/itIcon.svg';
 import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
 import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
+import { AccessTime, Favorite } from 'styled-icons/material';
 
-import {
-  DEFAULT_BLUE_COLOR,
-  TMA_COLOR,
-  TDT_COLOR,
-  TIØ_COLOR,
-  TFY_COLOR,
-  TTM_COLOR
-} from '../../../styles';
+import colors, { subjectColors } from 'shared/colors';
 
 interface CourseProps {
   id: number;
@@ -36,7 +30,7 @@ interface CourseProps {
   numFavoritesThisSemester: number;
 }
 
-export default function CourseCard({
+const CourseCard = ({
   id,
   code,
   name,
@@ -51,133 +45,134 @@ export default function CourseCard({
   progression,
   favorite,
   created,
-  modified
-}: CourseProps) {
-  let color = DEFAULT_BLUE_COLOR;
+  modified,
+}: CourseProps) => {
+  let color = subjectColors.default;
   let icon = DEFAULT_ICON;
+
+  // Refactor this after deciding on what color and icons
   if (code.toUpperCase().includes('TFY')) {
-    color = TFY_COLOR;
+    color = subjectColors.math;
     icon = PHYSICS_ICON;
   }
   if (code.toUpperCase().includes('TIØ')) {
-    color = TIØ_COLOR;
+    color = subjectColors.economy;
     icon = ECONOMY_ICON;
   }
   if (code.toUpperCase().includes('TMA')) {
-    color = TMA_COLOR;
+    color = subjectColors.math;
     icon = MATH_ICON;
   }
   if (code.toUpperCase().includes('TDT')) {
-    color = TDT_COLOR;
+    color = subjectColors.it;
     icon = IT_ICON;
   }
   if (code.toUpperCase().includes('TTM')) {
-    color = TTM_COLOR;
+    color = subjectColors.it;
     icon = NETWORK_ICON;
   }
-  const CourseBox = styled.div`
-    position: relative;
-    width: 250px;
-    height: 301px;
-    min-width: 250px;
-    border: 1px solid black;
-    background-color: white;
-    box-shadow: -2px 1px 2px -2px #f2f2f2;
-    margin: 10px 10px;
-    cursor: pointer;
-    &:hover {
-      width: 260px;
-      margin: 0px;
-    }
-  `;
-
-  const CourseBoxContent = styled.div`
-    position: relative;
-    color: white;
-    background-color: ${color};
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const CourseBoxText = styled.p`
-    height: 30px;
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: lowercase;
-    ::first-letter {
-      text-transform: uppercase;
-    }
-  `;
-
-  const CourseBoxInfo = styled.div`
-    margin-left: 30px;
-    overflow: hidden;
-    background-color: ${color};
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 235px;
-    margin: auto;
-    padding-bottom: 5px;
-  `;
-
-  const CourseBoxSchool = styled.p`
-    display: flex;
-    font-size: 12px;
-    margin: 10px auto 0 10px;
-  `;
-
-  const CourseBoxCode = styled.p`
-    display: flex;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 auto 0 10px;
-  `;
-
-  const CourseBoxUpdated = styled.p`
-    display: flex;
-    font-size: 12px;
-    font-weight: 500px;
-    margin: 0 auto 0 10px;
-  `;
-
-  const CourseIcon = styled.img`
-    position: absolute;
-    height: 155px;
-    width: 155px;
-    top: 70px;
-    left: 50px;
-  `;
-
-  const StyledLink = styled(Link)`
-    text-decoration: none;
-
-    &:focus,
-    &:hover,
-    &:visited,
-    &:link,
-    &:active {
-      text-decoration: none;
-    }
-  `;
 
   return (
     <StyledLink to={`/courses/${id}`}>
-      <CourseBox>
-        <CourseBoxContent>
-          <CourseBoxText>{name}</CourseBoxText>
-          <CourseIcon src={icon}></CourseIcon>
-          <CourseBoxInfo>
-            <CourseBoxSchool>{school}</CourseBoxSchool>
-            <CourseBoxCode>{code}</CourseBoxCode>
-            <CourseBoxUpdated>
-              Sist endret for {moment(modified).fromNow()}
-            </CourseBoxUpdated>
-          </CourseBoxInfo>
-        </CourseBoxContent>
-      </CourseBox>
+      <Wrapper color={color}>
+        <Illustration src={icon} alt="Course icon" />
+        <div>
+          <Name>{name}</Name>
+          <SchoolCode>{code}</SchoolCode>
+        </div>
+        <Status>
+          <StyledAccessTime>
+            <AccessTime size={22} />
+            {/* Remove hardcode date. Implement new date system with date-fns */}
+            <p>3d</p>
+          </StyledAccessTime>
+          <StyledFavorite color={color}>
+            <Favorite size={22} />
+            <p>{numFavoritesAllTime}</p>
+          </StyledFavorite>
+        </Status>
+      </Wrapper>
     </StyledLink>
   );
-}
+};
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
+const Illustration = styled.img`
+  max-width: 70%;
+  max-height: 125px;
+  object-fit: contain;
+  margin: auto;
+`;
+
+const Wrapper = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  min-height: 270px;
+  border: 0;
+  justify-content: space-between;
+  padding: 16px;
+  ${(props: { color: string }) => `
+    border: 2px solid ${props.color};
+  `}
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.025) translateY(-2px);
+  }
+`;
+
+const Name = styled.p`
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: capitalize;
+  margin-bottom: 7px;
+`;
+
+const SchoolCode = styled.p`
+  font-size: 12px;
+  text-decoration: uppercase;
+`;
+
+const StyledAccessTime = styled.div`
+  color: ${colors.grey};
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 5px;
+    margin-top: 3px;
+  }
+`;
+
+const StyledFavorite = styled.div`
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-left: 2px;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  ${(props: { color: string }) => `
+    color: ${props.color};
+  `}
+`;
+const Status = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+export default CourseCard;

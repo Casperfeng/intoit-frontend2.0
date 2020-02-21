@@ -1,13 +1,10 @@
 interface ReduxState {
   courses: Courses;
   courseInfo: any;
-  login: FacebookLogin;
+  user: any;
   dropdown: Dropdown;
   topics?: Topic[];
   quiz: Quiz;
-}
-interface FacebookLogin {
-  token?: string;
 }
 
 type Courses = Course[];

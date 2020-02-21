@@ -14,11 +14,12 @@ export default function Login() {
       flex-wrap: wrap;
     }
   `;
-  const token = useSelector((state: ReduxState) => state.login.token);
+  const token = useSelector((state: ReduxState) => state.user.token);
 
   if (token) {
     return <Redirect to={'/'} />;
   }
+
   return (
     <ContentLayout>
       <ContentWrapper>
