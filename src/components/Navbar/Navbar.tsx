@@ -7,6 +7,7 @@ import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
+import devices from 'shared/media';
 
 export default function Navbar() {
   const token = useSelector((state: ReduxState) => state.user.token);
@@ -53,6 +54,10 @@ const Wrapper = styled.nav`
   border-bottom: 1px solid gray;
   z-index: 1;
   margin-bottom: 64px;
+
+  @media ${devices.mobileOnly} {
+    margin-bottom: 32px;
+  }
 `;
 
 const Content = styled.nav`
