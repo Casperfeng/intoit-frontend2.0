@@ -8,6 +8,7 @@ import Home from './views/Home/Home';
 import AboutIntoit from './views/AboutIntoit/AboutIntoit';
 import AboutUs from './views/AboutUs/AboutUs';
 import Course from './views/Course/Course';
+import Quiz from './views/Quiz/Quiz';
 
 export default function App() {
   const Main = styled.div`
@@ -31,6 +32,7 @@ export default function App() {
           <ProtectedRoute exact path='/courses/:id' component={Course} />
           <ProtectedRoute exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/quiz' component={Quiz} />
         </Switch>
       </Router>
     </Main>
