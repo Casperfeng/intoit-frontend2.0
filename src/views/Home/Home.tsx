@@ -1,11 +1,13 @@
 import React from 'react';
 import ContentLayout from 'components/ContentLayout/ContentLayout';
-import Courses from './components/Courses';
+import CourseList from './components/CourseList';
+import ProfileHeader from './components/ProfileHeader';
 
 export default function Home() {
   return (
     <ContentLayout>
-      <Courses />
+      <ProfileHeader />
+      <CourseList />
     </ContentLayout>
   );
 }
