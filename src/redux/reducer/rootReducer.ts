@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import courseReducer from '../duck/coursesDuck';
-import courseDetailedReducer from '../duck/courseDetailedDuck';
+import courseReducer from 'redux/duck/coursesDuck';
+import courseDetailedReducer from 'redux/duck/courseDetailedDuck';
 import userReducer from 'redux/duck/userDuck';
-import dropdownReducer from '../duck/dropdownDuck';
-import topicReducer from '../duck/topicDuck';
-import quizDuck from '../duck/quizDuck';
+import dropdownReducer from 'redux/duck/dropdownDuck';
+import topicReducer from 'redux/duck/topicDuck';
+import schoolReducer from 'redux/duck/schoolDuck';
+import quizDuck from 'redux/duck/quizDuck';
 import { connectRouter } from 'connected-react-router';
 
 const createRootReducer = history =>
@@ -16,6 +17,7 @@ const createRootReducer = history =>
     dropdown: dropdownReducer,
     topics: topicReducer,
     quiz: quizDuck,
+    schools: schoolReducer,
   });
 
 export default createRootReducer;
