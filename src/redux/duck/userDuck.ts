@@ -8,6 +8,7 @@ interface Action {
 }
 
 // Actions
+const CONNECT_TO_FACEBOOK = 'CONNECT_TO_FACEBOOK';
 const FETCH_USER = 'FETCH_USER';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_DEVICE_ID = 'SET_DEVICE_ID';
@@ -21,6 +22,9 @@ const initialState = {
 
 export default function userDuck(state = initialState, action: Action) {
   switch (action.type) {
+    case CONNECT_TO_FACEBOOK:
+      //@TODO: Implement logic here
+      return { ...state, ...action.payload };
     case SET_TOKEN:
       return { ...state, token: action.payload };
     case SET_DEVICE_ID:
@@ -56,15 +60,13 @@ export const fetchUser = () => async dispatch => {
 
 export const fbLogin = (fbToken: string) => async dispatch => {
   try {
-    const response = await axios.get(`/token?facebook_token=${fbToken}`);
-    dispatch(setToken(response.data.token));
-    dispatch(fetchUser());
+    await dispatch(fetchTokenByFb(fbToken));
+    await dispatch(fetchUser());
   } catch {
     //if the user does not exist, create a user
     await axios.post(`/users/facebook`, { facebookToken: fbToken });
-    const response = await axios.get(`/token?facebook_token=${fbToken}`);
-    dispatch(setToken(response.data.token));
-    dispatch(fetchUser());
+    await dispatch(fetchTokenByFb(fbToken));
+    await dispatch(fetchUser());
   }
 };
 
@@ -75,6 +77,11 @@ export const anonLogin = () => async dispatch => {
   await dispatch(fetchTokenByAnon(generatedId));
   await dispatch(fetchUser());
   dispatch(fetchTokenByAnon(generatedId));
+};
+
+export const fetchTokenByFb = (token: string) => async dispatch => {
+  const response = await axios.get(`/token?facebook_token=${token}`);
+  dispatch(setToken(response.data.token));
 };
 
 export const fetchTokenByAnon = (id: string) => async dispatch => {
@@ -92,4 +99,16 @@ export const makeAnon = (id: string) => async dispatch => {
   dispatch({ type: 'SET_DEVICE_ID', payload: id });
 };
 
-export const connectGuestToFacebook = (fbToken: string, device_id: string) => async dispatch => {};
+export const connectGuestToFacebook = (fbToken: string, device_id: string) => async dispatch => {
+  try {
+    await axios.post('/users/facebook_connection', {
+      deviceId: device_id,
+      facebookToken: fbToken,
+    });
+
+    await dispatch(fetchTokenByFb(fbToken));
+    dispatch(fetchUser());
+  } catch (err) {
+    console.log('ERROR');
+  }
+};
