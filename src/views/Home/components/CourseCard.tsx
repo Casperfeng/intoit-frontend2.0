@@ -2,15 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
-import MATH_ICON from '../../../assets/icons/mathIcon.svg';
-import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
-import IT_ICON from '../../../assets/icons/itIcon.svg';
-import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
-import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 import { AccessTime, Favorite } from 'styled-icons/material';
+import { courseCardDeterminator } from 'shared/util';
 
-import colors, { subjectColors } from 'shared/colors';
+import colors from 'shared/colors';
 
 interface CourseProps {
   id: number;
@@ -47,31 +42,10 @@ const CourseCard = ({
   created,
   modified,
 }: CourseProps) => {
-  let color = subjectColors.default;
-  let icon = DEFAULT_ICON;
-
   // Refactor this after deciding on what color and icons
-  if (code.toUpperCase().includes('TFY')) {
-    color = subjectColors.math;
-    icon = PHYSICS_ICON;
-  }
-  if (code.toUpperCase().includes('TIØ')) {
-    color = subjectColors.economy;
-    icon = ECONOMY_ICON;
-  }
-  if (code.toUpperCase().includes('TMA')) {
-    color = subjectColors.math;
-    icon = MATH_ICON;
-  }
-  if (code.toUpperCase().includes('TDT')) {
-    color = subjectColors.it;
-    icon = IT_ICON;
-  }
-  if (code.toUpperCase().includes('TTM')) {
-    color = subjectColors.it;
-    icon = NETWORK_ICON;
-  }
-
+  const courseCardInfo = courseCardDeterminator(code);
+  const color = courseCardInfo.color;
+  const icon = courseCardInfo.icon;
   return (
     <StyledLink to={`/courses/${id}`}>
       <Wrapper color={color}>
