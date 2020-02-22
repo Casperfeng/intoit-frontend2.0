@@ -16,6 +16,7 @@ const LOG_OUT = 'LOG_OUT';
 const initialState = {
   token: '',
   device_id: '',
+  facebook_id: '',
 };
 
 export default function userDuck(state = initialState, action: Action) {
@@ -90,3 +91,5 @@ export const makeAnon = (id: string) => async dispatch => {
   await axios.post(`/users/anonymous`, { deviceId: id });
   dispatch({ type: 'SET_DEVICE_ID', payload: id });
 };
+
+export const connectGuestToFacebook = (fbToken: string, device_id: string) => async dispatch => {};
