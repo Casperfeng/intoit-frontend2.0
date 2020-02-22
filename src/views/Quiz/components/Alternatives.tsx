@@ -15,19 +15,27 @@ export default function Alternatives({ alternatives }: AlternativesProps) {
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
   const alternativeButtons = alternatives.map(alt => (
-    <Button
+    <AlternativeButton
       key={alternatives.indexOf(alt)}
       onClick={() => {
         dispatch(setAnswer(quiz.index, alternatives.indexOf(alt)));
       }}
     >
       {alt.text}
-    </Button>
+    </AlternativeButton>
   ));
 
   return (
-    <ButtonGroup orientation="vertical" color="primary" size="large">
+    <AlternativeGroup orientation="vertical" color="primary" size="large">
       {alternativeButtons}
-    </ButtonGroup>
+    </AlternativeGroup>
   );
 }
+
+const AlternativeButton = styled(Button)`
+  border-radius: 0;
+`;
+
+const AlternativeGroup = styled(ButtonGroup)`
+  border-radius: 0;
+`;

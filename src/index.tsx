@@ -8,6 +8,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import configureStore, { history } from 'redux/configureStore';
 import { ConnectedRouter } from 'connected-react-router';
+import GlobalStyle from 'shared/globalStyle';
 
 const store = configureStore();
 const persistor = persistStore(store);
@@ -20,6 +21,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <PersistGate loading={null} persistor={persistor}>
+        <GlobalStyle />
         <App />
       </PersistGate>
     </ConnectedRouter>

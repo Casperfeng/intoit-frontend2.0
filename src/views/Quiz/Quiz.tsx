@@ -5,6 +5,8 @@ import { fetchQuiz } from '../../redux/duck/quizDuck';
 import Exercise from './components/Exercise';
 import { LinearProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import ContentLayout from 'components/ContentLayout/ContentLayout';
+
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faMoon } from "@fortawesome/free-regular-svg-icons";
 
@@ -31,19 +33,25 @@ export default function Quiz() {
   }
 
   return (
-    <QuizContainer>
-      <Test>
-        <div>Tittel</div>
-        {/* <FontAwesomeIcon icon={faMoon} size="2x" /> */}
-      </Test>
-      <LinearProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
-      <Exercise exercise={quiz.exercises[quiz.index]} />
-    </QuizContainer>
+    <ContentLayout width={'1000px'}>
+      <Wrapper>
+        <Test>
+          <p>Tilbake til TOPICNAME</p>
+          {/* <FontAwesomeIcon icon={faMoon} size="2x" /> */}
+        </Test>
+        <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
+        <Exercise exercise={quiz.exercises[quiz.index]} />
+      </Wrapper>
+    </ContentLayout>
   );
 }
 
-const QuizContainer = styled.div`
+const Wrapper = styled.div`
   padding: 30px;
+`;
+
+const QuizProgress = styled(LinearProgress)`
+  margin: 10px 0;
 `;
 
 const Test = styled.div`

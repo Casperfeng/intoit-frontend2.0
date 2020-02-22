@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Alternatives from './Alternatives';
+import { ThumbUpAlt } from 'styled-icons/material/ThumbUpAlt';
+import { iconColors } from 'shared/colors';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faPen } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,20 +11,27 @@ interface ExerciseProps {
 }
 
 export default function Exercise({ exercise }: ExerciseProps) {
-  const Test = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  `;
-
   return (
-    <div>
+    <Wrapper>
       <h1>{exercise.content.question.text}</h1>
-      <Test>
-        <div>Laget av {exercise.username}</div>
-        {/* <FontAwesomeIcon icon={faPen} size="2x" /> */}
-      </Test>
+      {/* <div>Laget av {exercise.username}</div> */}
+      <StyledThumbsUpAlt isPressed size={24} />
       <Alternatives alternatives={exercise.content.alternatives} />
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    font-weight: normal;
+    margin-bottom: 15px;
+  }
+`;
+
+const StyledThumbsUpAlt = styled(ThumbUpAlt)`
+  ${props => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
+`;

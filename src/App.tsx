@@ -12,17 +12,6 @@ import Course from './views/Course/Course';
 import Quiz from './views/Quiz/Quiz';
 
 export default function App() {
-  const Main = styled.div`
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    min-height: 1000px;
-    margin: auto;
-    display: column;
-    align-content: center;
-    color: #293640;
-  `;
-
   return (
     <StylesProvider injectFirst>
       <Main>
@@ -39,3 +28,14 @@ export default function App() {
     </StylesProvider>
   );
 }
+
+const Main = styled.div`
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: 1000px;
+  margin: auto;
+  display: column;
+  align-content: center;
+  color: #293640;
+`;
