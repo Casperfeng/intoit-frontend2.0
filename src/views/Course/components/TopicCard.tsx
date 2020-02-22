@@ -12,13 +12,11 @@ interface TopicCardProps {
   size: number;
 }
 
-export default function TopicCard({
-  id,
-  name,
-  subjectId,
-  size
-}: TopicCardProps) {
+export default function TopicCard({ id, name, subjectId, size }: TopicCardProps) {
   const CardContainer = styled(Card)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 15px;
     width: 200px;
     height: 110px;
@@ -41,6 +39,11 @@ export default function TopicCard({
     padding-left: 12px;
     font-size: 32;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     && {
       color: black;
     }
@@ -50,6 +53,14 @@ export default function TopicCard({
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 20px;
+    padding: 0px;
+    margin-top: 5px;
+  `;
+
+  const BigBottomContainer = styled.div`
+    display: flex;
+    flex-direction: column;
   `;
 
   const StyledNumberQuestions = styled(Typography)`
@@ -65,22 +76,24 @@ export default function TopicCard({
   return (
     <CardContainer>
       <StyledTitle>{name}</StyledTitle>
-      <BottomContainer>
-        <CardActions>
-          <StyledButton size='small'> Flashcards</StyledButton>
-        </CardActions>
-        <StyledNumberQuestions variant='body2' component='p'>
-          Flashcards
-        </StyledNumberQuestions>
-      </BottomContainer>
-      <BottomContainer>
-        <CardActions>
-          <StyledButton size='small'> ta quiz</StyledButton>
-        </CardActions>
-        <StyledNumberQuestions variant='body2' component='p'>
-          {size} spørsmål
-        </StyledNumberQuestions>
-      </BottomContainer>
+      <BigBottomContainer>
+        <BottomContainer>
+          <CardActions>
+            <StyledButton size="small"> Flashcards</StyledButton>
+          </CardActions>
+          <StyledNumberQuestions variant="body2" component="p">
+            Flashcards
+          </StyledNumberQuestions>
+        </BottomContainer>
+        <BottomContainer>
+          <CardActions>
+            <StyledButton size="small"> ta quiz</StyledButton>
+          </CardActions>
+          <StyledNumberQuestions variant="body2" component="p">
+            {size} spørsmål
+          </StyledNumberQuestions>
+        </BottomContainer>
+      </BigBottomContainer>
     </CardContainer>
   );
 }
