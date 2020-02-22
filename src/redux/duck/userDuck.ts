@@ -58,9 +58,8 @@ export const fbLogin = (fbToken: string) => async dispatch => {
     const response = await axios.get(`/token?facebook_token=${fbToken}`);
     dispatch(setToken(response.data.token));
     dispatch(fetchUser());
-    //if the user does not exist, create a user
   } catch {
-    console.log('ERROR');
+    //if the user does not exist, create a user
     await axios.post(`/users/facebook`, { facebookToken: fbToken });
     const response = await axios.get(`/token?facebook_token=${fbToken}`);
     dispatch(setToken(response.data.token));
@@ -71,14 +70,10 @@ export const fbLogin = (fbToken: string) => async dispatch => {
 export const anonLogin = () => async dispatch => {
   //generate a random 'facebook-id'
   const generatedId = uuid.v4();
-  try {
-    await dispatch(makeAnon(generatedId));
-    await dispatch(fetchTokenByAnon(generatedId));
-    await dispatch(fetchUser());
-    dispatch(fetchTokenByAnon(generatedId));
-  } catch {
-    console.log('ERROR');
-  }
+  await dispatch(makeAnon(generatedId));
+  await dispatch(fetchTokenByAnon(generatedId));
+  await dispatch(fetchUser());
+  dispatch(fetchTokenByAnon(generatedId));
 };
 
 export const fetchTokenByAnon = (id: string) => async dispatch => {
