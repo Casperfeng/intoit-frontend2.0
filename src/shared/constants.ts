@@ -3,7 +3,7 @@ import 'moment/locale/nb';
 import moment from 'moment';
 moment.locale('nb');
 
-const BASE_URL = process.env.NODE_ENV !== 'production' ? 'https://ace-restapi.herokuapp.com' : 'http://intoit-dev.herokuapp.com';
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://ace-restapi.herokuapp.com' : 'http://intoit-dev.herokuapp.com';
 
 const FACEBOOK_REDIRECT_URL = process.env.NODE_ENV === 'production' ? 'https://www.intoit.io/login' : 'http://localhost:3000/login';
 
