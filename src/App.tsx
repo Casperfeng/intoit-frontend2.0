@@ -25,17 +25,15 @@ export default function App() {
 
   return (
     <Main>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/teamet" component={AboutUs} />
-          <Route exact path="/om-oss" component={AboutIntoit} />
-          <ProtectedRoute exact path="/courses/:id" component={Course} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/quiz" component={Quiz} />
-        </Switch>
-      </Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/teamet" component={AboutUs} />
+        <Route exact path="/om-oss" component={AboutIntoit} />
+        <ProtectedRoute exact path="/courses/:id" component={Course} />
+        <ProtectedRoute exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
+      </Switch>
     </Main>
   );
 }
