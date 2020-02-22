@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { FACEBOOK_APP_ID } from 'shared/constants';
+import { useDispatch } from 'react-redux';
+import { anonLogin } from 'redux/duck/userDuck';
 
 export default function Auth() {
-  const FacebookButton = styled.button`
+  const GuestButton = styled.button`
     background-color: #ececeb;
     box-sizing: border-box;
     position: relative;
@@ -33,21 +33,11 @@ export default function Auth() {
     }
   `;
 
-  function responseFacebook(response) {
-    console.log('CLICKED');
+  const dispatch = useDispatch();
+
+  async function responseLoginClick() {
+    await dispatch(anonLogin());
   }
 
-  return (
-    <FacebookLogin
-      appId={FACEBOOK_APP_ID}
-      autoLoad={false}
-      callback={responseFacebook}
-      fields=''
-      render={renderProps => (
-        <FacebookButton onClick={renderProps.onClick}>
-          Logg inn som gjest
-        </FacebookButton>
-      )}
-    />
-  );
+  return <GuestButton onClick={responseLoginClick}>Logg inn som gjest</GuestButton>;
 }
