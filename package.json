@@ -26,7 +26,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
     "styled-icons": "^9.4.0",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "uuid": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
