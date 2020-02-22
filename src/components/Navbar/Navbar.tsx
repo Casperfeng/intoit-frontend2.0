@@ -7,6 +7,7 @@ import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
+import PROFILE_ICON from 'assets/icons/profileIcon.svg';
 
 export default function Navbar() {
   const token = useSelector((state: ReduxState) => state.user.token);
@@ -27,16 +28,21 @@ export default function Navbar() {
         <NavbarLinkContainer>
           {token ? (
             <>
-              <IntoitLink text={'Hjem'} to={'/'} />
-              <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
-              <IntoitLink text={'Teamet bak'} to={'/teamet'} />
-              <IntoitLink text={'Logg ut'} to={'/login'} callback={logout} />
+              <IntoitLink to={'/'}>Hjem</IntoitLink>
+              <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
+              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
+              <IntoitLink to={'/login'} callback={logout}>
+                Logg ut
+              </IntoitLink>
+              <IntoitLink to={'/profile'}>
+                <img src={PROFILE_ICON} alt={'Profil icon'} />
+              </IntoitLink>
             </>
           ) : (
             <>
-              <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
-              <IntoitLink text={'Teamet bak'} to={'/teamet'} />
-              <IntoitLink text={'Logg inn'} to={'/login'} />
+              <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
+              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
+              <IntoitLink to={'/login'}>Logg inn</IntoitLink>
             </>
           )}
         </NavbarLinkContainer>

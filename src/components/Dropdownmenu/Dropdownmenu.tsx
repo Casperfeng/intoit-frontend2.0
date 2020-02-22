@@ -13,16 +13,33 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
     <DropdownWrapper animation={clicked}>
       {token ? (
         <>
-          <IntoitLink text={'Hjem'} to={'/'} linkType="Dropdown" />
-          <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType="Dropdown" />
-          <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType="Dropdown" />
-          <IntoitLink text={'Logg ut'} to={'/login'} linkType="Dropdown" callback={logout} />
+          <IntoitLink to={'/'} linkType="Dropdown">
+            Hjem
+          </IntoitLink>
+          <IntoitLink to={'/profile'} linkType="Dropdown" callback={logout}>
+            Min profil
+          </IntoitLink>
+          <IntoitLink to={'/om-oss'} linkType="Dropdown">
+            Om Intoit
+          </IntoitLink>
+          <IntoitLink to={'/teamet'} linkType="Dropdown">
+            Teamet bak
+          </IntoitLink>
+          <IntoitLink to={'/login'} linkType="Dropdown" callback={logout}>
+            Logg ut
+          </IntoitLink>
         </>
       ) : (
         <>
-          <IntoitLink text={'Logg inn'} to={'/'} linkType="Dropdown" />
-          <IntoitLink text={'Om Intoit'} to={'/om-oss'} linkType="Dropdown" />
-          <IntoitLink text={'Teamet bak'} to={'/teamet'} linkType="Dropdown" />
+          <IntoitLink to={'/'} linkType="Dropdown">
+            Logg inn
+          </IntoitLink>
+          <IntoitLink to={'/om-oss'} linkType="Dropdown">
+            Om Intoit
+          </IntoitLink>
+          <IntoitLink to={'/teamet'} linkType="Dropdown">
+            Teamet bak
+          </IntoitLink>
         </>
       )}
     </DropdownWrapper>
