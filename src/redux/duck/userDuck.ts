@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getPersistor } from '../../index';
+import { getPersistor } from 'index';
 
 /*@TODO:
 1. Hente ut id fra facebook login

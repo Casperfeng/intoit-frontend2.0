@@ -4,35 +4,30 @@ import styled from 'styled-components';
 import { fetchQuiz } from '../../redux/duck/quizDuck';
 import Exercise from './components/Exercise';
 import { LinearProgress } from '@material-ui/core';
+import { useParams } from 'react-router-dom';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faMoon } from "@fortawesome/free-regular-svg-icons";
 
 export default function Quiz() {
+  let { id } = useParams();
+
   const dispatch = useDispatch();
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
-  const QuizContainer = styled.div`
-    padding: 30px;
-  `;
-
-  const Test = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  `;
-
   useEffect(() => {
     async function retrieveQuiz() {
-      console.log('use efefct in quia');
-      await dispatch(fetchQuiz('99662', true, 'mc', false));
+      await dispatch(fetchQuiz(id, true, 'mc', false));
     }
     retrieveQuiz();
     // eslint-disable-next-line
   }, []);
 
-  console.log('quiz', quiz);
-  if (!quiz.exercises.content && quiz.index === quiz.exercises.length) {
-    return <div>Ferdig med Quiz</div>;
+  if (!quiz.exercises.length && quiz.index === 0) {
+    return <h1>Loading</h1>;
+  }
+
+  if (quiz.exercises.length > 0 && quiz.exercises.length === quiz.index) {
+    return <h1>Victory Screen</h1>;
   }
 
   return (
@@ -46,3 +41,13 @@ export default function Quiz() {
     </QuizContainer>
   );
 }
+
+const QuizContainer = styled.div`
+  padding: 30px;
+`;
+
+const Test = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

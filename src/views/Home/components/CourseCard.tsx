@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Card } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import DEFAULT_ICON from '../../../assets/icons/onlineTestIcon.svg';
 import MATH_ICON from '../../../assets/icons/mathIcon.svg';
 import PHYSICS_ICON from '../../../assets/icons/physicsIcon.svg';
@@ -9,8 +8,8 @@ import IT_ICON from '../../../assets/icons/itIcon.svg';
 import ECONOMY_ICON from '../../../assets/icons/economyIcon.svg';
 import NETWORK_ICON from '../../../assets/icons/networkIcon.svg';
 import { AccessTime, Favorite } from 'styled-icons/material';
-
 import colors, { subjectColors } from 'shared/colors';
+import StyledLink from 'components/StyledLink/StyledLink';
 
 interface CourseProps {
   id: number;
@@ -95,18 +94,6 @@ const CourseCard = ({
     </StyledLink>
   );
 };
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
-`;
 
 const Illustration = styled.img`
   max-width: 70%;

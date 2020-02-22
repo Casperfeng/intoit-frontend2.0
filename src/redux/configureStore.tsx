@@ -20,7 +20,7 @@ export default function configureStore() {
   const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['router'],
+    blacklist: ['router', 'quiz'],
   };
 
   const persistedReducer = persistReducer(persistConfig, createRootReducer(history));

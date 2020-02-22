@@ -1,6 +1,6 @@
 import React from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import styled from 'styled-components/macro';
 import Navbar from './components/Navbar/Navbar';
@@ -24,16 +24,18 @@ export default function App() {
   `;
 
   return (
-    <Main>
-      <Navbar />
-      <Switch>
-        <Route exact path="/teamet" component={AboutUs} />
-        <Route exact path="/om-oss" component={AboutIntoit} />
-        <ProtectedRoute exact path="/courses/:id" component={Course} />
-        <ProtectedRoute exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
-      </Switch>
-    </Main>
+    <StylesProvider injectFirst>
+      <Main>
+        <Navbar />
+        <Switch>
+          <Route exact path="/teamet" component={AboutUs} />
+          <Route exact path="/om-oss" component={AboutIntoit} />
+          <ProtectedRoute exact path="/courses/:id" component={Course} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
+        </Switch>
+      </Main>
+    </StylesProvider>
   );
 }

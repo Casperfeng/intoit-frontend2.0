@@ -10,9 +10,7 @@ interface AlternativesProps {
   alternatives: Alternatives;
 }
 
-export default function Alternatives({
-  alternatives,
-}: AlternativesProps) {
+export default function Alternatives({ alternatives }: AlternativesProps) {
   const dispatch = useDispatch();
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
@@ -28,7 +26,7 @@ export default function Alternatives({
   ));
 
   return (
-    <ButtonGroup orientation='vertical' color='primary' size='large'>
+    <ButtonGroup orientation="vertical" color="primary" size="large">
       {alternativeButtons}
     </ButtonGroup>
   );
