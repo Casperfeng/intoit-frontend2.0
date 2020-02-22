@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './views/Login/Login';
 import Home from './views/Home/Home';
 import AboutIntoit from './views/AboutIntoit/AboutIntoit';
+import ProfilePage from './views/ProfilePage/ProfilePage';
 import AboutUs from './views/AboutUs/AboutUs';
 import Course from './views/Course/Course';
 
@@ -30,6 +31,7 @@ export default function App() {
           <Switch>
             <Route exact path="/teamet" component={AboutUs} />
             <Route exact path="/om-oss" component={AboutIntoit} />
+            <Route exact path="/profile" component={ProfilePage} />
             <ProtectedRoute exact path="/courses/:id" component={Course} />
             <ProtectedRoute exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
