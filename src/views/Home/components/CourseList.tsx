@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchCourses } from '../../../redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
+import RadioButtons from './RadioButtons';
 
 export default function CourseList() {
   const courses = useSelector((state: ReduxState) => state.courses);
@@ -17,6 +18,7 @@ export default function CourseList() {
   return (
     <Wrapper>
       <h1>EMNER</h1>
+      <RadioButtons />
       <Content>
         {courses.map(course => (
           <CourseCard
