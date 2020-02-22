@@ -48,7 +48,7 @@ export default function Auth({ connect }: AuthProps) {
     <FacebookLogin
       appId={FACEBOOK_APP_ID}
       autoLoad={false}
-      callback={connect ? console.log('CONNECT') : responseFacebook}
+      callback={responseFacebook}
       render={renderProps => (
         <FacebookButton onClick={renderProps.onClick}>{connect ? 'Koble gjestekontoen til Facebook' : 'Logg inn med Facebook'}</FacebookButton>
       )}
