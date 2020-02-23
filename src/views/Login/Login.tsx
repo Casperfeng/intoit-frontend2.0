@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
-import FacebookLogin from './components/FacebookLogin';
+import LoginContainer from './components/LoginContainer';
 import WelcomeText from './components/WelcomeText';
 
 export default function Login() {
@@ -24,7 +24,7 @@ export default function Login() {
     <ContentLayout>
       <ContentWrapper>
         <WelcomeText />
-        <FacebookLogin />
+        <LoginContainer />
       </ContentWrapper>
     </ContentLayout>
   );
