@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLoginComponent from 'react-facebook-login/dist/facebook-login-render-props';
+import colors from 'shared/colors';
 import { connectGuestToFacebook } from 'redux/duck/userDuck';
 import { FACEBOOK_APP_ID } from 'shared/constants';
 
@@ -36,7 +37,8 @@ const ConnectGuestBanner = styled.div`
   display: flex;
   padding: 5px;
   position: relative;
-  height: 100px;
+  background-color: ${colors.default};
+  height: 50px;
   top: -64px;
 `;
 
