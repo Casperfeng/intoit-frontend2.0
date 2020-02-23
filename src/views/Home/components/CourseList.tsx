@@ -5,7 +5,7 @@ import { fetchCourses } from '../../../redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 
-export default function Courses() {
+export default function CourseList() {
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ export default function Courses() {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.section``;
 
 const Content = styled.div`
   display: grid;
@@ -62,5 +62,6 @@ const Content = styled.div`
 
   @media ${devices.mobileOnly} {
     grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 24px;
   }
 `;
