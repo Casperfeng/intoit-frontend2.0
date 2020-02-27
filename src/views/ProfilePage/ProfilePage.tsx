@@ -1,12 +1,12 @@
 import React from 'react';
-import { LinearProgress, FilledTextFieldProps } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import styled from 'styled-components';
 import BlazingBlob from 'assets/achievements/blazing_blob.png';
-import { userInfo } from 'os';
+// import { userInfo } from 'os';
 import ContentLayout from 'components/ContentLayout/ContentLayout';
 import Quizmaster from 'assets/achievements/Quizmaster.png';
-import { Rowing, BorderAll } from 'styled-icons/material';
-import { sizing } from '@material-ui/system';
+// import { Rowing, BorderAll } from 'styled-icons/material';
+// import { sizing } from '@material-ui/system';
 
 export default function ProfilePage() {
   const ProBar = styled(LinearProgress)`
@@ -30,21 +30,18 @@ export default function ProfilePage() {
         </Header>
         <h2>Achievements</h2>
         <Achievements>
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
-          <img src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
+          <img alt="temp-achive" src={Quizmaster} />
         </Achievements>
         <Content>
           <TopActivities>
