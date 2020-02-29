@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import courseReducer from '../duck/coursesDuck';
 import courseDetailedReducer from '../duck/courseDetailedDuck';
-import userReducer from '../duck/userDuck';
+import userReducer from 'redux/duck/userDuck';
 import dropdownReducer from '../duck/dropdownDuck';
 import topicReducer from '../duck/topicDuck';
 import quizDuck from '../duck/quizDuck';

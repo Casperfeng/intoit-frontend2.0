@@ -6,7 +6,12 @@ import colors from 'shared/colors';
 export default function ProfileHeader() {
   return (
     <Wrapper>
-      <p>Velkommen tilbake, søt delfin. Vi har savnet deg 😘</p>
+      <WelcomeMessage>
+        Velkommen tilbake, søt delfin. Vi har savnet deg{' '}
+        <span role="img" aria-label="flirt">
+          😘
+        </span>
+      </WelcomeMessage>
       <Level>
         <img alt="profile-avater" src={FakeProfilePicture} />
         <div>
@@ -15,9 +20,6 @@ export default function ProfileHeader() {
           <p>50000xp</p>
         </div>
       </Level>
-      <FavoriteSubject>
-        <h2>FAVORITTE EMNER</h2>
-      </FavoriteSubject>
       <hr />
     </Wrapper>
   );
@@ -36,20 +38,26 @@ const Wrapper = styled.section`
     background-color: ${colors.grey};
     border: none;
   }
+
   img {
     width: 117px;
     object-fit: contain;
+    margin-right: 20px;
   }
+
+  margin-bottom: 30px;
+`;
+
+const WelcomeMessage = styled.p`
+  font-weight: 500;
 `;
 
 const Level = styled.div`
   display: flex;
+  margin: 30px 0;
+
   div {
     display: flex;
     flex-direction: column;
   }
-`;
-
-const FavoriteSubject = styled.div`
-  margin-top: 24px;
 `;

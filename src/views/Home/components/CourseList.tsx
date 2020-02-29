@@ -62,5 +62,6 @@ const Content = styled.div`
 
   @media ${devices.mobileOnly} {
     grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 24px;
   }
 `;

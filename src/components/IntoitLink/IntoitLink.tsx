@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateDropdown } from '../../redux/duck/dropdownDuck';
 
 interface IntoitLinkProps {
-  text: string;
   to: string;
   linkType?: string;
   callback?: Function;
+  children?: ReactElement | ReactElement[] | any;
 }
 
-export default function IntoitLink({
-  text,
-  to,
-  linkType,
-  callback
-}: IntoitLinkProps) {
+export default function IntoitLink({ children, to, linkType, callback }: IntoitLinkProps) {
   const dispatch = useDispatch();
   const isDropdown = linkType === 'Dropdown';
   const StyledLink = styled(Link)`
@@ -43,7 +38,7 @@ export default function IntoitLink({
 
   return (
     <StyledLink onClick={handleClick} to={to}>
-      {text}
+      {children}
     </StyledLink>
   );
 }

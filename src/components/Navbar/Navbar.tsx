@@ -7,6 +7,7 @@ import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
+import PROFILE_ICON from 'assets/icons/profileIcon.svg';
 import devices from 'shared/media';
 
 export default function Navbar() {
@@ -28,16 +29,21 @@ export default function Navbar() {
         <NavbarLinkContainer>
           {token ? (
             <>
-              <IntoitLink text={'Hjem'} to={'/'} />
-              <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
-              <IntoitLink text={'Teamet bak'} to={'/teamet'} />
-              <IntoitLink text={'Logg ut'} to={'/login'} callback={logout} />
+              <IntoitLink to={'/'}>Hjem</IntoitLink>
+              <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
+              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
+              <IntoitLink to={'/login'} callback={logout}>
+                Logg ut
+              </IntoitLink>
+              <IntoitLink to={'/profile'}>
+                <img src={PROFILE_ICON} alt={'Profil icon'} />
+              </IntoitLink>
             </>
           ) : (
             <>
-              <IntoitLink text={'Om Intoit'} to={'/om-oss'} />
-              <IntoitLink text={'Teamet bak'} to={'/teamet'} />
-              <IntoitLink text={'Logg inn'} to={'/login'} />
+              <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
+              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
+              <IntoitLink to={'/login'}>Logg inn</IntoitLink>
             </>
           )}
         </NavbarLinkContainer>
@@ -53,7 +59,6 @@ const Wrapper = styled.nav`
   padding: 20px;
   border-bottom: 1px solid gray;
   z-index: 1;
-  margin-bottom: 64px;
 
   @media ${devices.mobileOnly} {
     margin-bottom: 32px;

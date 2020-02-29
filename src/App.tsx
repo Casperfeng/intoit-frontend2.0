@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './views/Login/Login';
 import Home from './views/Home/Home';
 import AboutIntoit from './views/AboutIntoit/AboutIntoit';
+import ProfilePage from './views/ProfilePage/ProfilePage';
 import AboutUs from './views/AboutUs/AboutUs';
 import Course from './views/Course/Course';
 import Quiz from './views/Quiz/Quiz';

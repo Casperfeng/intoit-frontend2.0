@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-
   &:focus,
   &:hover,
   &:visited,
