@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLoginComponent from 'react-facebook-login/dist/facebook-login-render-props';
-import colors from 'shared/colors';
 import { connectGuestToFacebook } from 'redux/duck/userDuck';
 import { FACEBOOK_APP_ID } from 'shared/constants';
 
@@ -20,26 +19,23 @@ export default function ConnectGuest() {
     <>
       {/* Only show the component if the user is registered as a guest */}
       {token && !facebook_id && (
-        <ConnectGuestBanner>
+        <Wrapper>
           <FacebookLoginComponent
             appId={FACEBOOK_APP_ID}
             autoLoad={false}
             callback={connectToFacebook}
             render={renderProps => <FacebookButton onClick={renderProps.onClick}>{'Koble brukeren til Facebook'}</FacebookButton>}
           />
-        </ConnectGuestBanner>
+        </Wrapper>
       )}
     </>
   );
 }
 
-const ConnectGuestBanner = styled.div`
+const Wrapper = styled.div`
   display: flex;
   padding: 5px;
-  position: relative;
-  background-color: ${colors.default};
   height: 50px;
-  top: -64px;
 `;
 
 const FacebookButton = styled.button`

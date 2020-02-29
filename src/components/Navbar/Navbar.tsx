@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ConnectGuest from 'components/Auth/ConnectGuest';
 import Burgermenu from '../Burgermenu/Burgermenu';
 import IntoitLink from '../IntoitLink/IntoitLink';
 import IntoitLogo from '../../assets/icons/long_logo.png';
@@ -52,7 +51,6 @@ export default function Navbar() {
           <Burgermenu clicked={clicked} />
         </NavBurgermenuContainer>
       </Content>
-      <ConnectGuest />
     </Wrapper>
   );
 }
@@ -61,7 +59,6 @@ const Wrapper = styled.nav`
   padding: 20px;
   border-bottom: 1px solid gray;
   z-index: 1;
-  margin-bottom: 64px;
 
   @media ${devices.mobileOnly} {
     margin-bottom: 32px;
