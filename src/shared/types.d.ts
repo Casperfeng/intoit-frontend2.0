@@ -4,6 +4,7 @@ interface ReduxState {
   user: any;
   dropdown: Dropdown;
   topics?: Topic[];
+  quiz: Quiz;
 }
 
 type Courses = Course[];
@@ -50,3 +51,40 @@ interface Topic {
   fcSize?: number;
   isArchived?: boolean;
 }
+
+interface Question {
+  collection_id: number;
+  content: any;
+  modified: Date;
+  created: Date;
+  user_id: number;
+  username: string;
+  experience: integer;
+  upvotes: integer;
+  downvotes: integer;
+  subject_id: integer;
+  is_archived: boolean;
+  history?: any;
+  type: string;
+  modify_reason: string;
+  hint?: string;
+  explanation?: string;
+  c_m: integer;
+  w_m: integer;
+  w_a: integer;
+  c_a: integer;
+  has_hint: boolean;
+}
+
+interface Quiz {
+  hasPostedAnswers: boolean;
+  exercises: Question[];
+  index: integer;
+}
+
+interface Alternative {
+  text: string;
+  correct: boolean;
+}
+
+type Alternatives = Alternative[];

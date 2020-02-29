@@ -4,29 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import storage from 'redux-persist/lib/storage';
-import rootReducer from './redux/reducer/rootReducer';
-import thunk from 'redux-thunk';
+import configureStore, { history } from 'redux/configureStore';
+import { ConnectedRouter } from 'connected-react-router';
 import GlobalStyle from 'shared/globalStyle';
 
-const middleware = [thunk];
-
-const composeEnhancers =
-  process.env.NODE_ENV === 'development' && typeof (window as any) === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
-
-const enhancer = composeEnhancers(applyMiddleware(...middleware));
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(persistedReducer, enhancer);
+const store = configureStore();
 const persistor = persistStore(store);
 
 export function getPersistor() {
@@ -35,10 +19,12 @@ export function getPersistor() {
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <GlobalStyle />
-      <App />
-    </PersistGate>
+    <ConnectedRouter history={history}>
+      <PersistGate loading={null} persistor={persistor}>
+        <GlobalStyle />
+        <App />
+      </PersistGate>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 );

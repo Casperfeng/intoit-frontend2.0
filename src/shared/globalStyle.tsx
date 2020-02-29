@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components/macro';
 import devices from 'shared/media';
+import { iconColors } from 'shared/colors';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 24px;
     margin-bottom: 1em;
   } 
+
+  svg {
+    color: ${iconColors.default};
+  }
 
   @media ${devices.mobileOnly} {
     h1 {

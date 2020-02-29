@@ -4,13 +4,18 @@ import courseDetailedReducer from '../duck/courseDetailedDuck';
 import userReducer from 'redux/duck/userDuck';
 import dropdownReducer from '../duck/dropdownDuck';
 import topicReducer from '../duck/topicDuck';
+import quizDuck from '../duck/quizDuck';
+import { connectRouter } from 'connected-react-router';
 
-const rootReducer = combineReducers({
-  courses: courseReducer,
-  courseInfo: courseDetailedReducer,
-  user: userReducer,
-  dropdown: dropdownReducer,
-  topics: topicReducer,
-});
+const createRootReducer = history =>
+  combineReducers({
+    router: connectRouter(history),
+    courses: courseReducer,
+    courseInfo: courseDetailedReducer,
+    user: userReducer,
+    dropdown: dropdownReducer,
+    topics: topicReducer,
+    quiz: quizDuck,
+  });
 
-export default rootReducer;
+export default createRootReducer;
