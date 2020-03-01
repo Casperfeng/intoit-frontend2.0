@@ -8,7 +8,7 @@ interface IntoitLinkProps {
   to: string;
   linkType?: string;
   callback?: Function;
-  children?: ReactElement | ReactElement[] | any;
+  children?: any;
 }
 
 export default function IntoitLink({ children, to, linkType, callback }: IntoitLinkProps) {

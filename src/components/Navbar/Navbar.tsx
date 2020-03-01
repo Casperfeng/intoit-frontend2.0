@@ -8,7 +8,6 @@ import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
 import PROFILE_ICON from 'assets/icons/profileIcon.svg';
-import devices from 'shared/media';
 
 export default function Navbar() {
   const token = useSelector((state: ReduxState) => state.user.token);
@@ -31,7 +30,6 @@ export default function Navbar() {
             <>
               <IntoitLink to={'/'}>Hjem</IntoitLink>
               <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
-              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
               <IntoitLink to={'/login'} callback={logout}>
                 Logg ut
               </IntoitLink>
@@ -42,7 +40,6 @@ export default function Navbar() {
           ) : (
             <>
               <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
-              <IntoitLink to={'/teamet'}>Teamet bak</IntoitLink>
               <IntoitLink to={'/login'}>Logg inn</IntoitLink>
             </>
           )}
@@ -59,10 +56,6 @@ const Wrapper = styled.nav`
   padding: 20px;
   border-bottom: 1px solid gray;
   z-index: 1;
-
-  @media ${devices.mobileOnly} {
-    margin-bottom: 32px;
-  }
 `;
 
 const Content = styled.nav`
@@ -98,7 +91,6 @@ const NavBurgermenuContainer = styled.div`
   justify-items: flex-end;
   display: none;
   @media (max-width: 700px) {
-    margin-right: 30px;
     display: flex;
   }
 `;

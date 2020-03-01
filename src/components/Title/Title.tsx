@@ -7,12 +7,8 @@ interface Props {
 
 export default function Title({ children }: Props) {
   const StyledTitle = styled.h1`
-    font-size: 48px;
     font-weight: bold;
-    text-transform: lowercase;
-    ::first-letter {
-      text-transform: capitalize;
-    }
+    text-transform: uppercase;
   `;
   return <StyledTitle>{children}</StyledTitle>;
 }
