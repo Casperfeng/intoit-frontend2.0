@@ -91,7 +91,6 @@ const NavBurgermenuContainer = styled.div`
   justify-items: flex-end;
   display: none;
   @media (max-width: 700px) {
-    margin-right: 30px;
     display: flex;
   }
 `;
