@@ -28,14 +28,11 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
         </>
       ) : (
         <>
-          <IntoitLink to={'/'} linkType="Dropdown">
-            Logg inn
-          </IntoitLink>
           <IntoitLink to={'/om-oss'} linkType="Dropdown">
             Om Intoit
           </IntoitLink>
-          <IntoitLink to={'/teamet'} linkType="Dropdown">
-            Teamet bak
+          <IntoitLink to={'/'} linkType="Dropdown">
+            Logg inn
           </IntoitLink>
         </>
       )}

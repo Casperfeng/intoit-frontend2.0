@@ -3,7 +3,7 @@ const TeamMembers = [
     name: 'Casper',
     imgSrc: 'casper',
     text:
-      ' jobber som nåværende tech-lead for Intoit. Han har ansvar for det tekniske levaranse... håndterer arbeidet mellom teamet.. TODO: fyllpå noe interessant',
+      ' går 3. klasse datateknologi og jobber som teknisk leder for Intoit. Han er ansvarlig for valg av teknologi samt opplæring og oppfølging av nye utviklere. Ved siden av studiet har han erfaring fra internships og deltidsjobb i Junior Consulting.',
   },
   {
     name: 'Andreas',
@@ -14,12 +14,12 @@ const TeamMembers = [
     name: 'Alex',
     imgSrc: 'alex',
     text:
-      ' jobber som IT konsulent hos Forte_ Digital og har erfaring innenfor mange professjonelle IT-prosjekter. Han var med å starte Intoit i 2016 og akkurat nå bidrar han til Intoit-teamet som mentor. Utover dette liker han cfc og superheroburger',
+      ' jobber som IT konsulent hos Forte_ Digital og har erfaring innenfor mange profesjonelle IT-prosjekter. Han var med å starte Intoit i 2016 og akkurat nå bidrar han til Intoit-teamet som mentor. Utover dette liker han cfc og superheroburger',
   },
   {
     name: 'Eirik',
     imgSrc: 'eirik',
-    text: ' jobber som utvikler i Intoit... Liker å game, sjokoladeboller..TODO: fyllpå noe interessant ',
+    text: ' jobber som utvikler i Intoit. Liker å game, sjokoladeboller..TODO: fyllpå noe interessant ',
   },
   {
     name: 'Kim',

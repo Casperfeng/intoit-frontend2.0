@@ -9,9 +9,9 @@ function InvolvedPeople() {
       <SupporterText>
         ALEX NGUYEN, ARNE BUI, JONAS LASKEMOEN, MIKAIL ARSLAN, RASMUS STENE, PHI THIEN HOANG, NIKOLINE BERGE, PEDER KLEV, HENRIK ORRE
       </SupporterText>
-      <h3>INVOLVERT UTVIKLERE</h3>
+      <h3>INVOLVERTE UTVIKLERE</h3>
       <SupporterText>GULLEIK OLSEN, HÅKON STØRDAL</SupporterText>
-      <h3>TIDLIGERE MENTOR</h3>
+      <h3>TIDLIGERE MENTORORER</h3>
       <SupporterText>ARNSTEIN JOHANSEN, JEANINE LILLENG</SupporterText>
       <h3>og alle som har støttet oss gjennom tidene:</h3>
       <OtherSupporterText>
