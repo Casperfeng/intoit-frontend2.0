@@ -106,15 +106,18 @@ const HistoryActions = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 25px;
 `;
 
 const Achievements = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 50px;
 `;
 
 const Header = styled.div`
   display: flex;
+  margin: 75px;
 `;
 
 const UserInfo = styled.div`
