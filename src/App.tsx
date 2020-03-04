@@ -38,6 +38,5 @@ const Main = styled.div`
   height: 100%;
   min-height: 100vh;
   margin: auto;
-  display: column;
   align-content: center;
 `;

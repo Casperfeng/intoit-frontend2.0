@@ -1,32 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
-import { setAnswer } from '../../../redux/duck/quizDuck';
 import colors from 'shared/colors';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 interface AlternativesProps {
   alternatives: Alternatives;
+  showAnswer: (index: number) => void;
+  hasAnswer: boolean;
+  answeredIndex: number;
 }
 
-export default function Alternatives({ alternatives }: AlternativesProps) {
-  const dispatch = useDispatch();
-  const quiz = useSelector((state: ReduxState) => state.quiz);
-  const [hasAnswer, setHasAnswer] = useState(false);
-  const [answeredIndex, setAnsweredIndex] = useState(-1);
-
-  const showAnswer = (index: number) => {
-    if (!hasAnswer) {
-      setAnsweredIndex(index);
-      setHasAnswer(true);
-    } else {
-      dispatch(setAnswer(quiz.index, index));
-      setHasAnswer(false);
-      setAnsweredIndex(-1);
-    }
-  };
-
+export default function Alternatives({ alternatives, showAnswer, hasAnswer, answeredIndex }: AlternativesProps) {
   return (
     <AlternativeGroup orientation="vertical" color="primary" size="large">
       {alternatives.map((alt: Alternative, i) => {

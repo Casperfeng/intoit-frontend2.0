@@ -7,6 +7,9 @@ import { LinearProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import ContentLayout from 'components/ContentLayout/ContentLayout';
 import colors from 'shared/colors';
+import IntoitLogo from 'assets/icons/logo-white.png';
+import { Link } from 'react-router-dom';
+import devices from 'shared/media';
 
 export default function Quiz() {
   let { id } = useParams();
@@ -19,25 +22,30 @@ export default function Quiz() {
       await dispatch(fetchQuiz(id, true, 'mc', false));
     }
     retrieveQuiz();
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch, id]);
 
-  if (!quiz.exercises.length && quiz.index === 0) {
-    // TODO: Animation fish
-    return <h1>Loading</h1>;
-  }
-
-  if (quiz.exercises.length > 0 && quiz.exercises.length === quiz.index) {
-    // TODO: Create victory screen component
-    return <h1>Victory Screen</h1>;
-  }
+  const quizIsLoading = !quiz.exercises.length && quiz.index === 0;
+  const quizIsFinished = quiz.exercises.length > 0 && quiz.exercises.length === quiz.index;
 
   return (
     <Wrapper>
+      <IntoitLogoWhite to="/">
+        <img src={IntoitLogo} alt="intoit-logo" />
+      </IntoitLogoWhite>
+
       <ContentLayout width={'max-content'} maxWidth={'700px'}>
         <ContentBox>
-          <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
-          <Exercise exercise={quiz.exercises[quiz.index]} />
+          {quizIsLoading ? (
+            // TODO: Add animasjon
+            <h1>Henter quiz...</h1>
+          ) : quizIsFinished ? (
+            <h1>Victory Screen</h1>
+          ) : (
+            <>
+              <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
+              <Exercise exercise={quiz.exercises[quiz.index]} />
+            </>
+          )}
         </ContentBox>
       </ContentLayout>
     </Wrapper>
@@ -48,21 +56,44 @@ const Wrapper = styled.div`
   height: 100%;
   background-color: #1565c0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const IntoitLogoWhite = styled(Link)`
+  margin: 24px 0;
+
+  img {
+    z-index: 2;
+    object-fit: contain;
+    width: 67px;
+    height: auto;
+    cursor: pointer;
+    @media ${devices.mobileOnly} {
+      width: 46px;
+    }
+  }
 `;
 
 const ContentBox = styled.div`
   padding: 30px;
-  min-width: 500px;
-  margin-top: 200px;
+  margin-bottom: 200px;
   background-color: white;
   border-radius: 3px;
+  min-width: 500px;
+
+  @media ${devices.mobileOnly} {
+    max-width: 100%;
+    min-width: initial;
+    padding: 20px;
+  }
 `;
 
 const QuizProgress = styled(LinearProgress)`
   margin: 10px 0;
   border-radius: 3px;
   height: 8px;
-  /* width: 500px; */
 
   &.MuiLinearProgress-colorPrimary {
     background-color: ${colors.lightGrey};
