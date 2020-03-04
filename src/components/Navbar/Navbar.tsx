@@ -9,7 +9,11 @@ import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
 import PROFILE_ICON from 'assets/icons/profileIcon.svg';
 
-export default function Navbar() {
+interface Props {
+  currentViewIsQuiz?: boolean;
+}
+
+const Navbar = ({ currentViewIsQuiz }: Props) => {
   const token = useSelector((state: ReduxState) => state.user.token);
 
   // * Token should be setted on a component that renders on everypage. In our case, this Navbar.
@@ -18,6 +22,10 @@ export default function Navbar() {
     ditpatch(setToken(token));
   }
   const clicked = useSelector((state: ReduxState) => state.dropdown);
+
+  if (currentViewIsQuiz) {
+    return <></>;
+  }
 
   return (
     <Wrapper>
@@ -50,7 +58,7 @@ export default function Navbar() {
       </Content>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.nav`
   padding: 20px;
@@ -94,3 +102,5 @@ const NavBurgermenuContainer = styled.div`
     display: flex;
   }
 `;
+
+export default Navbar;
