@@ -5,6 +5,7 @@ interface ReduxState {
   dropdown: Dropdown;
   topics?: Topic[];
   quiz: Quiz;
+  router: any;
 }
 
 type Courses = Course[];

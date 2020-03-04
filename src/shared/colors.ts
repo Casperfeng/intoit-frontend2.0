@@ -5,15 +5,18 @@ const YELLOW_COLOR = '#FBBC00';
 const PURPLE_COLOR = '#6C63FF';
 const GREY_COLOR = '#979797';
 const LIGHT_GREY_COLOR = '#DADADA';
+const BLACK_LIGHT_COLOR = '#2B3648';
 
 const colors = {
   default: DEFAULT_BLUE_COLOR,
+  primary: DEFAULT_BLUE_COLOR,
   green: GREEN_COLOR,
   red: RED_COLOR,
   yellow: YELLOW_COLOR,
   purple: PURPLE_COLOR,
   grey: GREY_COLOR,
   lightGrey: LIGHT_GREY_COLOR,
+  blackLight: BLACK_LIGHT_COLOR,
 };
 
 export const subjectColors = {

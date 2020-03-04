@@ -10,7 +10,7 @@ import InvolvedPeople from './components/InvolvedPeople';
 
 export default function AboutIntoit() {
   return (
-    <ContentLayout width="1024px">
+    <ContentLayout maxWidth="1024px">
       <Wrapper>
         <Title>Den beste måten å teste seg i pensum </Title>
         <p>{introText}</p>
