@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled, { css } from 'styled-components/macro';
+import devices from 'shared/media';
 
 interface Props {
   children?: ReactElement | ReactElement[];
@@ -23,6 +24,7 @@ const PageContent = styled.div`
   padding: 0 24px;
   height: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
   place-content: center;
   ${props =>
@@ -30,4 +32,10 @@ const PageContent = styled.div`
     css`
       text-align: center;
     `}
+  
+  @media ${devices.mobileOnly} {
+    width: 90%;
+    padding: 0;
+  }
+  
 `;

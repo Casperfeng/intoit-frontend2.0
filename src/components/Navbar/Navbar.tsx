@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Burgermenu from '../Burgermenu/Burgermenu';
-import IntoitLink from '../IntoitLink/IntoitLink';
-import IntoitLogo from '../../assets/icons/long_logo.png';
+import Burgermenu from 'components/Burgermenu/Burgermenu';
+import IntoitLink from 'components/IntoitLink/IntoitLink';
+import IntoitLogo from 'assets/icons/long_logo.png';
+
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
 import PROFILE_ICON from 'assets/icons/profileIcon.svg';
