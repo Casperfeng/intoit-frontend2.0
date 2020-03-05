@@ -78,7 +78,7 @@ const IntoitLogoWhite = styled(Link)`
 
 const ContentBox = styled.div`
   padding: 30px;
-  margin-bottom: 200px;
+  margin-top: 128px;
   background-color: white;
   border-radius: 3px;
   min-width: 500px;

@@ -61,5 +61,5 @@ const AlternativeButton = styled(Button)`
 `;
 
 const AlternativeGroup = styled(ButtonGroup)`
-  margin: 40px 0 30px;
+  margin: 0 0 30px;
 `;
