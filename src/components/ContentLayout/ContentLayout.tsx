@@ -7,6 +7,7 @@ interface Props {
   alignment?: string;
   maxWidth?: string;
   width?: string;
+  placeContent?: boolean;
 }
 
 export default function ContentLayout({ children, alignment, width, maxWidth }: Props) {
@@ -26,7 +27,7 @@ const PageContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  place-content: center;
+  place-content: ${props => (props.placeContent ? 'center' : 'start')};
   ${props =>
     props.textAlign === 'center' &&
     css`

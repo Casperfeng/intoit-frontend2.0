@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import Alternatives from './Alternatives';
 // import { ThumbUpAlt } from 'styled-icons/material/ThumbUpAlt';
 // import { iconColors } from 'shared/colors';
-import colors from 'shared/colors';
+import colors, { iconColors } from 'shared/colors';
 import { ArrowForward } from 'styled-icons/material/ArrowForward';
+import { School } from 'styled-icons/material/School';
 import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
+import Card from '@material-ui/core/Card';
 
 interface ExerciseProps {
   exercise: Question;
@@ -24,7 +26,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
       setAnsweredIndex(index);
       setHasAnswer(true);
     } else {
-      dispatch(setAnswer(quiz.index, index));
+      // dispatch(setAnswer(quiz.index, index));
       setHasAnswer(false);
       setAnsweredIndex(-1);
     }
@@ -34,7 +36,14 @@ export default function Exercise({ exercise }: ExerciseProps) {
     <Wrapper>
       <Question>{exercise.content.question.text}</Question>
       <Credit>Laget av {exercise.username}</Credit>
+
       <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} />
+      {hasAnswer && exercise.explanation && (
+        <Explanation variant="outlined">
+          <School size={20} />
+          <p>{exercise.explanation}</p>
+        </Explanation>
+      )}
       {hasAnswer && (
         <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
           Neste
@@ -59,6 +68,7 @@ const Credit = styled.p`
   font-weight: 300;
   color: ${colors.blackLight};
   text-align: end;
+  margin-bottom: 36px;
 `;
 
 const Question = styled.h1`
@@ -77,4 +87,24 @@ const NextButton = styled(Button)`
 
 const StyledArrowForward = styled(ArrowForward)`
   color: black;
+`;
+
+const Explanation = styled(Card)`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 24px;
+
+  &.MuiPaper-outlined {
+    border-color: ${colors.grey};
+  }
+
+  svg {
+    min-width: 20px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-left: 6px;
+  }
 `;
