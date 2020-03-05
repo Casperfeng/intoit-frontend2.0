@@ -8,6 +8,7 @@ import IntoitLogo from '../../assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
 import PROFILE_ICON from 'assets/icons/profileIcon.svg';
+import PUBLIC_ICON from 'assets/icons/publicIcon.svg';
 
 export default function Navbar() {
   const token = useSelector((state: ReduxState) => state.user.token);
@@ -35,6 +36,9 @@ export default function Navbar() {
               </IntoitLink>
               <IntoitLink to={'/profile'}>
                 <img src={PROFILE_ICON} alt={'Profil icon'} />
+              </IntoitLink>
+              <IntoitLink to={'/profile'}>
+                <img src={PUBLIC_ICON} alt={'Public icon'} />
               </IntoitLink>
             </>
           ) : (

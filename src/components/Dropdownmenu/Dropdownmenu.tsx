@@ -16,7 +16,7 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
           <IntoitLink to={'/'} linkType="Dropdown">
             Hjem
           </IntoitLink>
-          <IntoitLink to={'/profile'} linkType="Dropdown" callback={logout}>
+          <IntoitLink to={'/profile'} linkType="Dropdown">
             Min profil
           </IntoitLink>
           <IntoitLink to={'/om-oss'} linkType="Dropdown">
