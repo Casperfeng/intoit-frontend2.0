@@ -6,9 +6,12 @@ interface ReduxState {
   topics?: Topic[];
   quiz: Quiz;
   router: any;
+  schools: Schools;
 }
 
 type Courses = Course[];
+
+type Schools = School[]
 
 type Dropdown = boolean;
 
@@ -89,3 +92,8 @@ interface Alternative {
 }
 
 type Alternatives = Alternative[];
+interface School {
+  id: number;
+  name: string;
+  size: number;
+}
