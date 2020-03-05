@@ -26,7 +26,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
       setAnsweredIndex(index);
       setHasAnswer(true);
     } else {
-      // dispatch(setAnswer(quiz.index, index));
+      dispatch(setAnswer(quiz.index, index));
       setHasAnswer(false);
       setAnsweredIndex(-1);
     }
