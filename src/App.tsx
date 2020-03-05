@@ -10,8 +10,14 @@ import AboutIntoit from './views/AboutIntoit/AboutIntoit';
 import Course from './views/Course/Course';
 import Quiz from './views/Quiz/Quiz';
 import { useSelector } from 'react-redux';
+import { setConfig } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 
-export default function App() {
+setConfig({
+  showReactDomPatchNotification: false,
+});
+
+function App() {
   // Render a different navbar in quiz-mode
   const currentPath = useSelector((state: ReduxState) => state.router.location.pathname);
   const currentViewIsQuiz = currentPath.includes('quiz');
@@ -40,3 +46,5 @@ const Main = styled.div`
   margin: auto;
   align-content: center;
 `;
+
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
