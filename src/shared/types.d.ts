@@ -4,9 +4,12 @@ interface ReduxState {
   user: any;
   dropdown: Dropdown;
   topics?: Topic[];
+  schools: Schools;
 }
 
 type Courses = Course[];
+
+type Schools = School[]
 
 type Dropdown = boolean;
 
@@ -49,4 +52,10 @@ interface Topic {
   mcSize?: number;
   fcSize?: number;
   isArchived?: boolean;
+}
+
+interface School {
+  id: number;
+  name: string;
+  size: number;
 }
