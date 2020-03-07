@@ -7,6 +7,7 @@ const GREY_COLOR = '#979797';
 const LIGHT_GREY_COLOR = '#DADADA';
 const BLACK_LIGHT_COLOR = '#2B3648';
 const BLUE_GREY_COLOR = '#37474F';
+const FADED_DEFAULT_COLOR = 'rgba(12, 170, 214, 0.5)';
 
 const colors = {
   default: DEFAULT_BLUE_COLOR,
@@ -30,6 +31,11 @@ export const subjectColors = {
 
 export const iconColors = {
   default: BLUE_GREY_COLOR,
+  clicked: DEFAULT_BLUE_COLOR,
+};
+
+export const buttonColors = {
+  default: FADED_DEFAULT_COLOR,
   clicked: DEFAULT_BLUE_COLOR,
 };
 
