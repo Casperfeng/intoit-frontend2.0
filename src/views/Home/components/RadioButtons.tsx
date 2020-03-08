@@ -25,8 +25,6 @@ export default function RadioButtons() {
     <RadioButton key={school.id} label={school.name} onClick={() => handleClick(school.id)} selected={selected === school.id ? true : false} />
   ));
 
-  console.log('Selected: ', selected);
-
   return (
     <div>
       <RadioButton label={'Alle'} onClick={() => handleClick(0)} selected={selected === 0 ? true : false} />
@@ -36,7 +34,7 @@ export default function RadioButtons() {
 }
 const RadioButton = styled(Chip)`
   margin: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: white;
   background: ${buttonColors.default};
   &:focus,

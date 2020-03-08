@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCourses } from '../../../redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
+import Sorting from './Sorting';
+import { orderBy } from 'lodash';
 
 export default function Courses() {
+  const [sort, setSort] = useState({
+    value: 'n_favorites_this_semester',
+    label: 'Mest populære dette semesteret',
+    sortOrder: 'desc',
+  });
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
 
@@ -15,12 +22,15 @@ export default function Courses() {
     // eslint-disable-next-line
   }, []);
 
+  const orderedCourses = orderBy(courses, [sort.value], [sort.sortOrder]);
+
   return (
     <Wrapper>
       <h1>EMNER</h1>
       <RadioButtons />
+      <Sorting onSort={field => setSort(field)} />
       <Content>
-        {courses.map(course => (
+        {orderedCourses.map(course => (
           <CourseCard
             key={course.id}
             id={course.id}
