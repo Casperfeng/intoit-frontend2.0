@@ -24,7 +24,7 @@ export default function ProfilePage() {
           <UserInfo>
             <h2>Username</h2>
             <p>nivå 4</p>
-            <ProBar variant={'determinant'} value={67} />
+            <ProBar variant={'determinate'} value={67} />
             <p> xp 400/500</p>
           </UserInfo>
         </Header>
