@@ -9,6 +9,7 @@ import Home from './views/Home/Home';
 import AboutIntoit from './views/AboutIntoit/AboutIntoit';
 import Course from './views/Course/Course';
 import Quiz from './views/Quiz/Quiz';
+import ProfilePage from './views/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/om-oss" component={AboutIntoit} />
           <ProtectedRoute exact path="/courses/:id" component={Course} />
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/profile" component={ProfilePage} />
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
         </Switch>

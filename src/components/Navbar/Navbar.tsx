@@ -9,6 +9,7 @@ import IntoitLogo from 'assets/icons/long_logo.png';
 import { useDispatch } from 'react-redux';
 import { setToken, logout } from 'redux/duck/userDuck';
 import PROFILE_ICON from 'assets/icons/profileIcon.svg';
+import PUBLIC_ICON from 'assets/icons/publicIcon.svg';
 
 interface Props {
   currentViewIsQuiz?: boolean;
@@ -44,6 +45,9 @@ const Navbar = ({ currentViewIsQuiz }: Props) => {
               </IntoitLink>
               <IntoitLink to={'/profile'}>
                 <img src={PROFILE_ICON} alt={'Profil icon'} />
+              </IntoitLink>
+              <IntoitLink to={'/profile'}>
+                <img src={PUBLIC_ICON} alt={'Public icon'} />
               </IntoitLink>
             </>
           ) : (

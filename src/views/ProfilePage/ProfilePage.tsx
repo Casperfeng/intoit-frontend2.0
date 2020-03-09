@@ -24,7 +24,7 @@ export default function ProfilePage() {
           <UserInfo>
             <h2>Username</h2>
             <p>nivå 4</p>
-            <ProBar variant={'determinant'} value={67} />
+            <ProBar variant={'determinate'} value={67} />
             <p> xp 400/500</p>
           </UserInfo>
         </Header>
@@ -106,15 +106,18 @@ const HistoryActions = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 25px;
 `;
 
 const Achievements = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 50px;
 `;
 
 const Header = styled.div`
   display: flex;
+  margin: 75px;
 `;
 
 const UserInfo = styled.div`
