@@ -10,12 +10,23 @@ import AboutIntoit from './views/AboutIntoit/AboutIntoit';
 import Course from './views/Course/Course';
 import Quiz from './views/Quiz/Quiz';
 import ProfilePage from './views/ProfilePage/ProfilePage';
+import { useSelector } from 'react-redux';
+import { setConfig } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 
-export default function App() {
+setConfig({
+  showReactDomPatchNotification: false,
+});
+
+function App() {
+  // Render a different navbar in quiz-mode
+  const currentPath = useSelector((state: ReduxState) => state.router.location.pathname);
+  const currentViewIsQuiz = currentPath.includes('quiz');
+
   return (
     <StylesProvider injectFirst>
       <Main>
-        <Navbar />
+        <Navbar currentViewIsQuiz={currentViewIsQuiz} />
         <Switch>
           <Route exact path="/om-oss" component={AboutIntoit} />
           <ProtectedRoute exact path="/courses/:id" component={Course} />
@@ -33,9 +44,9 @@ const Main = styled.div`
   margin: 0px;
   width: 100%;
   height: 100%;
-  min-height: 1000px;
+  min-height: 100vh;
   margin: auto;
-  display: column;
   align-content: center;
-  color: #293640;
 `;
+
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
