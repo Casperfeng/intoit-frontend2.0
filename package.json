@@ -3,14 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.0",
     "@types/jest": "24.0.21",
     "@types/node": "12.12.3",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
+    "axios": "^0.19.0",
+    "babel-plugin-macros": "^2.8.0",
+    "connected-react-router": "^6.5.2",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prettier": "^1.19.1",
     "react": "^16.11.0",
+    "react-app-rewire-hot-loader": "^2.0.1",
+    "react-app-rewired": "^2.1.5",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.6.4"
+    "react-facebook-login": "^4.1.1",
+    "react-hot-loader": "^4.12.19",
+    "react-lottie": "^1.2.3",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "react-youtube": "^7.9.0",
+    "redux": "^4.0.4",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.4.1",
+    "styled-icons": "^9.4.0",
+    "typescript": "3.6.4",
+    "uuid": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,6 +41,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 150
   },
   "browserslist": {
     "production": [
@@ -32,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.5.0"
   }
 }
