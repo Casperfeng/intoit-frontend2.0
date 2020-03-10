@@ -7,11 +7,14 @@ interface ReduxState {
   quiz: Quiz;
   router: any;
   schools: Schools;
+  resource: {
+    feed: any[];
+  };
 }
 
 type Courses = Course[];
 
-type Schools = School[]
+type Schools = School[];
 
 type Dropdown = boolean;
 
