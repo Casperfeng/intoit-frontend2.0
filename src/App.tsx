@@ -33,7 +33,8 @@ function App() {
           <ProtectedRoute exact path="/courses/:id" component={Course} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
-          <ProtectedRoute exact path="/lastUpdate" component={LastUpdate} />
+          {/* Andreas: Her ser du at vi må også legge til id som en urlparameter, slik i course eller quiz */}
+          <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
         </Switch>

@@ -18,6 +18,7 @@ interface UpdateProps {
 }
 
 export default function LastUpdate(props: UpdateProps) {
+  // * Andreas: Her prøvde du å hente id fra URL, men URLen inneholdte ingen id.
   const id = props.match.params.id;
   const feed = useSelector((state: ReduxState) => state.resource.feed);
   const dispatch = useDispatch();
@@ -26,8 +27,9 @@ export default function LastUpdate(props: UpdateProps) {
 
   useEffect(() => {
     async function retrieveUpdate() {
+      console.log('efe');
       await dispatch(fetchFeeds(id));
-      setLoading(false);
+      await setLoading(false);
     }
     retrieveUpdate();
   }, []);
@@ -40,7 +42,12 @@ export default function LastUpdate(props: UpdateProps) {
   ) : (
     <ContentLayout alignment={'center'}>
       <h1> Siste oppdateringer i emnet ({feed.name}) </h1>
-      <FeedUpdate> ({feed})</FeedUpdate>
+
+      {/* //* Andreas: Her prøver du å vise en objects ved å wrappe den inni i et div. Det vil ikke fungere. En normal approach her er å bruke .map() */}
+
+      {feed.map((feed: any, i: any) => (
+        <FeedUpdate key={i}>{feed.message}</FeedUpdate>
+      ))}
     </ContentLayout>
   );
 }
