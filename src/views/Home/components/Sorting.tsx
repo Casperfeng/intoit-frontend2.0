@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import devices from 'shared/media';
 import styled from 'styled-components/macro';
-
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -35,15 +34,22 @@ export default function Sorting({ onSort }: SortingProps) {
   ));
 
   return (
-    <div>
+    <Wrapper>
       <FormControl>
         <StyledSelect labelId="sort-courses" id="sort-courses" value={sorting} onChange={handleChange}>
           {menuitems}
         </StyledSelect>
       </FormControl>
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  @media ${devices.mobileOnly} {
+    align-self: center;
+    padding: 10px;
+  }
+`;
 
 const StyledSelect = styled(Select)`
   min-width: 260px;

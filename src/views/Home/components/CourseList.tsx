@@ -6,6 +6,7 @@ import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
 import Sorting from './Sorting';
+import SearchBar from './SearchBar';
 import { orderBy } from 'lodash';
 
 export default function CourseList() {
@@ -14,6 +15,7 @@ export default function CourseList() {
     label: 'Mest populære dette semesteret',
     sortOrder: 'desc',
   });
+  const [searchQuery, setSearchQuery] = useState('');
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
 
@@ -22,13 +24,22 @@ export default function CourseList() {
     // eslint-disable-next-line
   }, []);
 
-  const orderedCourses = orderBy(courses, [sort.value], [sort.sortOrder]);
+  const orderedCourses = orderBy(
+    courses.filter(course => course.name.toLowerCase().includes(searchQuery.toLowerCase())),
+    [sort.value],
+    [sort.sortOrder],
+  );
 
   return (
     <Wrapper>
       <h1>EMNER</h1>
-      <RadioButtons />
-      <Sorting onSort={field => setSort(field)} />
+      <SortingWrapper>
+        <StyledFilters>
+          <RadioButtons />
+          <SearchBar onSearch={setSearchQuery} />
+        </StyledFilters>
+        <Sorting onSort={field => setSort(field)} />
+      </SortingWrapper>
       <Content>
         {orderedCourses.map(course => (
           <CourseCard
@@ -76,4 +87,20 @@ const Content = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 24px;
   }
+`;
+
+const StyledFilters = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media ${devices.mobileOnly} {
+    justify-content: center;
+  }
+`;
+
+const SortingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 `;

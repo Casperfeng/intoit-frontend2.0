@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
+import devices from 'shared/media';
 import Chip from '@material-ui/core/Chip';
 import { buttonColors } from 'shared/colors';
 import { fetchSchools } from 'redux/duck/schoolDuck';
@@ -47,4 +48,8 @@ const RadioButton = styled(Chip)`
     css`
       background: ${buttonColors.clicked};
     `}
+
+    @media ${devices.mobileOnly} {
+      margin: 8px 2px;
+  }
 `;
