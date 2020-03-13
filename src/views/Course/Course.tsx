@@ -53,7 +53,7 @@ export default function Course(props: CourseProps) {
         <TopicCards topics={topics} />
 
         {/* // ? Her bruker jeg feed.length til å vise antall oppdateringer */}
-        <StyledLink to={'/'}>Siste oppdatteringer ({feed.length}) </StyledLink>
+        <StyledLink to={'/lastUpdate'}>Siste oppdatteringer ({feed.length}) </StyledLink>
       </ContentLayout>
     );
 }
