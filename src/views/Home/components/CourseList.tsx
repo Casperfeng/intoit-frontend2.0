@@ -32,7 +32,7 @@ export default function CourseList() {
 
   return (
     <Wrapper>
-      <h1>EMNER</h1>
+      <Title>EMNER</Title>
       <SortingWrapper>
         <StyledFilters>
           <RadioButtons />
@@ -99,8 +99,17 @@ const StyledFilters = styled.div`
   }
 `;
 
+const Title = styled.h1`
+  @media ${devices.mobileOnly} {
+    display: none;
+  }
+`;
+
 const SortingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  @media ${devices.mobileOnly} {
+    margin-top: -45px;
+  }
 `;
