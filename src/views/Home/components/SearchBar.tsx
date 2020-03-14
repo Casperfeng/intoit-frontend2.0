@@ -6,7 +6,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Search } from '@styled-icons/material';
 
 interface SearchFieldProps {
-  onSearch: any;
+  onSearch: Function;
 }
 
 const SearchField = ({ onSearch }: SearchFieldProps) => {
@@ -21,7 +21,7 @@ const SearchField = ({ onSearch }: SearchFieldProps) => {
     const value = event.target.value;
     // Clear the old timeout
     await window.clearTimeout(inputTimeout);
-    // Start a new timeout and set isTyping=true
+    // Start a new timeout
     setInputTimeout(
       window.setTimeout(() => {
         handleQueryFinished(value);

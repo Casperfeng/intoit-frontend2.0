@@ -108,7 +108,6 @@ const Title = styled.h1`
 const SortingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   @media ${devices.mobileOnly} {
     margin-top: -45px;
   }
