@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { match } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchFeeds } from 'redux/duck/resourceDuck';
-import StyledLink from 'components/StyledLink/StyledLink';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
+import { FeedbackDimensions } from 'styled-icons/material';
 
 interface RouterParams {
   id: string;
@@ -20,6 +20,7 @@ interface UpdateProps {
 export default function LastUpdate(props: UpdateProps) {
   // * Andreas: Her prøvde du å hente id fra URL, men URLen inneholdte ingen id.
   const id = props.match.params.id;
+  const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
   const feed = useSelector((state: ReduxState) => state.resource.feed);
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ export default function LastUpdate(props: UpdateProps) {
       console.log('efe');
       await dispatch(fetchFeeds(id));
       await setLoading(false);
+      console.log(feed);
     }
     retrieveUpdate();
   }, []);
@@ -41,12 +43,15 @@ export default function LastUpdate(props: UpdateProps) {
     </ContentLayout>
   ) : (
     <ContentLayout alignment={'center'}>
-      <h1> Siste oppdateringer i emnet ({feed.name}) </h1>
+      <h1> Siste oppdateringer i emnet {courseInfo.name} </h1>
 
       {/* //* Andreas: Her prøver du å vise en objects ved å wrappe den inni i et div. Det vil ikke fungere. En normal approach her er å bruke .map() */}
 
       {feed.map((feed: any, i: any) => (
-        <FeedUpdate key={i}>{feed.message}</FeedUpdate>
+        <FeedUpdate key={i}>
+          <FeedSymbol>{feed.symbol}</FeedSymbol>
+          <FeedMessage>{feed.message}</FeedMessage>
+        </FeedUpdate>
       ))}
     </ContentLayout>
   );
@@ -54,6 +59,16 @@ export default function LastUpdate(props: UpdateProps) {
 
 const FeedUpdate = styled.div`
   border: 1px solid grey;
-  margin: 15px;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const FeedSymbol = styled.div`
+  margin-right: 10px;
+  padding: 5px;
+`;
+
+const FeedMessage = styled.div`
+  padding: 5px;
 `;
