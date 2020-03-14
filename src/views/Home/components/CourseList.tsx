@@ -1,11 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../redux/duck/coursesDuck';
+import { fetchCourses } from 'redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
+import RadioButtons from './RadioButtons';
+import Sorting from './Sorting';
+import SearchBar from './SearchBar';
+import { orderBy } from 'lodash';
 
 export default function CourseList() {
+  const [sort, setSort] = useState({
+    value: 'n_favorites_this_semester',
+    label: 'Mest populære dette semesteret',
+    sortOrder: 'desc',
+  });
+  const [searchQuery, setSearchQuery] = useState('');
   const courses = useSelector((state: ReduxState) => state.courses);
   const dispatch = useDispatch();
 
@@ -14,11 +24,24 @@ export default function CourseList() {
     // eslint-disable-next-line
   }, []);
 
+  const orderedCourses = orderBy(
+    courses.filter(course => course.name.toLowerCase().includes(searchQuery.toLowerCase())),
+    [sort.value],
+    [sort.sortOrder],
+  );
+
   return (
     <Wrapper>
-      <h1>EMNER</h1>
+      <Title>EMNER</Title>
+      <SortingWrapper>
+        <StyledFilters>
+          <RadioButtons />
+          <SearchBar onSearch={setSearchQuery} />
+        </StyledFilters>
+        <Sorting onSort={field => setSort(field)} />
+      </SortingWrapper>
       <Content>
-        {courses.map(course => (
+        {orderedCourses.map(course => (
           <CourseCard
             key={course.id}
             id={course.id}
@@ -63,5 +86,29 @@ const Content = styled.div`
   @media ${devices.mobileOnly} {
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 24px;
+  }
+`;
+
+const StyledFilters = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media ${devices.mobileOnly} {
+    justify-content: center;
+  }
+`;
+
+const Title = styled.h1`
+  @media ${devices.mobileOnly} {
+    display: none;
+  }
+`;
+
+const SortingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media ${devices.mobileOnly} {
+    margin-top: -45px;
   }
 `;
