@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../redux/duck/coursesDuck';
+import { fetchCourses } from 'redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
@@ -107,7 +107,6 @@ const Title = styled.h1`
 const SortingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   @media ${devices.mobileOnly} {
     margin-top: -45px;
   }

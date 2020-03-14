@@ -13,7 +13,6 @@ const initialState: Schools = [];
 export default function schoolReducer(state = initialState, action: Action) {
   switch (action.type) {
     case SET_SCHOOLS:
-      //const school = Object.values(action.payload);
       return action.payload;
     default:
       return state;

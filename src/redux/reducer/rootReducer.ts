@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import courseReducer from '../duck/coursesDuck';
-import courseDetailedReducer from '../duck/courseDetailedDuck';
+import courseReducer from 'redux/duck/coursesDuck';
+import courseDetailedReducer from 'redux/duck/courseDetailedDuck';
 import userReducer from 'redux/duck/userDuck';
-import dropdownReducer from '../duck/dropdownDuck';
-import topicReducer from '../duck/topicDuck';
+import dropdownReducer from 'redux/duck/dropdownDuck';
+import topicReducer from 'redux/duck/topicDuck';
 import schoolReducer from 'redux/duck/schoolDuck';
 
 const rootReducer = combineReducers({

@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 interface SortingProps {
-  onSort: any;
+  onSort: Function;
 }
 
 export default function Sorting({ onSort }: SortingProps) {
