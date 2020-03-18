@@ -6,7 +6,14 @@ import { fetchFeeds } from 'redux/duck/resourceDuck';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
-import { FeedbackDimensions } from 'styled-icons/material';
+import { Like } from '@styled-icons/boxicons-solid/Like';
+import { Dislike } from '@styled-icons/boxicons-regular/Dislike';
+import { EditOutline } from '@styled-icons/evaicons-outline/EditOutline';
+import { Education } from '@styled-icons/zondicons/Education';
+import { LightBulb } from '@styled-icons/heroicons-outline/LightBulb';
+import { CommentAdd } from '@styled-icons/boxicons-solid/CommentAdd';
+import { Plus } from '@styled-icons/boxicons-regular/Plus';
+import DEFAULT_ICON from 'assets/icons/onlineTestIcon.svg';
 
 interface RouterParams {
   id: string;
@@ -14,6 +21,7 @@ interface RouterParams {
 
 interface UpdateProps {
   required: string;
+  code: string;
   match?: match<RouterParams>;
 }
 
@@ -23,6 +31,8 @@ export default function LastUpdate(props: UpdateProps) {
   const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
   const feed = useSelector((state: ReduxState) => state.resource.feed);
   const dispatch = useDispatch();
+  const feedSymbol = symbolDeterminator(feed.symbol);
+  const icon = feedSymbol.icon;
 
   const [isLoading, setLoading] = useState(true);
 
@@ -49,7 +59,7 @@ export default function LastUpdate(props: UpdateProps) {
 
       {feed.map((feed: any, i: any) => (
         <FeedUpdate key={i}>
-          <FeedSymbol>{feed.symbol}</FeedSymbol>
+          <FeedSymbol>{icon}</FeedSymbol>
           <FeedMessage>{feed.message}</FeedMessage>
         </FeedUpdate>
       ))}
@@ -72,3 +82,23 @@ const FeedSymbol = styled.div`
 const FeedMessage = styled.div`
   padding: 5px;
 `;
+
+function symbolDeterminator(feedSymbol: string) {
+  if (feedSymbol.toUpperCase().includes('UP')) {
+    return { icon: Like };
+  } else if (feedSymbol.toUpperCase().match('DOWN')) {
+    return { icon: Dislike };
+  } else if (feedSymbol.toUpperCase().match('PENCIL')) {
+    return { icon: EditOutline };
+  } else if (feedSymbol.toUpperCase().match('PLUS')) {
+    return { icon: Education };
+  } else if (feedSymbol.toUpperCase().match('HINT')) {
+    return { icon: LightBulb };
+  } else if (feedSymbol.toUpperCase().match('COMMENT')) {
+    return { icon: CommentAdd };
+  } else if (feedSymbol.toUpperCase().match('PLUS')) {
+    return { icon: Plus };
+  } else {
+    return { icon: DEFAULT_ICON };
+  }
+}
