@@ -8,6 +8,7 @@ import Login from './views/Login/Login';
 import Home from './views/Home/Home';
 import AboutIntoit from './views/AboutIntoit/AboutIntoit';
 import Course from './views/Course/Course';
+import CreateQuestion from './views/CreateQuestion/CreateQuestion';
 import Quiz from './views/Quiz/Quiz';
 import ProfilePage from './views/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
@@ -31,6 +32,7 @@ function App() {
         <Switch>
           <Route exact path="/om-oss" component={AboutIntoit} />
           <ProtectedRoute exact path="/courses/:id" component={Course} />
+          <ProtectedRoute exact path="/courses/:id/create-question" component={CreateQuestion} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
           <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
