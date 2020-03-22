@@ -1,8 +1,12 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import Choices from './Choices';
 
 export default function MultipleChoiceTabPanel(props) {
   const { value, index } = props;
 
-  return <Typography hidden={value !== index}>MultipleChoiceTabPanel panel</Typography>;
+  return (
+    <div hidden={value !== index}>
+      <Choices />
+    </div>
+  );
 }
