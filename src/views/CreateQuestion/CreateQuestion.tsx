@@ -26,11 +26,13 @@ export default function CreateQuestion(props) {
         <Grid item xs={12} md={5}>
           <QuestionInput />
         </Grid>
-        <Grid item>
-          <Tabs value={tab} onChange={handleChange}>
+        <Grid item xs={12} md={5}>
+          <Tabs value={tab} onChange={handleChange} variant="fullWidth">
             <Tab label="Flervalg" />
             <Tab label="Flashcards" />
           </Tabs>
+        </Grid>
+        <Grid item xs={12} md={5}>
           <MultipleChoiceTabPanel value={tab} index={0} />
           <FlashcardTabPanel value={tab} index={1} />
         </Grid>
