@@ -8,13 +8,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 export default function SelectTopic() {
-  const id = useParams();
+  const params = useParams();
   const [topic, setTopic] = useState('');
   const topics = useSelector((state: ReduxState) => state.topics);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTopics(id));
+    dispatch(fetchTopics(params.id));
     // eslint-disable-next-line
   }, []);
 
