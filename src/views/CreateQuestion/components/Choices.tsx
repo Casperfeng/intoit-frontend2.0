@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components/macro';
 import { Grid, FormControl, TextField, InputAdornment, IconButton, Button, Typography, Hidden } from '@material-ui/core';
 import { Clear, Add } from '@styled-icons/material';
 
@@ -47,30 +48,39 @@ export default function Choices() {
       {choices.map((choice, i) => (
         <Grid key={i} item xs={12}>
           <FormControl fullWidth>
-            <TextField
-              multiline
-              key={i}
-              onChange={e => handleChange(e, i)}
-              value={choice.text}
-              placeholder={choice.placeholder}
-              variant="outlined"
-              error={i !== 0}
-              InputProps={
-                i >= 3 ? (
-                  {
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={() => handleClickRemoveChoice(i)}>
-                          <Clear size={24} />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }
-                ) : (
-                  <Hidden />
-                )
-              }
-            />
+            {i === 0 ? (
+              <CorrectTextField
+                multiline
+                onChange={e => handleChange(e, i)}
+                value={choices[i].text}
+                placeholder={choices[i].placeholder}
+                variant="outlined"
+              />
+            ) : (
+              <WrongTextField
+                multiline
+                key={i}
+                onChange={e => handleChange(e, i)}
+                value={choices[i].text}
+                placeholder={choices[i].placeholder}
+                variant="outlined"
+                InputProps={
+                  i >= 3 ? (
+                    {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={() => handleClickRemoveChoice(i)}>
+                            <Clear size={24} />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }
+                  ) : (
+                    <Hidden />
+                  )
+                }
+              />
+            )}
           </FormControl>
         </Grid>
       ))}
@@ -82,3 +92,28 @@ export default function Choices() {
     </Grid>
   );
 }
+
+const CorrectTextField = styled(TextField)`
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: #38c05d;
+    }
+    &.Mui-focused fieldset {
+      border-color: #38c05d;
+    }
+  }
+`;
+
+const WrongTextField = styled(TextField)`
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: #f47265;
+    }
+    &.Mui-focused fieldset {
+      border-color: #f47265;
+    }
+    &:hover fieldset {
+      border-color: #f47265;
+    }
+  }
+`;

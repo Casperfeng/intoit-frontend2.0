@@ -27,7 +27,7 @@ export default function CreateQuestion(props) {
           <SelectTopic />
         </Grid>
         <Grid item xs={12} md={5}>
-          <Tabs value={tab} onChange={handleChange} variant="fullWidth">
+          <Tabs value={tab} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary">
             <Tab label="Flervalg" />
             <Tab label="Flashcards" />
           </Tabs>
