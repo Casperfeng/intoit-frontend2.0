@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Button, Typography } from '@material-ui/core';
 import { Add } from '@styled-icons/material';
 
-export default function AddImage() {
+export default function AddImage({ title }) {
   const [file, setFile] = useState(null);
 
   const handleAddImage = event => {
@@ -14,7 +14,7 @@ export default function AddImage() {
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <Typography variant="body2" color="textSecondary">
-          Legg til bilde
+          {title}
         </Typography>
       </Grid>
       <Grid item xs={12}>

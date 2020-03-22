@@ -1,8 +1,14 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import QuestionInput from './QuestionInput';
+import AddImage from './AddImage';
 
-export default function FlashcardTabPanel(props) {
+export default function MultipleChoiceTabPanel(props) {
   const { value, index } = props;
 
-  return <Typography hidden={value !== index}>Flashcard panel</Typography>;
+  return (
+    <div hidden={value !== index}>
+      <QuestionInput title="Svar" />
+      <AddImage title="Bilde til ditt svar" />
+    </div>
+  );
 }
