@@ -51,6 +51,7 @@ export default function Choices() {
             {i === 0 ? (
               <CorrectTextField
                 multiline
+                key={i}
                 onChange={e => handleChange(e, i)}
                 value={choices[i].text}
                 placeholder={choices[i].placeholder}
@@ -65,19 +66,17 @@ export default function Choices() {
                 placeholder={choices[i].placeholder}
                 variant="outlined"
                 InputProps={
-                  i >= 3 ? (
-                    {
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton onClick={() => handleClickRemoveChoice(i)}>
-                            <Clear size={24} />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }
-                  ) : (
-                    <Hidden />
-                  )
+                  i >= 3
+                    ? {
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => handleClickRemoveChoice(i)}>
+                              <Clear size={24} />
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }
+                    : {}
                 }
               />
             )}
