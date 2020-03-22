@@ -19,7 +19,7 @@ export default function CreateQuestion(props) {
 
   return (
     <ContentLayout>
-      <Grid container direction="column" justify="center" alignItems="stretch" spacing={3}>
+      <Grid container direction="column" justify="center" alignItems="stretch" spacing={2}>
         <Grid item xs={12}>
           <Header />
         </Grid>
@@ -34,7 +34,11 @@ export default function CreateQuestion(props) {
         </Grid>
         <Grid item xs={12} md={5}>
           <QuestionInput title="Spørsmål" />
+        </Grid>
+        <Grid item xs={12} md={5}>
           <AddImage title="Bilde til ditt spørsmål" />
+        </Grid>
+        <Grid item xs={12} md={5}>
           <MultipleChoiceTabPanel value={tab} index={0} />
           <FlashcardTabPanel value={tab} index={1} />
         </Grid>
