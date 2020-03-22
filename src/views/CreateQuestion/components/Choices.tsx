@@ -62,7 +62,7 @@ export default function Choices() {
       </Grid>
       {choices.map((choice, i) =>
         i < 3 ? (
-          <Grid item xs={12}>
+          <Grid key={i} item xs={12}>
             <FormControl fullWidth>
               <TextField multiline key={i} placeholder={choice.text} variant="outlined" error={i !== 0} />
             </FormControl>
