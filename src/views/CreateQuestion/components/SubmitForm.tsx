@@ -7,14 +7,16 @@ import { Button, Grid } from '@material-ui/core';
 export default function SubmitForm() {
   const param = useParams();
 
+  const handleSubmit = () => {
+    console.log('Form submitted!');
+  };
+
   return (
     <Grid container direction="row" spacing={2}>
       <Grid item>
-        <StyledLink to={`/courses/${param.id}`}>
-          <CustomButton color="primary" variant="contained">
-            Lagre
-          </CustomButton>
-        </StyledLink>
+        <CustomButton color="primary" variant="contained" onClick={handleSubmit}>
+          Lagre
+        </CustomButton>
       </Grid>
       <Grid item>
         <StyledLink to={`/courses/${param.id}`}>

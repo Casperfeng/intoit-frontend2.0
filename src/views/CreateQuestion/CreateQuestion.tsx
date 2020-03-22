@@ -6,6 +6,8 @@ import SelectTopic from './components/SelectTopic';
 import QuestionInput from './components/QuestionInput';
 import FlashcardTabPanel from './components/FlashcardTabPanel';
 import MultipleChoiceTabPanel from './components/MultipleChoiceTabPanel';
+import AddImage from './components/AddImage';
+import Optional from './components/Optional';
 import { Grid, Tabs, Tab } from '@material-ui/core';
 
 export default function CreateQuestion(props) {
@@ -14,6 +16,7 @@ export default function CreateQuestion(props) {
   const handleChange = (event, tabValue) => {
     setTab(tabValue);
   };
+
   return (
     <ContentLayout>
       <Grid container direction="column" justify="center" alignItems="stretch" spacing={3}>
@@ -35,6 +38,12 @@ export default function CreateQuestion(props) {
         <Grid item xs={12} md={5}>
           <MultipleChoiceTabPanel value={tab} index={0} />
           <FlashcardTabPanel value={tab} index={1} />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <AddImage />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <Optional />
         </Grid>
         <Grid item xs={12} md={5}>
           <SubmitForm />
