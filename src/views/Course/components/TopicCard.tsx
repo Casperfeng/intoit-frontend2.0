@@ -19,7 +19,9 @@ export default function TopicCard({ id, name, subjectId, size }: TopicCardProps)
       <StyledTitle>{name}</StyledTitle>
       <BottomContainer>
         <CardActions>
-          <StyledButton size="small"> Flashcards</StyledButton>
+          <StyledLink to={`/quiz/${id}/fc`}>
+            <StyledButton> Flashcards</StyledButton>
+          </StyledLink>
         </CardActions>
         <StyledNumberQuestions variant="body2" component="p">
           Flashcards
@@ -27,8 +29,8 @@ export default function TopicCard({ id, name, subjectId, size }: TopicCardProps)
       </BottomContainer>
       <BottomContainer>
         <CardActions>
-          <StyledLink to={`/quiz/${id}`}>
-            <StyledButton size="small"> ta quiz</StyledButton>
+          <StyledLink to={`/quiz/${id}/mc`}>
+            <StyledButton> ta quiz</StyledButton>
           </StyledLink>
         </CardActions>
         <StyledNumberQuestions variant="body2" component="p">
