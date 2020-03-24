@@ -23,7 +23,7 @@ export default function SelectTopic() {
   };
 
   return (
-    <FormControl fullWidth required={true}>
+    <FormControl fullWidth>
       <InputLabel>Velg tema</InputLabel>
       <Select labelId="demo-simple-select-label" id="demo-simple-select" value={topic} onChange={handleChange}>
         {topics.map(topic => (

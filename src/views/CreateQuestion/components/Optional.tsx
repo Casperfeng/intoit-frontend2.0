@@ -16,17 +16,17 @@ export default function Optional() {
 
   return (
     <Grid container direction="column" spacing={1}>
-      <Grid item xs>
+      <Grid item xs={12} md={6}>
         <Typography variant="body2" color="textSecondary">
           Valgfritt
         </Typography>
       </Grid>
-      <Grid item xs>
+      <Grid item xs={12} md={6}>
         <FormControl fullWidth>
           <TextField multiline value={hintValue} placeholder="Hint (valgfritt)" variant="outlined" onChange={handleHintChange} />
         </FormControl>
       </Grid>
-      <Grid item xs>
+      <Grid item xs={12} md={6}>
         <FormControl fullWidth>
           <TextField multiline value={explanationValue} placeholder="Forklaring (valgfritt)" variant="outlined" onChange={handleExplanationChange} />
         </FormControl>
