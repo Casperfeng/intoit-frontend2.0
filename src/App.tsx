@@ -33,7 +33,7 @@ function App() {
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
           <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
+          <ProtectedRoute exact path="/quiz/:id/:type?" component={Quiz} />
         </Switch>
       </Main>
     </StylesProvider>

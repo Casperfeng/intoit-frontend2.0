@@ -12,14 +12,14 @@ import { Link } from 'react-router-dom';
 import devices from 'shared/media';
 
 export default function Quiz() {
-  let { id } = useParams();
+  let { id, type } = useParams();
 
   const dispatch = useDispatch();
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
   useEffect(() => {
     async function retrieveQuiz() {
-      await dispatch(fetchQuiz(id, true, 'mc', false));
+      await dispatch(fetchQuiz(id, true, type, false));
     }
     retrieveQuiz();
   }, [dispatch, id]);
@@ -41,11 +41,11 @@ export default function Quiz() {
           ) : quizIsFinished ? (
             <h1>Victory Screen</h1>
           ) : (
-            <>
-              <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
-              <Exercise exercise={quiz.exercises[quiz.index]} />
-            </>
-          )}
+                <>
+                  <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
+                  <Exercise exercise={quiz.exercises[quiz.index]} />
+                </>
+              )}
         </ContentBox>
       </ContentLayout>
     </Wrapper>

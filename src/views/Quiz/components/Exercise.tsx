@@ -31,12 +31,15 @@ export default function Exercise({ exercise }: ExerciseProps) {
     }
   };
 
+  const exerciseContent = exercise.content;
   return (
     <Wrapper>
-      <Question>{exercise.content.question.text}</Question>
+      <Question>{exerciseContent.question.text}</Question>
+      {exerciseContent.question.img && <img src={exerciseContent.question.img.src} />}
       <Credit>Laget av {exercise.username}</Credit>
 
-      <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} />
+      <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
+
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
           <School size={20} />
