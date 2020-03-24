@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { Grid, FormControl, TextField, InputAdornment, IconButton, Button, Typography, Hidden } from '@material-ui/core';
+import { Grid, FormControl, TextField, InputAdornment, IconButton, Button, Typography } from '@material-ui/core';
 import { Clear, Add } from '@styled-icons/material';
 
 export default function Choices() {
