@@ -14,6 +14,13 @@ export default function CreateQuestion(props) {
     setTab(tabValue);
   };
 
+  const ChosenTab = () => {
+    if (tab === 0) {
+      return <MultipleChoiceTabPanel value={tab} index={0} />;
+    }
+    return <FlashcardTabPanel value={tab} index={1} />;
+  };
+
   return (
     <ContentLayout>
       <Grid container justify="center" spacing={2}>
@@ -30,8 +37,7 @@ export default function CreateQuestion(props) {
           </Tabs>
         </Grid>
         <Grid item xs={12} sm={10}>
-          <MultipleChoiceTabPanel value={tab} index={0} />
-          <FlashcardTabPanel value={tab} index={1} />
+          <ChosenTab />
         </Grid>
         <Grid item xs={12} sm={10}>
           <SubmitForm />
