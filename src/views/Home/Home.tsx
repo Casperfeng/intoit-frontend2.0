@@ -8,15 +8,10 @@ import styled from 'styled-components/macro';
 export default function Home() {
   return (
     <ContentLayout>
-      <Wrapper>
-        <ConnectGuest />
-        <ProfileHeader />
-        <CourseList />
-      </Wrapper>
+      <ConnectGuest />
+      <ProfileHeader />
+      <CourseList />
     </ContentLayout>
   );
 }
 
-const Wrapper = styled.div`
-  margin-top: 48px;
-`;

@@ -26,7 +26,6 @@ interface UpdateProps {
 }
 
 export default function LastUpdate(props: UpdateProps) {
-  // * Andreas: Her prøvde du å hente id fra URL, men URLen inneholdte ingen id.
   const id = props.match.params.id;
   const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
   const feed = useSelector((state: ReduxState) => state.resource.feed);
@@ -40,6 +39,7 @@ export default function LastUpdate(props: UpdateProps) {
       await setLoading(false);
     }
     retrieveUpdate();
+    // eslint-disable-next-line
   }, []);
 
   return isLoading ? (
@@ -48,21 +48,19 @@ export default function LastUpdate(props: UpdateProps) {
       <Animation type={'seagull'} />
     </ContentLayout>
   ) : (
-    <ContentLayout alignment={'center'}>
-      <h1> Siste oppdateringer i emnet {courseInfo.name} </h1>
+      <ContentLayout alignment={'center'}>
+        <h1> Siste oppdateringer i emnet {courseInfo.name} </h1>
 
-      {feed.map((element: any, i: number) => {
-        console.log('element :', element.symbol);
-
-        return (
-          <FeedUpdate key={i}>
-            <FeedSymbol>{symbolDeterminator(element.symbol)}</FeedSymbol>
-            <FeedMessage>{element.message}</FeedMessage>
-          </FeedUpdate>
-        );
-      })}
-    </ContentLayout>
-  );
+        {feed.map((element: any, i: number) => {
+          return (
+            <FeedUpdate key={i}>
+              <FeedSymbol>{symbolDeterminator(element.symbol)}</FeedSymbol>
+              <FeedMessage>{element.message}</FeedMessage>
+            </FeedUpdate>
+          );
+        })}
+      </ContentLayout>
+    );
 }
 
 const FeedUpdate = styled.div`
@@ -90,7 +88,7 @@ function symbolDeterminator(feedSymbol: string) {
     return <Dislike size={iconSize} />;
   } else if (feedSymbol.toUpperCase().match('PENCIL')) {
     return <EditOutline size={iconSize} />;
-  } else if (feedSymbol.toUpperCase().match('PLUS')) {
+  } else if (feedSymbol.toUpperCase().match('LISTS')) {
     return <Education size={iconSize} />;
   } else if (feedSymbol.toUpperCase().match('HINT')) {
     return <LightBulb size={iconSize} />;

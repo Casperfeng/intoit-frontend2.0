@@ -25,11 +25,7 @@ export default function Course(props: CourseProps) {
   const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
   const topics = useSelector((state: ReduxState) => state.topics);
   const feed = useSelector((state: ReduxState) => state.resource.feed);
-
   const [isLoading, setLoading] = useState(true);
-
-  // ? Andreas: Sjekk om vi får feeds fra redux
-  console.log('feeds', feed);
 
   useEffect(() => {
     async function retrieveCourse() {

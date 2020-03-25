@@ -24,9 +24,5 @@ export default function resourceReducer(state = initialState, action: Action) {
 //Action creators
 export const fetchFeeds = courseId => async dispatch => {
   const response = await axios.get(`/resources/${courseId}/feed`);
-
-  // ? Response du får fra intoit-api
-  console.log('response', response);
-
   dispatch({ type: 'FETCH_FEEDS', payload: response.data.entities.feed });
 };
