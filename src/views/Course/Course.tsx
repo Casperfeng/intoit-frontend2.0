@@ -8,7 +8,9 @@ import StyledLink from 'components/StyledLink/StyledLink';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
-import TopicCards from './components/TopicCards';
+import styled from 'styled-components/macro';
+import CourseInfo from './components/CourseInfo'
+import TopicCard from './components/TopicCard';
 
 interface RouterParams {
   id: string;
@@ -38,16 +40,41 @@ export default function Course(props: CourseProps) {
     //eslint-disable-next-line
   }, []);
 
-  return isLoading ? (
-    <ContentLayout alignment={'center'}>
-      <Title>Laster inn fag...</Title>
-      <Animation type={'seagull'} />
+  return (
+    <ContentLayout>
+      <Wrapper>
+        {isLoading ? <>
+          <Title>Laster inn fag...</Title>
+          <Animation type={'seagull'} />
+        </> : <>
+            <CourseInfo name={courseInfo.name} description={courseInfo.description} />
+            <TopicList>
+              {topics.map(topic => (
+                <TopicCard
+                  id={topic.id}
+                  name={topic.name}
+                  subjectId={topic.subjectId}
+                  size={topic.size}
+                  key={topic.id}
+                />
+              ))}
+            </TopicList>
+            <StyledLink to={`/lastUpdate/${id}`}>Siste oppdatteringer ({feed.length}) </StyledLink>
+          </>}
+      </Wrapper>
     </ContentLayout>
-  ) : (
-      <ContentLayout alignment={'center'}>
-        <Title>{courseInfo.name}</Title>
-        <TopicCards topics={topics} />
-        <StyledLink to={`/lastUpdate/${id}`}>Siste oppdatteringer ({feed.length}) </StyledLink>
-      </ContentLayout>
-    );
+  )
 }
+
+const Wrapper = styled.div`
+  padding: 32px 0;
+`
+
+const TopicList = styled.div`
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+`;
