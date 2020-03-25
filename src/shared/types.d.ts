@@ -59,7 +59,7 @@ interface Topic {
   isArchived?: boolean;
 }
 
-interface Question {
+interface IQuestion {
   collection_id: number;
   content: any;
   modified: Date;

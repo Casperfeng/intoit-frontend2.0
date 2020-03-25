@@ -35,7 +35,7 @@ function App() {
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
           <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
           <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
+          <ProtectedRoute exact path="/quiz/:id/:type?" component={Quiz} />
         </Switch>
       </Main>
     </StylesProvider>
