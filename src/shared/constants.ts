@@ -4,11 +4,18 @@ import moment from 'moment';
 moment.locale('nb');
 
 // * Uncomment these and comment out the corresponding variables under in order to test with production database
-// ! We should not overabuse this since we generate incorrect data
+// ! We should not abuse this since we generate unrelevant data to production when testing
 /* 
 const BASE_URL = 'https://ace-restapi.herokuapp.com';
 const FACEBOOK_APP_ID = '274754369699301'; 
 */
+// Question types;
+const MC = 'mc';
+const FC = 'fc';
+export const questionTypes = {
+  mc: MC,
+  fc: FC,
+};
 
 const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://ace-restapi.herokuapp.com' : 'http://intoit-dev.herokuapp.com';
 

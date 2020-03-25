@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import Alternatives from './Alternatives';
+import styled from 'styled-components/macro';
+import Question from 'components/Question/Question';
+import Alternatives from 'components/Alternatives/Alternatives';
 // import { ThumbUpAlt } from 'styled-icons/material/ThumbUpAlt';
 import colors from 'shared/colors';
 import { ArrowForward } from 'styled-icons/material/ArrowForward';
@@ -9,16 +10,28 @@ import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import Card from '@material-ui/core/Card';
+import FlashCard from './FlashCard'
+import { questionTypes } from 'shared/constants';
 
 interface ExerciseProps {
-  exercise: Question;
+  exercise: IQuestion;
 }
 
+/**
+   * @summary
+   * Show the a single exercise  in quiz
+   * Render either a multiple choice question or a flash card
+   * @remarks
+   * TODO: We need a static exercise view to show in "edit exercise" when user want to see a list of exercises in topic later
+   */
 export default function Exercise({ exercise }: ExerciseProps) {
   const dispatch = useDispatch();
   const [hasAnswer, setHasAnswer] = useState(false);
   const [answeredIndex, setAnsweredIndex] = useState(-1);
+  // For flashcard only
+  const [showFasit, setShowFasit] = useState(false);
   const quiz = useSelector((state: ReduxState) => state.quiz);
+
 
   const _showAnswer = (index: number) => {
     if (!hasAnswer) {
@@ -28,18 +41,25 @@ export default function Exercise({ exercise }: ExerciseProps) {
       dispatch(setAnswer(quiz.index, index));
       setHasAnswer(false);
       setAnsweredIndex(-1);
+      setShowFasit(false);
     }
   };
 
   const exerciseContent = exercise.content;
+
+  const { content, username, type } = exercise;
+
   return (
     <Wrapper>
-      <Question>{exerciseContent.question.text}</Question>
-      {exerciseContent.question.img && <img src={exerciseContent.question.img.src} />}
-      <Credit>Laget av {exercise.username}</Credit>
+      <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
 
-      <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
+      {/* Render either multiple choice or flashcard */}
+      {type === questionTypes.mc
+        ? <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
+        : <FlashCard showFasit={showFasit} answer={content.answer.text} setHasAnswer={() => setHasAnswer(true)} setShowFasit={() => setShowFasit(true)} />
+      }
 
+      {/* After user has answer, show correct interactions */}
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
           <School size={20} />
@@ -62,22 +82,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-const Credit = styled.p`
-  font-size: 12px;
-  font-style: italic;
-  font-weight: 300;
-  color: ${colors.blackLight};
-  text-align: end;
-  margin-bottom: 36px;
-`;
-
-const Question = styled.h1`
-  font-weight: normal;
-  margin: 20px 0 5px;
-  font-size: 20px;
-  line-height: 1.5;
 `;
 
 // const StyledThumbsUpAlt = styled(ThumbUpAlt)`

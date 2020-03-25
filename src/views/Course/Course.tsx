@@ -11,7 +11,6 @@ import Title from '../../components/Title/Title';
 import styled from 'styled-components/macro';
 import CourseInfo from './components/CourseInfo'
 import TopicCard from './components/TopicCard';
-import colors from 'shared/colors';
 
 interface RouterParams {
   id: string;

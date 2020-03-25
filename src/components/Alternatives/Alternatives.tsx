@@ -1,8 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import colors from 'shared/colors';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { AlternativeGroup, AlternativeButton } from './AlternativesStyles';
 
 interface AlternativesProps {
   alternatives: Alternatives;
@@ -45,26 +42,3 @@ export default function Alternatives({ alternatives, showAnswer, hasAnswer, answ
   }
 }
 
-const AlternativeButton = styled(Button)`
-  &.MuiButton-outlinedPrimary {
-    border-color: ${colors.lightGrey};
-    ${props => props.textcolor && `color: ${props.textcolor}`}
-  }
-
-  &.MuiButton-root {
-    text-transform: initial;
-    font-weight: normal;
-    letter-spacing: initial;
-  }
-
-  > .MuiButton-label {
-    justify-content: start;
-    text-align: start;
-  }
-
-  min-height: 50px;
-`;
-
-const AlternativeGroup = styled(ButtonGroup)`
-  margin: 0 0 30px;
-`;

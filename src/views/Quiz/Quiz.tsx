@@ -22,7 +22,7 @@ export default function Quiz() {
       await dispatch(fetchQuiz(id, true, type, false));
     }
     retrieveQuiz();
-  }, [dispatch, id]);
+  }, [dispatch, id, type]);
 
   const quizIsLoading = !quiz.exercises.length && quiz.index === 0;
   const quizIsFinished = quiz.exercises.length > 0 && quiz.exercises.length === quiz.index;
