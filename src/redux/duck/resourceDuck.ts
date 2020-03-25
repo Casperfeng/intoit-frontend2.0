@@ -1,5 +1,3 @@
-// ? Andreas: Vi lager en ny duck for fetching feed
-
 import axios from 'axios';
 
 interface Action {
