@@ -22,7 +22,7 @@ const PageContent = styled.div`
   margin: auto;
   max-width: ${props => (props.maxWidth ? props.maxWidth : '1272px')};
   width: ${props => (props.width ? props.width : 'initial')};
-  padding: 0 24px;
+  padding: 32px 24px;
   height: 100%;
   display: flex;
   flex: 1;

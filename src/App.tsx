@@ -13,6 +13,7 @@ import ProfilePage from './views/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
+import LastUpdate from 'views/LastUpdates/LastUpdates';
 
 setConfig({
   showReactDomPatchNotification: false,
@@ -32,6 +33,7 @@ function App() {
           <ProtectedRoute exact path="/courses/:id" component={Course} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
+          <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/quiz/:id" component={Quiz} />
         </Switch>

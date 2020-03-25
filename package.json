@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.0",
+    "@styled-icons/evaicons-outline": "^10.2.0",
     "@types/jest": "24.0.21",
     "@types/node": "12.12.3",
     "@types/react": "16.9.11",
@@ -25,11 +26,11 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "react-youtube": "^7.9.0",
-    "redux": "^4.0.4",
+    "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
-    "styled-icons": "^9.4.0",
+    "styled-icons": "^9.5.0",
     "typescript": "3.6.4",
     "uuid": "^3.4.0"
   },
