@@ -51,8 +51,6 @@ export default function LastUpdate(props: UpdateProps) {
     <ContentLayout alignment={'center'}>
       <h1> Siste oppdateringer i emnet {courseInfo.name} </h1>
 
-      {/* //* Andreas: Her prøver du å vise en objects ved å wrappe den inni i et div. Det vil ikke fungere. En normal approach her er å bruke .map() */}
-
       {feed.map((element: any, i: number) => {
         console.log('element :', element.symbol);
 
