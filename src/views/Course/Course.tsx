@@ -11,6 +11,7 @@ import Title from '../../components/Title/Title';
 import styled from 'styled-components/macro';
 import CourseInfo from './components/CourseInfo'
 import TopicCard from './components/TopicCard';
+import colors from 'shared/colors';
 
 interface RouterParams {
   id: string;
@@ -42,33 +43,27 @@ export default function Course(props: CourseProps) {
 
   return (
     <ContentLayout>
-      <Wrapper>
-        {isLoading ? <>
-          <Title>Laster inn fag...</Title>
-          <Animation type={'seagull'} />
-        </> : <>
-            <CourseInfo name={courseInfo.name} description={courseInfo.description} />
-            <TopicList>
-              {topics.map(topic => (
-                <TopicCard
-                  id={topic.id}
-                  name={topic.name}
-                  subjectId={topic.subjectId}
-                  size={topic.size}
-                  key={topic.id}
-                />
-              ))}
-            </TopicList>
-            <StyledLink to={`/lastUpdate/${id}`}>Siste oppdatteringer ({feed.length}) </StyledLink>
-          </>}
-      </Wrapper>
+      {isLoading ? <>
+        <Title>Laster inn fag...</Title>
+        <Animation type={'seagull'} />
+      </> : <>
+          <CourseInfo name={courseInfo.name} description={courseInfo.description} />
+          <StyledLink to={`/lastUpdate/${id}`}><LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate> </StyledLink>
+          <TopicList>
+            {topics.map(topic => (
+              <TopicCard
+                id={topic.id}
+                name={topic.name}
+                subjectId={topic.subjectId}
+                size={topic.size}
+                key={topic.id}
+              />
+            ))}
+          </TopicList>
+        </>}
     </ContentLayout>
   )
 }
-
-const Wrapper = styled.div`
-  padding: 32px 0;
-`
 
 const TopicList = styled.div`
   margin-top: 32px;
@@ -78,3 +73,11 @@ const TopicList = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 32px;
 `;
+
+const LastUpdate = styled.p`
+  text-align: end;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: #2196F3;
+  font-weight: 500;
+`

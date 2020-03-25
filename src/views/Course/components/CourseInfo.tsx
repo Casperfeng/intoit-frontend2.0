@@ -18,7 +18,7 @@ export default function Course({ name, description }: Props) {
 }
 
 const Wrapper = styled.div`
-  padding: 32px 0;
+  padding: 0 0 32px;
   width: 50%;
   font-size:18px;
 
