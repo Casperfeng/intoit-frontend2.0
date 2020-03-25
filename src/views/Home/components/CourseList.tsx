@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from 'redux/duck/coursesDuck';
+import { useSelector } from 'react-redux';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
@@ -17,12 +16,6 @@ export default function CourseList() {
   });
   const [searchQuery, setSearchQuery] = useState('');
   const courses = useSelector((state: ReduxState) => state.courses);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCourses());
-    // eslint-disable-next-line
-  }, []);
 
   const orderedCourses = orderBy(
     courses.filter(course => course.name.toLowerCase().includes(searchQuery.toLowerCase())),
