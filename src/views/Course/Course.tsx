@@ -35,6 +35,7 @@ export default function Course(props: CourseProps) {
       setLoading(false);
     }
     retrieveCourse();
+    //eslint-disable-next-line
   }, []);
 
   return isLoading ? (
