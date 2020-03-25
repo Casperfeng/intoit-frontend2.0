@@ -25,7 +25,7 @@ const TeamMembers = [
     name: 'Kim',
     imgSrc: 'kim',
     text:
-      ' er vår front-end utvikler og ux-designer. Han har ansvar for det visuelle, og sørger for at Intoit skal være brukevennlig. .TODO: fyllpå noe interessant ',
+      ' er vår front-end utvikler og ux-designer. Han har ansvar for det visuelle, og sørger for at Intoit skal være brukervennlig. Han liker blant annet å trene, og er over gjennomsnittlig interessert i rubiks kuber.',
   },
 ];
 
