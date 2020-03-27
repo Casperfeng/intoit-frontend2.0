@@ -38,14 +38,12 @@ const MultipleChoiceTabPanel = React.memo(({ value, index, topicId }: Props) => 
       payload
     );
 
-    if(response.status == 201) {
+    if(response.status === 201) {
       alert('question successfully created');
     } else {
       alert('failed');
     }
-    
   }
-
 
     return (
       <div hidden={value !== index}>
@@ -66,7 +64,6 @@ const MultipleChoiceTabPanel = React.memo(({ value, index, topicId }: Props) => 
         </Grid>
       </div>
     )
-
 },)
 
 
