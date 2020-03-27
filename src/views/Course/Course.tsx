@@ -11,6 +11,7 @@ import Title from '../../components/Title/Title';
 import styled from 'styled-components/macro';
 import CourseInfo from './components/CourseInfo'
 import TopicCard from './components/TopicCard';
+import { Button } from '@material-ui/core';
 
 interface RouterParams {
   id: string;
@@ -48,6 +49,9 @@ export default function Course(props: CourseProps) {
       </> : <>
           <CourseInfo name={courseInfo.name} description={courseInfo.description} />
           <StyledLink to={`/lastUpdate/${id}`}><LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate> </StyledLink>
+          <StyledLink to={`/courses/${id}/create-question`}>
+            <Button>NYTT SPØRSMÅL</Button>
+          </StyledLink>
           <TopicList>
             {topics.map(topic => (
               <TopicCard

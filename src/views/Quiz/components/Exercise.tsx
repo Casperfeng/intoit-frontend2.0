@@ -45,8 +45,6 @@ export default function Exercise({ exercise }: ExerciseProps) {
     }
   };
 
-  const exerciseContent = exercise.content;
-
   const { content, username, type } = exercise;
 
   return (

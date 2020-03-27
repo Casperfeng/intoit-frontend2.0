@@ -42,7 +42,8 @@ export default function userDuck(state = initialState, action: Action) {
 export const logout = () => async dispatch => {
   await dispatch({ type: 'LOG_OUT' });
   const persistor = getPersistor();
-  await persistor.purge();
+  // TODO: this does not seem to work for all ducks. consider adding purge case to reducer
+  await persistor.purge()
   window.location.href = '/login';
 };
 
