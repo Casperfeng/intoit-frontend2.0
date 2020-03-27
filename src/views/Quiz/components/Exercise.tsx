@@ -12,6 +12,7 @@ import { setAnswer } from 'redux/duck/quizDuck';
 import Card from '@material-ui/core/Card';
 import FlashCard from './FlashCard'
 import { questionTypes } from 'shared/constants';
+import Hint from './Hint';
 
 interface ExerciseProps {
   exercise: IQuestion;
@@ -56,8 +57,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
         ? <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
         : <FlashCard showFasit={showFasit} answer={content.answer.text} setHasAnswer={() => setHasAnswer(true)} setShowFasit={() => setShowFasit(true)} />
       }
-
-      {/* After user has answer, show correct interactions */}
+      {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
           <School size={20} />
