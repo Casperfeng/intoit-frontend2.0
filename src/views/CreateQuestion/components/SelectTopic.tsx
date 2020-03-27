@@ -7,7 +7,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-export default function SelectTopic() {
+interface Props {
+  setTopicId: (id: string) => void;
+}
+
+export default function SelectTopic({ setTopicId }: Props) {
   const params = useParams();
   const [topic, setTopic] = useState('');
   const topics = useSelector((state: ReduxState) => state.topics);
@@ -20,6 +24,7 @@ export default function SelectTopic() {
 
   const handleChange = event => {
     setTopic(event.target.value);
+    setTopicId(event.target.value);
   };
 
   return (

@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import { Grid, Typography, TextField } from '@material-ui/core';
 
-export default function QuestionInput({ title }) {
+interface Props {
+  title: string;
+}
+
+const QuestionInputChild = ({ title }: Props, ref) => {
   const [value, setValue] = useState('');
+
+  useImperativeHandle(ref, () => ({
+    value,
+  }), [value])
+  
 
   const handleChange = event => {
     setValue(event.target.value);
@@ -18,9 +27,11 @@ export default function QuestionInput({ title }) {
       </Grid>
       <Grid item xs={12}>
         <FormControl fullWidth required={true}>
-          <TextField multiline rows="4" value={value} placeholder={`Ditt ${title}`} variant="outlined" onChange={handleChange} />
+          <TextField autoFocus={true} multiline rows="4" value={value} placeholder={`Ditt ${title}`} variant="outlined" onChange={handleChange} />
         </FormControl>
       </Grid>
     </Grid>
   );
 }
+
+export default forwardRef(QuestionInputChild);

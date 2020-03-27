@@ -4,17 +4,17 @@ import styled from 'styled-components/macro';
 import StyledLink from 'components/StyledLink/StyledLink';
 import { Button, Grid } from '@material-ui/core';
 
-export default function SubmitForm() {
-  const param = useParams();
+interface Props {
+  onSubmit: () => void;
+}
 
-  const handleSubmit = () => {
-    console.log('Form submitted!');
-  };
+export default function SubmitForm({onSubmit}:Props) {
+  const param = useParams();
 
   return (
     <Grid container direction="row" spacing={2}>
       <Grid item>
-        <CustomButton color="primary" variant="contained" onClick={handleSubmit}>
+        <CustomButton color="primary" variant="contained" onClick={onSubmit}>
           Lagre
         </CustomButton>
       </Grid>

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import styled from 'styled-components/macro';
 import { Grid, FormControl, TextField, InputAdornment, IconButton, Button, Typography } from '@material-ui/core';
 import { Clear, Add } from '@styled-icons/material';
 
-export default function Choices() {
+function ChoicesChild(props, ref) {
   const [choices, setChoices] = useState([
     {
       text: '',
       placeholder: 'Korrekt svar',
-      correct: false,
+      correct: true,
     },
     {
       text: '',
@@ -21,6 +21,11 @@ export default function Choices() {
       correct: false,
     },
   ]);
+
+  useImperativeHandle(ref, () => ({
+    choices,
+  }), [choices])
+  
 
   const handleChange = (event, i) => {
     const newChoices = [...choices];
@@ -91,6 +96,8 @@ export default function Choices() {
     </Grid>
   );
 }
+
+export default forwardRef(ChoicesChild);
 
 const CorrectTextField = styled(TextField)`
   .MuiOutlinedInput-root {
