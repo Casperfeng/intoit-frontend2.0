@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.0",
     "@styled-icons/evaicons-outline": "^10.2.0",
+    "@styled-icons/material-outlined": "^10.0.0",
     "@types/jest": "24.0.21",
     "@types/node": "12.12.3",
     "@types/react-dom": "16.9.3",

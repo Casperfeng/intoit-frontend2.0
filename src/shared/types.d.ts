@@ -10,6 +10,7 @@ interface ReduxState {
   resource: {
     feed: any[];
   };
+  comments: Comments
 }
 
 type Courses = Course[];
@@ -60,6 +61,7 @@ interface Topic {
 }
 
 interface IQuestion {
+  id: number;
   collection_id: number;
   content: any;
   modified: Date;
@@ -88,6 +90,17 @@ interface Quiz {
   exercises: Question[];
   index: integer;
 }
+
+interface Comment {
+  id: number;
+  message: String;
+  resource_id: number;
+  user_id: number;
+  title: String;
+  is_report: boolean;
+}
+
+type Comments = Comment[];
 
 interface Alternative {
   text: string;
