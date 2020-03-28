@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
 import LastUpdate from 'views/LastUpdates/LastUpdates';
+import Level from 'views/Levels/Level';
 
 setConfig({
   showReactDomPatchNotification: false,
@@ -36,6 +37,7 @@ function App() {
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={ProfilePage} />
           <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
+          <ProtectedRoute exact path="/level" component={Level} />
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/quiz/:id/:type?" component={Quiz} />
         </Switch>
