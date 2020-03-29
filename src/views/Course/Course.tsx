@@ -48,7 +48,7 @@ export default function Course(props: CourseProps) {
         <Title>Laster inn fag...</Title>
         <Animation type={'seagull'} />
       </> : <>
-          <CourseInfo name={courseInfo.name} description={courseInfo.description} />
+          <CourseInfo id={id} name={courseInfo.name} description={courseInfo.description} code={courseInfo.code} />
           <StyledLink to={`/lastUpdate/${id}`}><LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate> </StyledLink>
           <StyledLink to={`/courses/${id}/create-question`}>
             <Button>NYTT SPØRSMÅL</Button>
