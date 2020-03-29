@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import StyledLink from 'components/StyledLink/StyledLink';
@@ -10,27 +10,40 @@ import colors from 'shared/colors';
 interface TopicCardProps {
   id: number;
   name: string;
-  subjectId: number;
   size: number;
+  hasMCExercises: boolean;
+  hasFCExercises: boolean;
 }
 
-export default function TopicCard({ id, name, subjectId, size }: TopicCardProps) {
+export default function TopicCard({ id, name, hasMCExercises, size, hasFCExercises }: TopicCardProps) {
   return (
     <Wrapper>
       <h2>{name}</h2>
       <QuizOptions>
-        <StyledLink to={`/quiz/${id}/mc`}>
-          <Option>
+        {hasMCExercises ?
+          <StyledLink to={`/quiz/${id}/mc`}>
+            <Option>
+              <ListOl size={32} />
+                  Flervalg
+            </Option>
+          </StyledLink>
+          : <Option disabled>
+            <ListOl size={32} color={'grey'} />
+                 Flervalg
+            </Option>
+        }
+        {hasFCExercises ?
+          <StyledLink to={`/quiz/${id}/fc`}>
+            <Option>
+              <FilterNone size={26} />
+              Flashcard
+            </Option>
+          </StyledLink>
+          : <Option disabled>
             <ListOl size={32} />
-          Flervalg
-        </Option>
-        </StyledLink>
-        <StyledLink to={`/quiz/${id}/fc`}>
-          <Option>
-            <FilterNone size={26} />
-          Flashcard
-        </Option>
-        </StyledLink>
+            Flashcard
+            </Option>
+        }
       </QuizOptions>
       <QuestionCount variant="body2" component="p">
         {size} spørsmål
@@ -68,10 +81,6 @@ const QuizOptions = styled.div`
 `
 
 const Option = styled(Button)`
-  * {
-    color: grey;
-  }
-
   &.MuiButtonBase-root {
     display: flex;
     width: 100%;
@@ -89,9 +98,15 @@ const Option = styled(Button)`
     min-height: 38px;
   }
 
+  &.Mui-disabled {
+    svg{
+      color: lightgrey;
+    }
+  }
+
   &:hover {
     * {
-       color: black;
+       color: ${colors.primary};
     }
   }
 `;

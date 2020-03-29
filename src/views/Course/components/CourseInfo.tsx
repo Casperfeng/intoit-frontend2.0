@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Title from 'components/Title/Title';
+import devices from 'shared/media';
 
 interface Props {
     name: string;
@@ -19,7 +20,11 @@ export default function Course({ name, description }: Props) {
 
 const Wrapper = styled.div`
   padding: 0 0 32px;
-  width: 50%;
+
+  @media ${devices.laptop} {
+    width: 50%;
+  }
+  
   font-size:18px;
 
   h1 { 

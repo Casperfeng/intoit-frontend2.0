@@ -12,6 +12,7 @@ import styled from 'styled-components/macro';
 import CourseInfo from './components/CourseInfo'
 import TopicCard from './components/TopicCard';
 import { Button } from '@material-ui/core';
+import devices from 'shared/media';
 
 interface RouterParams {
   id: string;
@@ -57,7 +58,8 @@ export default function Course(props: CourseProps) {
               <TopicCard
                 id={topic.id}
                 name={topic.name}
-                subjectId={topic.subjectId}
+                hasMCExercises={topic.mc_size > 0}
+                hasFCExercises={topic.fc_size > 0}
                 size={topic.size}
                 key={topic.id}
               />
@@ -73,7 +75,26 @@ const TopicList = styled.div`
   display: flex;
   flex-wrap: wrap;
   display: grid;
+  min-width: 180px;
   grid-template-columns: repeat(5, 1fr);
+
+  @media ${devices.desktopOnly} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media ${devices.laptopOnly} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${devices.tabletOnly} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${devices.mobileOnly} {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 24px;
+  }
+  
   gap: 32px;
 `;
 

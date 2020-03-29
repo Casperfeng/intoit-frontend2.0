@@ -36,7 +36,7 @@ const PageContent = styled.div`
   
   @media ${devices.mobileOnly} {
     width: 90%;
-    padding: 0;
+    padding: 24px 0;
   }
   
 `;
