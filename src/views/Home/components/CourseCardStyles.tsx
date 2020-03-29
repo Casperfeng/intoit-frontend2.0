@@ -4,8 +4,8 @@ import colors from 'shared/colors';
 import devices from 'shared/media';
 
 export const CourseIllustration = styled.img`
-  max-width: 70%;
-  max-height: 125px;
+  max-width: 60%;
+  max-height: 100px;
   object-fit: contain;
   margin: auto;
 
@@ -17,7 +17,7 @@ export const CourseIllustration = styled.img`
 const CourseCardWrapper = styled(Card)`
   display: flex;
   flex-direction: column;
-  min-height: 270px;
+  min-height: 240px;
   border: 0;
   padding: 16px;
   ${(props: { color: string }) => `

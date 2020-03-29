@@ -70,10 +70,14 @@ const Wrapper = styled.section``;
 
 const Content = styled.div`
   display: grid;
-  grid-column-gap: 46px;
-  grid-row-gap: 36px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
+  gap: 32px;  
+  margin-top: 16px;
+
+  @media ${devices.desktopOnly} {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   @media ${devices.laptopOnly} {
     grid-template-columns: repeat(3, 1fr);
