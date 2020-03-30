@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import Title from 'components/Title/Title';
-import devices from 'shared/media';
 import { Button } from "@material-ui/core";
-import { archiveCourse } from 'redux/duck/courseDetailedDuck';
-import { useDispatch } from 'react-redux';
 import { EditAlt } from '@styled-icons/boxicons-regular/EditAlt';
 import colors from 'shared/colors';
 import CourseInfoContent from './CourseInfoContent';
@@ -19,13 +15,6 @@ interface Props {
 
 export default function Course({ id, name, code, description }: Props) {
     const [editMode, setEditMode] = useState(false);
-
-    const dispatch = useDispatch();
-    console.log('id :', id);
-
-    const onDeleteCourseClick = () => {
-        dispatch(archiveCourse(id));
-    }
 
     return (
         <Wrapper>
@@ -45,14 +34,6 @@ const Wrapper = styled.div`
   width: 100%;
   font-size:18px;
 `
-{/* Temporarily show the option to delete course */ }
-{/* <Button
-variant="outlined" color="secondary"
-onClick={onDeleteCourseClick}
->
-ARKIVER FAG
-</Button> */}
-
 
 const EditButton = styled(Button)`
   &.MuiButtonBase-root {
@@ -60,6 +41,7 @@ const EditButton = styled(Button)`
     justify-content: center;
     align-items: center;
     transition: 0.2s all ease-in-out;
+    margin-left: 16px;
   }
 
 

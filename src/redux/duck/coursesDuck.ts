@@ -26,17 +26,10 @@ export default function coursesReducer(state = initialState, action: Action) {
 }
 
 //Action creators
-export const fetchCourses = (
-  searchText = '',
-  schoolId = 0
-) => async dispatch => {
-  const response = await axios.get(
-    `/${
-      schoolId > 0 ? `schools/${schoolId}/` : ''
-    }subjects?search=${searchText}`
-  );
+export const fetchCourses = (searchText = '', schoolId = 0) => async dispatch => {
+  const response = await axios.get(`/${schoolId > 0 ? `schools/${schoolId}/` : ''}subjects?search=${searchText}`);
   dispatch({
     type: SET_COURSES,
-    payload: Object.values(response.data.entities.courses)
+    payload: Object.values(response.data.entities.courses).filter((course: any) => !course.is_archived),
   });
 };

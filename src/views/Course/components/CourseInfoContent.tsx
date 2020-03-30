@@ -19,7 +19,6 @@ const CourseInfoContent = ({ name, code, description }: Props) => {
 
 const Content = styled.div`
   @media ${devices.laptop} {
-    min-width: 40%;
     max-width: 50%;
   }
 

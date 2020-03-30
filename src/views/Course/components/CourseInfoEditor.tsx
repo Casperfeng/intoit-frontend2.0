@@ -6,7 +6,7 @@ import colors from 'shared/colors';
 import { Button } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
 import { archiveCourse } from 'redux/duck/courseDetailedDuck';
-
+import Card from '@material-ui/core/Card';
 interface Props {
     id: string;
     name: string;
@@ -22,27 +22,38 @@ const CourseInfoEditor = ({ id, name, code, description }: Props) => {
         dispatch(archiveCourse(id));
     }
 
-    return (<Wrapper>
+    return (<Wrapper variant="outlined">
         <Title>{name}</Title>
         <p>{code}</p>
         <p>{description}</p>
         {/* Temporarily show the option to delete course */}
-        <Button
+        <DeleteButton
             variant="outlined" color="secondary"
             onClick={onDeleteCourseClick}
         >
             ARKIVER FAG
-        </Button>
+        </DeleteButton>
     </Wrapper>)
 }
 
-// ? Maybe a material ui card is better, with blue outline;
-const Wrapper = styled.div`
-    width: 60%;
+const Wrapper = styled(Card)`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @media ${devices.laptop} {
+        width: 60%;
+    }
     border: 2px solid ${colors.primary};
     border-radius: 5px;
     padding: 20px;
+`;
+
+
+const DeleteButton = styled(Button)`
+    &.MuiButtonBase-root {
+        display: flex;
+        align-self: flex-end;
+    }
+
 `
-
-
 export default CourseInfoEditor;
