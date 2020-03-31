@@ -18,7 +18,7 @@ export default function FavoriteCourseList() {
     <Wrapper>
       {favorites.length > 0 ? (
         <Wrapper>
-          <Title>Dine favorittemner</Title>
+          <h3>Dine favorittemner</h3>
           <Content>
             {favorites.map(course => (
               <CourseCard
@@ -44,7 +44,7 @@ export default function FavoriteCourseList() {
           </Content>
         </Wrapper>
       ) : (
-        <Title>Du har ingen favoriserte emner. Finn et emne i listen nedenfor eller lag et nytt!</Title>
+        <h3>Du har ingen favoriserte emner. Finn et emne i listen nedenfor eller lag et nytt!</h3>
       )}
     </Wrapper>
   );
@@ -74,11 +74,5 @@ const Content = styled.div`
   @media ${devices.mobileOnly} {
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 24px;
-  }
-`;
-
-const Title = styled.h3`
-  @media ${devices.mobileOnly} {
-    display: none;
   }
 `;
