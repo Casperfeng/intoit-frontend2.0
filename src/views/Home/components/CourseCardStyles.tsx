@@ -1,14 +1,12 @@
-import { Card } from '@material-ui/core';
+import { Card, CardActionArea, CardActions } from '@material-ui/core';
 import styled from 'styled-components/macro';
 import colors from 'shared/colors';
 import devices from 'shared/media';
 
 export const CourseIllustration = styled.img`
-  max-width: 60%;
-  max-height: 100px;
+  max-height: 90px;
   object-fit: contain;
-  margin: auto;
-
+  margin-bottom: 16px;
   @media ${devices.mobileOnly} {
     display: none;
   }
@@ -17,8 +15,8 @@ export const CourseIllustration = styled.img`
 const CourseCardWrapper = styled(Card)`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: 0;
-  padding: 16px;
   ${(props: { color: string; useMinHeight: boolean }) => `
     border: 2px solid ${props.color};
     ${props.useMinHeight ? 'min-height: 240px;' : ''}
@@ -33,6 +31,14 @@ const CourseCardWrapper = styled(Card)`
   @media ${devices.mobileOnly} {
     min-height: 50px;
   }
+`;
+
+export const StyledCardActionArea = styled(CardActionArea)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 16px;
 `;
 
 export const CourseName = styled.p`
@@ -73,10 +79,10 @@ export const StyledFavorite = styled.div`
   `}
 `;
 
-export const CourseStatus = styled.div`
+export const CourseStatus = styled(CardActions)`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  padding: 16px;
 `;
 
 export default CourseCardWrapper;
