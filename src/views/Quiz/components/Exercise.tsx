@@ -36,7 +36,10 @@ export default function Exercise({ exercise }: ExerciseProps) {
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
   useEffect(() => {
-    dispatch(fetchComments(exercise.id));
+    async function getComments() {
+      await dispatch(fetchComments(exercise.id));
+    }
+    getComments();
     // eslint-disable-next-line
   });
 

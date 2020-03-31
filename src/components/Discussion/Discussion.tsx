@@ -14,27 +14,30 @@ interface DiscussionProps {
 }
 
 export default function Discussion({ resourceType, id }: DiscussionProps) {
-  const [reply_to, setReplyTo] = useState(null);
+  const [replyTo, setReplyTo] = useState(null);
+  const [newComment, setNewComment] = useState(null);
   const dispatch = useDispatch();
   const comments = useSelector((state: ReduxState) => state.comments);
 
   const onPublishClick = e => {
     e.preventDefault();
-    console.log('Clicked on send');
-    if (false) {
-      dispatch(postComment(resourceType, id, 'Message', false, null, reply_to));
+    if (newComment) {
+      dispatch(postComment(resourceType, id, newComment, false, null, replyTo));
+      setNewComment(null);
     }
   };
 
-  const renderComments = () => {
-    return comments ? comments.map(comment => <Comment comment={comment} inQuiz={resourceType === 'exercise' ? true : false} />) : null;
-  };
+  const renderComments = comments
+    ? comments.map(comment => (
+        <Comment key={comment.id} comment={comment} inQuiz={resourceType === 'exercises' ? true : false} setReplyTo={setReplyTo} />
+      ))
+    : null;
 
   return (
     <Wrapper>
-      {renderComments()}
+      {renderComments}
       <StyledForm onSubmit={onPublishClick}>
-        <StyledTextField label="Skriv en kommentar..." multiline rows="3" variant="outlined" />
+        <StyledTextField onChange={e => setNewComment(e.target.value)} label="Skriv en kommentar..." multiline rows="3" variant="outlined" />
         <StyledButton variant="outlined" type="submit" startIcon={<Send size={20} />}>
           Publiser
         </StyledButton>

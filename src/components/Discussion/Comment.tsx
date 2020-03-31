@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { MoreVert, Reply } from 'styled-icons/material';
+import Divider from '@material-ui/core/Divider';
 
 interface CommentProps {
   comment: any;
   inQuiz: boolean;
+  setReplyTo: Function;
 }
 
-export default function Comment({ comment, inQuiz }: CommentProps) {
+export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,7 +24,8 @@ export default function Comment({ comment, inQuiz }: CommentProps) {
   };
 
   const onReplyClick = () => {
-    console.log('Clicked on reply');
+    console.log('Clicked on reply', comment);
+    // setReplyTo(comment.id);
   };
 
   const showFacebookPic = () =>
@@ -30,29 +33,67 @@ export default function Comment({ comment, inQuiz }: CommentProps) {
       ? `https://graph.facebook.com/${comment.facebook_id}/picture`
       : require(`../../assets/badges/${comment.avatar}.png`);
 
+  const createdDate = new Date(comment.created);
+
   return (
     <CommentWrapper reply={comment.reply_to}>
-      <div onClick={onUserClick}>
-        <img alt="avatar" src={showFacebookPic()} />
-        <h2>{comment.username}</h2>
+      <Top>
+        <Avatar onClick={onUserClick} alt="avatar" src={showFacebookPic()} />
+        <h5 onClick={onUserClick}>{comment.username}</h5>
         <MoreVert size={22} />
-      </div>
-      <Created>{comment.created}</Created>
+      </Top>
+      <Created>{createdDate.toLocaleDateString()}</Created>
       <div>{comment.message}</div>
-      <div onClick={onReplyClick}>
+      <StyledDivider full={false} />
+      <Bottom onClick={onReplyClick}>
         <Reply size={22} />
-        <p>Reply/Svar</p>
-      </div>
+        <p>SVAR</p>
+      </Bottom>
+      <StyledDivider full={true} />
     </CommentWrapper>
   );
 }
 
 const CommentWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 5px;
   margin-left: ${props => (props.reply_to ? '10%' : 0)};
 `;
 
+const Top = styled.div`
+  display: flex;
+  line-height: 50px;
+  h5 {
+    cursor: pointer;
+    flex-grow: 1;
+  }
+`;
+
+const Avatar = styled.img`
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+`;
+
 const Created = styled.div`
   width: 100%;
+`;
+
+const StyledDivider = styled(Divider)`
+  ${({ full }) =>
+    !full &&
+    css`
+      width: 20%;
+      margin: 15px 0 2px 5px;
+    `}
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  margin: 8px 5px;
+  cursor: pointer;
+  p {
+    margin-left: 8%;
+  }
 `;
