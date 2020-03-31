@@ -20,6 +20,7 @@ interface CourseProps {
   progression: number;
   numFavoritesAllTime: number;
   numFavoritesThisSemester: number;
+  useImage: boolean;
 }
 
 const CourseCard = ({
@@ -38,6 +39,7 @@ const CourseCard = ({
   favorite,
   created,
   modified,
+  useImage,
 }: CourseProps) => {
   // Refactor this after deciding on what color and icons
   const courseCardInfo = courseCardDeterminator(code);
@@ -45,8 +47,8 @@ const CourseCard = ({
   const icon = courseCardInfo.icon;
   return (
     <StyledLink to={`/courses/${id}`}>
-      <CourseCardWrapper color={color}>
-        <CourseIllustration src={icon} alt="Course icon" />
+      <CourseCardWrapper color={color} useMinHeight={useImage}>
+        {useImage && <CourseIllustration src={icon} alt="Course icon" />}
         <CourseName>{name}</CourseName>
         <SchoolCode>{code}</SchoolCode>
         <CourseStatus>

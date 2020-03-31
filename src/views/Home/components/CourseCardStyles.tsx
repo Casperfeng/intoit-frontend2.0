@@ -17,11 +17,11 @@ export const CourseIllustration = styled.img`
 const CourseCardWrapper = styled(Card)`
   display: flex;
   flex-direction: column;
-  min-height: 240px;
   border: 0;
   padding: 16px;
-  ${(props: { color: string }) => `
+  ${(props: { color: string; useMinHeight: boolean }) => `
     border: 2px solid ${props.color};
+    ${props.useMinHeight ? 'min-height: 240px;' : ''}
   `}
 
   transition: all 0.2s ease-in-out;

@@ -68,6 +68,7 @@ export default function CourseList() {
             isArchived={course.is_archived}
             progression={course.progression}
             description={course.description}
+            useImage={true}
           />
         ))}
       </Content>
