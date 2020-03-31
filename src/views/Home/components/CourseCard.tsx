@@ -64,7 +64,7 @@ const CourseCard = ({
   };
 
   return (
-    <CourseCardWrapper color={color} useMinHeight={useImage}>
+    <CourseCardWrapper color={color} minheight={useImage ? '240px;' : 'none;'}>
       <StyledLink to={`/courses/${id}`}>
         <StyledCardActionArea>
           {useImage && <CourseIllustration src={icon} alt="Course icon" />}

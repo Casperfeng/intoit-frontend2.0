@@ -17,9 +17,9 @@ const CourseCardWrapper = styled(Card)`
   flex-direction: column;
   justify-content: space-between;
   border: 0;
-  ${(props: { color: string; useMinHeight: boolean }) => `
+  ${(props: { color: string; minheight: string }) => `
     border: 2px solid ${props.color};
-    ${props.useMinHeight ? 'min-height: 240px;' : ''}
+    min-height: ${props.minheight}
   `}
 
   transition: all 0.2s ease-in-out;
