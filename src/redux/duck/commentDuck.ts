@@ -8,9 +8,9 @@ interface Action {
 // Actions
 const SET_COMMENTS = 'SET_COMMENTS';
 
-const initialState: any = [];
+const initialState: Comments = [];
 
-export default function coursesReducer(state = initialState, action: Action) {
+export default function commentReducer(state = initialState, action: Action) {
   switch (action.type) {
     case SET_COMMENTS:
       return action.payload;
@@ -41,7 +41,6 @@ export const postComment = (resourceType, id, message, is_report, title, reply_t
 
 export const fetchComments = resourceId => async dispatch => {
   const response = await axios.get(`/resources/${resourceId}/comments`);
-  console.log('Comments: ', response.data);
   dispatch({ type: 'SET_COMMENTS', payload: response.data });
 };
 

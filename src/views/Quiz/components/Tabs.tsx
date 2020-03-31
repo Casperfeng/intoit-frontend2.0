@@ -55,7 +55,7 @@ export default function SimpleTabs({ id }: TabsProps) {
         <Tab label="HISTORIKK" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Discussion resourceType='exercise' id={id} />
+        <Discussion resourceType="exercises" id={id} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
