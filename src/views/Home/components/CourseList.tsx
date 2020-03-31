@@ -1,13 +1,15 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from 'redux/duck/coursesDuck';	
+import { fetchCourses } from 'redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
 import Sorting from './Sorting';
 import SearchBar from './SearchBar';
 import { orderBy } from 'lodash';
+import colors from 'shared/colors';
+import PrimaryButton from 'components/Button/Button';
 
 export default function CourseList() {
   const [sort, setSort] = useState({
@@ -18,9 +20,9 @@ export default function CourseList() {
   const [searchQuery, setSearchQuery] = useState('');
   const courses = useSelector((state: ReduxState) => state.courses);
 
-  const dispatch = useDispatch();	
-  useEffect(() => {	
-    dispatch(fetchCourses());	
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCourses());
     // eslint-disable-next-line	
   }, []);
 
@@ -40,6 +42,11 @@ export default function CourseList() {
         </StyledFilters>
         <Sorting onSort={field => setSort(field)} />
       </SortingWrapper>
+      <CreateActions>
+        <PrimaryButton margin="0 16px 0 0" size="large" bgcolor={colors.interactive}  >LAG NYTT EMNE</PrimaryButton>
+        {/* // Only placeholder */}
+        <PrimaryButton size="large">LAG NYTT TEMA</PrimaryButton>
+      </CreateActions>
       <Content>
         {orderedCourses.map(course => (
           <CourseCard
@@ -92,6 +99,11 @@ const Content = styled.div`
     grid-row-gap: 24px;
   }
 `;
+
+const CreateActions = styled.div`
+  display: flex;
+  margin: 8px 0 32px;
+`
 
 const StyledFilters = styled.div`
   display: flex;
