@@ -10,10 +10,13 @@ interface ReduxState {
   resource: {
     feed: any[];
   };
-  comments: Comments
+  comments: Comments;
+  favoriteCourses: FavoriteCourses;
 }
 
 type Courses = Course[];
+
+type FavoriteCourses = FavoriteCourses[];
 
 type Schools = School[];
 
@@ -37,7 +40,7 @@ interface Course {
   progression: number;
   n_favorites_all_time: 39;
   n_favorites_this_semester: number;
-  favorite?: boolean;
+  favorite: boolean;
 }
 interface User {
   id: string;
