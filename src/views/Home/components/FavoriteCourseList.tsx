@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchFavorites } from 'redux/duck/favoritesDuck';
 import CourseCard from './CourseCard';
 import devices from 'shared/media';
+import { Divider } from '@material-ui/core';
 
 export default function FavoriteCourseList() {
   const favorites = useSelector((state: ReduxState) => state.favoriteCourses);
@@ -46,11 +47,18 @@ export default function FavoriteCourseList() {
       ) : (
         <h3>Du har ingen favoriserte emner. Finn et emne i listen nedenfor eller lag et nytt!</h3>
       )}
+      <CustomDivider />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section``;
+
+const CustomDivider = styled(Divider)`
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background: #979797;
+`;
 
 const Content = styled.div`
   display: grid;
