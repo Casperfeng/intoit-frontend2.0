@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { deleteComment } from 'redux/duck/commentDuck';
 import styled, { css } from 'styled-components';
 import { MoreVert, Reply } from 'styled-icons/material';
 import Divider from '@material-ui/core/Divider';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 interface CommentProps {
   comment: any;
@@ -12,9 +15,11 @@ interface CommentProps {
 }
 
 export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
-  const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector((state: ReduxState) => state.user);
+  const createdDate = new Date(comment.created);
 
   const onUserClick = () => {
     inQuiz
@@ -23,8 +28,16 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
       : history.push(`/users/${comment.user_id}`);
   };
 
+  const handleDeleteComment = async () => {
+    await dispatch(deleteComment(comment.resource_id, comment.id));
+  };
+
   const onReplyClick = () => {
     setReplyTo(comment.id);
+  };
+
+  const handleMenu = e => {
+    setAnchorEl(e.currentTarget);
   };
 
   const showFacebookPic = () =>
@@ -32,14 +45,19 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
       ? `https://graph.facebook.com/${comment.facebook_id}/picture`
       : require(`../../assets/badges/${comment.avatar}.png`);
 
-  const createdDate = new Date(comment.created);
-
   return (
     <CommentWrapper reply={comment.reply_to}>
       <Top>
         <Avatar onClick={onUserClick} alt="avatar" src={showFacebookPic()} />
         <h5 onClick={onUserClick}>{comment.username}</h5>
-        <MoreVert size={22} />
+        {/* Privileges is not implemented */ comment.user_id === user.id && (
+          <div>
+            <MoreVert size={22} onClick={handleMenu} />
+            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+              <MenuItem onClick={handleDeleteComment}>Slett kommentar</MenuItem>
+            </Menu>
+          </div>
+        )}
       </Top>
       <Created>{createdDate.toLocaleDateString()}</Created>
       <div>{comment.message}</div>
@@ -65,7 +83,10 @@ const Top = styled.div`
   line-height: 50px;
   h5 {
     cursor: pointer;
-    flex-grow: 1;
+  }
+  div {
+    margin-left: auto;
+    cursor: pointer;
   }
 `;
 

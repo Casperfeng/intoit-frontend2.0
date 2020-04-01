@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postComment } from 'redux/duck/commentDuck';
 import styled from 'styled-components';
-import colors from 'shared/colors';
 import Comment from './Comment';
 import Divider from '@material-ui/core/Divider';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Add, Close } from 'styled-icons/material';
@@ -75,7 +73,7 @@ export default function Discussion({ resourceType, id }: DiscussionProps) {
               rows="3"
               variant="outlined"
             />
-            <StyledButton variant="outlined" type="submit" startIcon={<Send size={20} />}>
+            <StyledButton variant="outlined" type="submit" disabled={!newComment} startIcon={<Send size={20} />}>
               Publiser
             </StyledButton>
           </StyledForm>
