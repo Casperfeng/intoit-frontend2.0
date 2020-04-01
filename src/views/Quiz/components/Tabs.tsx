@@ -49,7 +49,7 @@ export default function SimpleTabs({ id }: TabsProps) {
 
   return (
     <div>
-      <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+      <Tabs value={value} onChange={handleChange}>
         <Tab label="DISKUSJON" {...a11yProps(0)} />
         <Tab label="RAPPORT" {...a11yProps(1)} />
         <Tab label="HISTORIKK" {...a11yProps(2)} />

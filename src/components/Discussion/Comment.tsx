@@ -24,8 +24,7 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
   };
 
   const onReplyClick = () => {
-    console.log('Clicked on reply', comment);
-    // setReplyTo(comment.id);
+    setReplyTo(comment.id);
   };
 
   const showFacebookPic = () =>
@@ -44,12 +43,12 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
       </Top>
       <Created>{createdDate.toLocaleDateString()}</Created>
       <div>{comment.message}</div>
-      <StyledDivider full={false} />
+      <StyledDivider full={'false'} />
       <Bottom onClick={onReplyClick}>
         <Reply size={22} />
         <p>SVAR</p>
       </Bottom>
-      <StyledDivider full={true} />
+      <StyledDivider full={'true'} />
     </CommentWrapper>
   );
 }
@@ -79,12 +78,13 @@ const Avatar = styled.img`
 const Created = styled.div`
   width: 100%;
   font-size: 12px;
+  font-weight: 300;
   margin-bottom: 8px;
 `;
 
 const StyledDivider = styled(Divider)`
   ${({ full }) =>
-    !full &&
+    full === 'false' &&
     css`
       width: 20%;
       margin: 15px 0 2px 5px;
