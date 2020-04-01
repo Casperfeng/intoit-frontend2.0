@@ -53,6 +53,7 @@ const StyledForm = styled.form`
   flex: column;
   flex-wrap: wrap;
   align-items: flex-end;
+  margin-top: 15px;
 `;
 
 const StyledTextField = styled(TextField)`

@@ -78,6 +78,8 @@ const Avatar = styled.img`
 
 const Created = styled.div`
   width: 100%;
+  font-size: 12px;
+  margin-bottom: 8px;
 `;
 
 const StyledDivider = styled(Divider)`
