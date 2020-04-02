@@ -3,12 +3,16 @@ import styled from 'styled-components';
 
 interface Props {
   children: string;
+  margin?: string;
 }
 
-export default function Title({ children }: Props) {
-  const StyledTitle = styled.h1`
-    font-weight: bold;
-    text-transform: uppercase;
-  `;
-  return <StyledTitle>{children}</StyledTitle>;
+export default function Title({ children, margin }: Props) {
+  return <StyledTitle margin={margin}>{children}</StyledTitle>;
 }
+
+
+const StyledTitle = styled.h1`
+  font-weight: bold;
+  text-transform: uppercase;
+  ${props => props.margin && `margin: ${props.margin}`};
+`;
