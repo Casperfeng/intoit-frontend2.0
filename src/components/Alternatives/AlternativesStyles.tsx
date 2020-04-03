@@ -3,7 +3,8 @@ import colors from 'shared/colors';
 import styled from 'styled-components';
 
 
-export const AlternativeButton = styled(Button)`
+export const AlternativeButton = styled(Button)<{textcolor?:string}>`
+
   &.MuiButton-outlinedPrimary {
     border-color: ${colors.lightGrey};
     color: ${props => props.textcolor ? props.textcolor : 'black'}

@@ -53,11 +53,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const DivideLine = styled.hr`
+const DivideLine = styled.hr<{hideOnDesktop?:boolean}>`
   margin: 36px auto;
   width: 40%;
 
-  ${(props: { hideOnDesktop: boolean }) => props.hideOnDesktop && `@media ${devices.laptop} { display:none; }`}
+  ${(props => props.hideOnDesktop && `@media ${devices.laptop} { display:none; };`)}
 `;
 
 const CurrentTeam = styled.div`

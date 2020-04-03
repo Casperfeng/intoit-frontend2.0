@@ -33,7 +33,7 @@ export default function RadioButtons() {
     </div>
   );
 }
-const RadioButton = styled(Chip)`
+const RadioButton = styled(Chip)<{selected:boolean}>`
   margin: 2px;
   margin-bottom: 20px;
   color: white;

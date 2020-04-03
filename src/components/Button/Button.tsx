@@ -24,7 +24,7 @@ export default function PrimaryButton({ children, bgcolor, margin, size, type }:
 }
 
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{bgcolor?:string, margin?:string}>`
   &.MuiButton-containedPrimary {
     background-color: ${props => props.bgcolor ? props.bgcolor : colors.default};
     margin: ${props => props.margin ? props.margin : 0};

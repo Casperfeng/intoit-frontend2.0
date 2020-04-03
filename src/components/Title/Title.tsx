@@ -11,7 +11,7 @@ export default function Title({ children, margin }: Props) {
 }
 
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled.h1<{margin?:string}>`
   font-weight: bold;
   text-transform: uppercase;
   ${props => props.margin && `margin: ${props.margin}`};
