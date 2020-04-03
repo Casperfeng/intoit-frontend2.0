@@ -1,75 +1,104 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { match } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
-import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
 import PrimaryButton from 'components/Button/Button';
-import { Grid, Typography, TextField } from '@material-ui/core';
-import FormControl from '@material-ui/core/FormControl';
-import { Button } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
+import { Typography, TextField } from '@material-ui/core';
+import { useForm, Controller } from 'react-hook-form';
+import { createCourse } from 'redux/duck/coursesDuck';
+import { fetchSchools } from 'redux/duck/schoolDuck';
+
+import { Select, MenuItem, FormControl, InputLabel, FormHelperText } from '@material-ui/core';
 
 interface Props {
   required: string;
   code: string;
 }
 
-// TODO: Add react-hooks-form
-// https://medium.com/codefully-io/react-forms-validation-with-formik-and-material-ui-1adf0c1cae5c
-// https://codesandbox.io/s/0fib6
-// https://github.com/mui-org/material-ui/issues/18269
-// https://github.com/NewOldMax/react-material-ui-form-validator
-
 export default function CourseEditor(props: Props) {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors, control } = useForm();
 
-  // useEffect(() => {
-  //     async function retrieveUpdate() {
-  //         await dispatch(fetchFeeds(id));
-  //         await setLoading(false);
-  //     }
-  //     retrieveUpdate();
-  //     // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchSchools());
+    // eslint-disable-next-line
+  }, []);
 
-  const handleExplanationChange = event => {
-    // setExplanationValue(event.target.value);
-  };
+  const schools = useSelector((state: ReduxState) => state.schools);
 
-  const onSubmit = () => {
-    console.log('submitting');
+  const onSubmit = data => {
+    console.log('data :', data);
+    dispatch(createCourse(data));
   };
 
   return (
     <ContentLayout width="40%">
       <Title margin="0 0 16px">NYTT EMNE</Title>
       <p>Lag et nytt spørsmål og tjen +125XP</p>
+
       <InfoLabel variant="body2" color="textSecondary">
         Info
       </InfoLabel>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="example" defaultValue="test" ref={register} />
+        <FormControl style={{ minWidth: 300 }} error={Boolean(errors.name)}>
+          <TextField
+            name="name"
+            error={!!errors.name}
+            placeholder="Navn på emnet"
+            variant="outlined"
+            inputRef={register({ required: 'Navn er pålagt' })}
+          />
+          <FormHelperText>{errors.name && errors.name.message}</FormHelperText>
+        </FormControl>
 
-        {/* include validation with required or other standard HTML validation rules */}
-        {/* <input name="exampleRequired" ref={register({ required: true })} /> */}
-        {/* errors will return when field validation fails  */}
+        <FormControl style={{ minWidth: 300 }} error={Boolean(errors.code)}>
+          <TextField
+            placeholder="Emnekode"
+            name="code"
+            error={!!errors.code}
+            variant="outlined"
+            inputRef={register({ required: 'Kode er pålagt' })}
+          />
+          <FormHelperText>{errors.code && errors.code.message}</FormHelperText>
+        </FormControl>
 
-        {/* <input type="submit" /> */}
-        <TextField
-          name="name"
-          error={!!errors.name}
-          placeholder="Navn på emnet"
-          variant="outlined"
-          inputRef={register({ required: true })}
-          onChange={handleExplanationChange}
-        />
-        {/* {errors.nameRequired && <span>This field is required</span>} */}
-        {/* <TextField value={''} placeholder="Emnekode" variant="outlined" onChange={handleExplanationChange} />
-        <TextField multiline rows="4" value="" placeholder={'Beskrivelse av emnet'} variant="outlined" onChange={handleExplanationChange} /> */}
+        <SchoolFormControl style={{ minWidth: 300 }} error={Boolean(errors.school_id)}>
+          <InputLabel id="school-selector">VELG SKOLE</InputLabel>
+          <Controller
+            as={
+              <Select>
+                <MenuItem value="">Ingen</MenuItem>
+                {schools.map(school => (
+                  <MenuItem key={school.id} value={school.id}>
+                    {school.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            }
+            name="school_id"
+            rules={{ required: 'this is required' }}
+            control={control}
+            defaultValue=""
+          />
+          <FormHelperText>{errors.school_id && errors.school_id.message}</FormHelperText>
+        </SchoolFormControl>
+
+        <FormControl style={{ minWidth: 300 }} error={Boolean(errors.description)}>
+          <TextField
+            multiline
+            rows="4"
+            name="description"
+            error={!!errors.description}
+            placeholder={'Beskrivelse av emnet'}
+            variant="outlined"
+            inputRef={register({ required: 'Beskrivelse er pålagt' })}
+          />
+          <FormHelperText>{errors.description && errors.description.message}</FormHelperText>
+        </FormControl>
+
         <ActionButtons>
           <PrimaryButton size="large" type="submit" margin="0 16px 0 0">
             LAGRE
@@ -80,6 +109,10 @@ export default function CourseEditor(props: Props) {
     </ContentLayout>
   );
 }
+
+const SchoolFormControl = styled(FormControl)`
+  margin-bottom: 20px;
+`;
 
 const ActionButtons = styled.div`
   display: flex;

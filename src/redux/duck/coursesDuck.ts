@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { push } from 'connected-react-router';
 
 interface Action {
   type: string;
@@ -9,7 +10,7 @@ interface Action {
 const SET_COURSE_FEED = 'SET_COURSE_FEED';
 const SET_COURSES = 'SET_COURSES';
 const SET_TOPICS = 'SET_TOPICS';
-
+const CREATE_COURSE = 'CREATE_COURSE';
 const initialState: Courses = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
@@ -19,6 +20,8 @@ export default function coursesReducer(state = initialState, action: Action) {
     case SET_COURSES:
       return action.payload;
     case SET_TOPICS:
+      return state;
+    case CREATE_COURSE:
       return state;
     default:
       return state;
@@ -32,4 +35,16 @@ export const fetchCourses = (searchText = '', schoolId = 0) => async dispatch =>
     type: SET_COURSES,
     payload: Object.values(response.data.entities.courses).filter((course: any) => !course.is_archived),
   });
+};
+
+export const createCourse = payload => async dispatch => {
+  try {
+    await axios.post(`/subjects`, payload);
+  } catch (error) {
+    alert(error);
+  }
+  dispatch({
+    type: CREATE_COURSE,
+  });
+  dispatch(push('/'));
 };
