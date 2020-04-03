@@ -10,6 +10,7 @@ import SearchBar from './SearchBar';
 import { orderBy } from 'lodash';
 import colors from 'shared/colors';
 import PrimaryButton from 'components/Button/Button';
+import { push } from 'connected-react-router';
 
 export default function CourseList() {
   const [sort, setSort] = useState({
@@ -23,7 +24,7 @@ export default function CourseList() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCourses());
-    // eslint-disable-next-line	
+    // eslint-disable-next-line
   }, []);
 
   const orderedCourses = orderBy(
@@ -31,6 +32,10 @@ export default function CourseList() {
     [sort.value],
     [sort.sortOrder],
   );
+
+  const onCreateCourseClick = () => {
+    dispatch(push('/courseeditor'));
+  };
 
   return (
     <Wrapper>
@@ -43,7 +48,9 @@ export default function CourseList() {
         <Sorting onSort={field => setSort(field)} />
       </SortingWrapper>
       <CreateActions>
-        <PrimaryButton margin="0 16px 0 0" size="large" bgcolor={colors.interactive}  >LAG NYTT EMNE</PrimaryButton>
+        <PrimaryButton margin="0 16px 0 0" size="large" bgcolor={colors.interactive} onClick={onCreateCourseClick}>
+          LAG NYTT EMNE
+        </PrimaryButton>
         {/* // Only placeholder */}
         <PrimaryButton size="large">LAG NYTT TEMA</PrimaryButton>
       </CreateActions>
@@ -79,7 +86,7 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  gap: 32px;  
+  gap: 32px;
   margin-top: 16px;
 
   @media ${devices.desktopOnly} {
@@ -103,7 +110,7 @@ const Content = styled.div`
 const CreateActions = styled.div`
   display: flex;
   margin: 8px 0 32px;
-`
+`;
 
 const StyledFilters = styled.div`
   display: flex;

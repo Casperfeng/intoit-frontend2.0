@@ -10,7 +10,6 @@ interface Action {
 const SET_COURSE_FEED = 'SET_COURSE_FEED';
 const SET_COURSES = 'SET_COURSES';
 const SET_TOPICS = 'SET_TOPICS';
-const CREATE_COURSE = 'CREATE_COURSE';
 const initialState: Courses = [];
 
 export default function coursesReducer(state = initialState, action: Action) {
@@ -21,8 +20,7 @@ export default function coursesReducer(state = initialState, action: Action) {
       return action.payload;
     case SET_TOPICS:
       return state;
-    case CREATE_COURSE:
-      return state;
+
     default:
       return state;
   }
@@ -43,8 +41,15 @@ export const createCourse = payload => async dispatch => {
   } catch (error) {
     alert(error);
   }
-  dispatch({
-    type: CREATE_COURSE,
-  });
   dispatch(push('/'));
+};
+
+export const editCourse = (id, payload) => async dispatch => {
+  try {
+    await axios.put(`/subjects/${id}`, payload);
+  } catch (error) {
+    alert(error);
+  }
+
+  dispatch(push(`/courses/${id}`));
 };

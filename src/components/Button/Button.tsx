@@ -1,33 +1,39 @@
-import React, { ReactElement } from 'react';
-import styled, { css } from 'styled-components/macro';
-import { Button } from "@material-ui/core";
+import React from 'react';
+import styled from 'styled-components/macro';
+import { Button } from '@material-ui/core';
 import colors from 'shared/colors';
 
 interface Props {
   children?: string;
   bgcolor?: string;
   margin?: string;
-  size?: 'small' | 'medium' | 'large',
-  type?: 'submit' | 'button'
+  size?: 'small' | 'medium' | 'large';
+  type?: 'submit' | 'button';
+  onClick?: () => any;
 }
 
-// Add more buttons if needed (e.g: NakedButton/SecondaryBtn?)
-// Refactor app and use buttons from this component only
-// TODO: type as props
-export default function PrimaryButton({ children, bgcolor, margin, size, type }: Props) {
-  console.log('type :', type);
+// Add more buttons if needed (e.g: NakedButton?)
+export default function PrimaryButton({ children, bgcolor, margin, size, type, onClick }: Props) {
   return (
-    <StyledButton type={type} variant="contained" color="primary" bgcolor={bgcolor} margin={margin} size={size}>
+    <StyledButton type={type} variant="contained" color="primary" bgcolor={bgcolor} margin={margin} size={size} onClick={onClick}>
       {children}
     </StyledButton>
   );
 }
 
+export function SecondaryButton({ children, bgcolor, margin, size, type, onClick }: Props) {
+  return (
+    <StyledButton type={type} variant="contained" bgcolor={bgcolor} margin={margin} size={size} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
+}
 
-const StyledButton = styled(Button)<{bgcolor?:string, margin?:string}>`
+const StyledButton = styled(Button)<{ bgcolor?: string; margin?: string }>`
+  min-width: 140px;
+
   &.MuiButton-containedPrimary {
-    background-color: ${props => props.bgcolor ? props.bgcolor : colors.default};
-    margin: ${props => props.margin ? props.margin : 0};
-    min-width: 140px;
+    background-color: ${props => (props.bgcolor ? props.bgcolor : colors.default)};
+    margin: ${props => (props.margin ? props.margin : 0)};
   }
 `;
