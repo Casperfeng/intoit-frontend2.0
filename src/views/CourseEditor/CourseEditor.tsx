@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Title from '../../components/Title/Title';
-import PrimaryButton, { SecondaryButton } from 'components/Button/Button';
+import PrimaryButton, { SecondaryButton, DeleteButton } from 'components/Button/Button';
 import { Typography, TextField } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import { createCourse } from 'redux/duck/coursesDuck';
@@ -13,6 +13,7 @@ import { Select, MenuItem, FormControl, InputLabel, FormHelperText } from '@mate
 import { fetchCourse } from 'redux/duck/courseDetailedDuck';
 import { editCourse } from 'redux/duck/coursesDuck';
 import { goBack } from 'connected-react-router';
+import { archiveCourse } from 'redux/duck/courseDetailedDuck';
 
 interface Props {
   required: string;
@@ -41,6 +42,10 @@ export default function CourseEditor(props: Props) {
 
   const onSubmit = data => {
     isEdit ? dispatch(editCourse(id, data)) : dispatch(createCourse(data));
+  };
+
+  const onDeleteCourseClick = () => {
+    dispatch(archiveCourse(id));
   };
 
   const onCancel = () => {
@@ -124,6 +129,11 @@ export default function CourseEditor(props: Props) {
             AVBRYT
           </SecondaryButton>
         </ActionButtons>
+        {isEdit && (
+          <DeleteButton size="large" onClick={onDeleteCourseClick}>
+            ARKIVER FAG
+          </DeleteButton>
+        )}
       </EditorForm>
     </ContentLayout>
   );
@@ -141,7 +151,7 @@ const SchoolFormControl = styled(FormControl)`
 
 const ActionButtons = styled.div`
   display: flex;
-  margin: 8px 0 32px;
+  margin: 16px 0;
 `;
 
 const InfoLabel = styled(Typography)`
