@@ -61,21 +61,21 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
       </Top>
       <Created>{createdDate.toLocaleDateString()}</Created>
       <div>{comment.message}</div>
-      <StyledDivider full={'false'} />
+      <StyledDivider length={'short'} />
       <Bottom onClick={onReplyClick}>
         <Reply size={22} />
         <p>SVAR</p>
       </Bottom>
-      <StyledDivider full={'true'} />
+      <StyledDivider />
     </CommentWrapper>
   );
 }
 
-const CommentWrapper = styled.div`
+const CommentWrapper = styled.div<{ reply?: number }>`
   display: flex;
   flex-direction: column;
   padding: 5px;
-  margin-left: ${props => (props.reply_to ? '10%' : 0)};
+  margin-left: ${props => (props.reply ? '10%' : 0)};
 `;
 
 const Top = styled.div`
@@ -103,9 +103,9 @@ const Created = styled.div`
   margin-bottom: 8px;
 `;
 
-const StyledDivider = styled(Divider)`
-  ${({ full }) =>
-    full === 'false' &&
+const StyledDivider = styled(Divider)<{ length?: string }>`
+  ${({ length }) =>
+    length === 'short' &&
     css`
       width: 20%;
       margin: 15px 0 2px 5px;
