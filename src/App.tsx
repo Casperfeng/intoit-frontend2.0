@@ -19,8 +19,8 @@ function App() {
   return (
     <StylesProvider injectFirst>
       <Main>
-        <Routes />
         <Navbar currentViewIsQuiz={currentViewIsQuiz} />
+        <Routes />
       </Main>
     </StylesProvider>
   );
