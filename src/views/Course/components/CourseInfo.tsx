@@ -21,7 +21,6 @@ export default function Course({ id, name, code, description }: Props) {
     <Wrapper>
       <Content>
         <Title>{name}</Title>
-        <CourseCode>TMT1322</CourseCode>
         <CourseCode>{code}</CourseCode>
         <p>{description}</p>
       </Content>

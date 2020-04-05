@@ -47,13 +47,9 @@ export default function CourseList() {
         </StyledFilters>
         <Sorting onSort={field => setSort(field)} />
       </SortingWrapper>
-      <CreateActions>
-        <PrimaryButton margin="0 16px 0 0" size="large" bgcolor={colors.interactive} onClick={onCreateCourseClick}>
-          LAG NYTT EMNE
-        </PrimaryButton>
-        {/* // Only placeholder */}
-        <PrimaryButton size="large">LAG NYTT TEMA</PrimaryButton>
-      </CreateActions>
+      <PrimaryButton margin="16px 0" size="large" onClick={onCreateCourseClick}>
+        LAG NYTT EMNE
+      </PrimaryButton>
       <Content>
         {orderedCourses.map(course => (
           <CourseCard
@@ -105,11 +101,6 @@ const Content = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 24px;
   }
-`;
-
-const CreateActions = styled.div`
-  display: flex;
-  margin: 8px 0 32px;
 `;
 
 const StyledFilters = styled.div`
