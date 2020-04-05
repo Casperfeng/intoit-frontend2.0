@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CourseCardWrapper, {
   CourseIllustration,
   CourseName,
@@ -11,6 +12,7 @@ import CourseCardWrapper, {
 import StyledLink from 'components/StyledLink/StyledLink';
 import { AccessTime, Favorite, FavoriteBorder } from 'styled-icons/material';
 import { courseCardDeterminator } from 'shared/util';
+import { favCourse } from 'redux/duck/favoritesDuck';
 
 interface CourseProps {
   id: number;
@@ -54,6 +56,11 @@ const CourseCard = ({
   const [favHover, setFavHover] = useState(false);
   const color = courseCardInfo.color;
   const icon = courseCardInfo.icon;
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    dispatch(favCourse(id, !favorite));
+  };
 
   const handleFavEnter = () => {
     setFavHover(true);
@@ -61,6 +68,18 @@ const CourseCard = ({
 
   const handleFavLeave = () => {
     setFavHover(false);
+  };
+
+  const FavoriteIcon = () => {
+    if (favorite && favHover) {
+      return <FavoriteBorder size={22} />;
+    } else if (favorite && !favHover) {
+      return <Favorite size={22} />;
+    } else if (!favorite && favHover) {
+      return <Favorite size={22} />;
+    } else {
+      return <FavoriteBorder size={22} />;
+    }
   };
 
   return (
@@ -78,8 +97,8 @@ const CourseCard = ({
           {/* Remove hardcode date. Implement new date system with date-fns */}
           <p>3d</p>
         </StyledAccessTime>
-        <StyledFavorite color={color} onMouseEnter={handleFavEnter} onMouseLeave={handleFavLeave}>
-          {favorite || favHover ? <Favorite size={22} /> : <FavoriteBorder size={22} />}
+        <StyledFavorite color={color} onClick={handleFavorite} onMouseEnter={handleFavEnter} onMouseLeave={handleFavLeave}>
+          <FavoriteIcon />
           <p>{numFavoritesAllTime}</p>
         </StyledFavorite>
       </CourseStatus>

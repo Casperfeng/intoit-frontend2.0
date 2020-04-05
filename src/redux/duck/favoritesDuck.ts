@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchCourses } from './coursesDuck';
 
 interface Action {
   type: string;
@@ -25,7 +26,15 @@ export const fetchFavorites = () => async dispatch => {
   const data: Array<Course> = Object.values(response.data.entities.courses);
   dispatch({
     type: SET_FAVORITE_COURSES,
-    payload: data,
-    // payload: data.filter(course => course.favorite),
+    payload: data.filter(course => course.favorite),
   });
+};
+
+export const favCourse = (courseId: number, favStatus: boolean) => async dispatch => {
+  await axios.post(`/subjects/favorites`, {
+    subjectId: courseId,
+    favorite: favStatus,
+  });
+  await dispatch(fetchCourses());
+  await dispatch(fetchFavorites());
 };
