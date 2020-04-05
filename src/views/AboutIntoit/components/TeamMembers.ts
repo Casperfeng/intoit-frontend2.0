@@ -8,7 +8,8 @@ const TeamMembers = [
   {
     name: 'Andreas',
     imgSrc: 'andreas',
-    text: ' jobber som front-end utvikler.... I tillegg er han aktiv på Start.. Spiller tennis. TODO: fyllpå noe interessant',
+    text:
+      ' går 2. klasse datateknologi og jobber som utvikler. Ved siden av studiet er han aktiv i start hvor han er nestleder i Norwegian Game Awards',
   },
   {
     name: 'Alex',
