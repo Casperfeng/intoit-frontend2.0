@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LinearProgress } from '@material-ui/core';
 import styled from 'styled-components/macro';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLevels } from 'redux/duck/resourceDuck';
+
 import BlazingBlob from 'assets/achievements/blazing_blob.png';
 // import { userInfo } from 'os';
 import ContentLayout from 'components/ContentLayout/ContentLayout';
@@ -14,6 +17,19 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckIcon from '@material-ui/icons/Check';
 
 export default function Level() {
+  const dispatch = useDispatch();
+  const levels = useSelector((state: ReduxState) => state.resource.levels);
+
+  console.log('levels :', levels);
+
+  useEffect(
+    () => {
+      dispatch(fetchLevels());
+    },
+    // eslint-disable-next-line
+    [],
+  );
+
   const ProBar = styled(LinearProgress)``;
 
   return (

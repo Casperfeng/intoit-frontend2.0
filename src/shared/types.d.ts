@@ -9,6 +9,7 @@ interface ReduxState {
   schools: Schools;
   resource: {
     feed: any[];
+    levels: any[];
   };
 }
 
