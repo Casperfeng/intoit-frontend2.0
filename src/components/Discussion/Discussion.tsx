@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postComment } from 'redux/duck/commentDuck';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Comment from './Comment';
 import Divider from '@material-ui/core/Divider';
 import Dialog from '@material-ui/core/Dialog';
@@ -44,11 +44,9 @@ export default function Discussion({ resourceType, id }: DiscussionProps) {
     }
   };
 
-  const renderComments = comments
-    ? comments.map(comment => (
-        <Comment key={comment.id} comment={comment} inQuiz={resourceType === 'exercises' ? true : false} setReplyTo={handleOpen} />
-      ))
-    : null;
+  const renderComments = comments.map(comment => (
+    <Comment key={comment.id} comment={comment} inQuiz={resourceType === 'exercises' ? true : false} setReplyTo={handleOpen} />
+  ));
 
   return (
     <Wrapper>
@@ -56,7 +54,7 @@ export default function Discussion({ resourceType, id }: DiscussionProps) {
         <Add size={22} /> Ny kommentar
       </NewComment>
       <StyledDivider />
-      {renderComments}
+      {comments && renderComments}
       <Dialog open={open} onClose={handleClose}>
         <DialogRow>
           <DialogTitle>{replyTo ? 'Svar på kommentar' : 'Skriv ny kommentar'}</DialogTitle>
