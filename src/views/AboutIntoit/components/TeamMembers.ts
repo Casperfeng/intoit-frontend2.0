@@ -20,7 +20,7 @@ const TeamMembers = [
   {
     name: 'Eirik',
     imgSrc: 'eirik',
-    text: ' jobber som utvikler i Intoit. Liker å game, sjokoladeboller..TODO: fyllpå noe interessant ',
+    text: ' går 3. klasse datateknologi og jobber som utvikler i Intoit. I 2016 sov han i over 60 dager i strekk under åpen himmel og presenning.',
   },
   {
     name: 'Kim',
