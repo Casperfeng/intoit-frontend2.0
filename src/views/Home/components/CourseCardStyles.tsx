@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardActions } from '@material-ui/core';
+import { Card, CardActions } from '@material-ui/core';
 import styled from 'styled-components/macro';
 import colors from 'shared/colors';
 import devices from 'shared/media';
@@ -33,7 +33,7 @@ const CourseCardWrapper = styled(Card)`
   }
 `;
 
-export const StyledCardActionArea = styled(CardActionArea)`
+export const StyledCardActionArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -67,7 +67,7 @@ export const StyledAccessTime = styled.div`
 export const StyledFavorite = styled.div`
   display: flex;
   align-items: center;
-
+  cursor: pointer;
   p {
     margin-left: 2px;
     margin-top: 2px;
