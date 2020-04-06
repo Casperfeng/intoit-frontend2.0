@@ -37,27 +37,33 @@ export default function Level() {
       <Wrapper>
         <AllInfo>
           <UserLevel>
-            <Header>
+            {/* <Header>
               <img src={BlazingBlob} alt="profile" />
               <StyledTitle>SØT DELFIN</StyledTitle>
-            </Header>
-            <UserInfo>
+            </Header> */}
+            {/* <UserInfo>
               <p>nivå 4</p>
               <ProBar variant={'determinate'} value={67} />
               <p> xp 400/500</p>
-            </UserInfo>
+            </UserInfo> */}
             <AllLevelContainer>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <LevelContainer>
-                    <img alt="temp-achive" src={Quizmaster} />
-                    <StyledLetters> Nivå 0</StyledLetters>
-                    <StyledLetters>0xp</StyledLetters>
-                  </LevelContainer>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails></ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel>
+              {levels.map((element: any, i: number) => {
+                console.log('element :', element);
+                return (
+                  <ExpansionPanel key={i}>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                      <LevelContainer>
+                        <img alt="temp-achive" src={Quizmaster} />
+                        <StyledLetters>{element.name}</StyledLetters>
+                        <StyledLetters>{element.min_experience}</StyledLetters>
+                      </LevelContainer>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>aeffe</ExpansionPanelDetails>
+                  </ExpansionPanel>
+                );
+              })}
+
+              {/* <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <LevelContainer>
                     <img alt="temp-achive" src={Quizmaster} />
@@ -127,10 +133,10 @@ export default function Level() {
                   </LevelContainer>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails></ExpansionPanelDetails>
-              </ExpansionPanel>
+              </ExpansionPanel> */}
             </AllLevelContainer>
           </UserLevel>
-          <LevelUpInfo>
+          {/* <LevelUpInfo>
             <h3>Hvordan går jeg opp i nivå?</h3>
             <Xp>+5xp</Xp>
             <div>Noen stemmer opp din kommentarer</div>
@@ -154,7 +160,7 @@ export default function Level() {
             <div>Noen stemmer opp din kommentarer</div>
             <Xp>+1000xp</Xp>
             <div>Noen stemmer opp din kommentarer</div>
-          </LevelUpInfo>
+          </LevelUpInfo> */}
         </AllInfo>
       </Wrapper>
     </ContentLayout>
@@ -226,6 +232,7 @@ const AllInfo = styled.div`
   width: 100%;
 `;
 const LevelUpInfo = styled.div`
+  padding: 20px;
   margin-left: 100px;
   margin-top: 100px;
   background-color: rgba(196, 196, 196, 0.5);
