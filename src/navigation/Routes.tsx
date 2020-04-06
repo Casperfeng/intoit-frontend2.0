@@ -31,7 +31,7 @@ export default function Routes() {
         <ProtectedRoute exact path="/courses/:id/create-question" component={CreateQuestion} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />
-        <ProtectedRoute exact path="/courseeditor" component={CourseEditor} />
+        <ProtectedRoute exact path="/courseeditor/:id" component={CourseEditor} />
         <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
         <Route exact path="/login" component={Login} />
         <ProtectedRoute exact path="/quiz/:id/:type?" component={Quiz} />
