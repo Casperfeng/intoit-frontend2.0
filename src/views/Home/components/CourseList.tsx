@@ -8,7 +8,6 @@ import RadioButtons from './RadioButtons';
 import Sorting from './Sorting';
 import SearchBar from './SearchBar';
 import { orderBy } from 'lodash';
-import colors from 'shared/colors';
 import PrimaryButton from 'components/Button/Button';
 import { push } from 'connected-react-router';
 
