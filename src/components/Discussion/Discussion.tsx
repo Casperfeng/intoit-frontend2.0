@@ -21,7 +21,7 @@ interface DiscussionProps {
 export default function Discussion({ resourceType, id }: DiscussionProps) {
   const [open, setOpen] = useState(false);
   const [replyTo, setReplyTo] = useState(null);
-  const [newComment, setNewComment] = useState(null);
+  const [newComment, setNewComment] = useState('');
   const dispatch = useDispatch();
   const comments = useSelector((state: ReduxState) => state.comments);
 
@@ -32,14 +32,14 @@ export default function Discussion({ resourceType, id }: DiscussionProps) {
 
   const handleClose = () => {
     setOpen(false);
-    setNewComment(null);
+    setNewComment('');
   };
 
   const onPublishClick = e => {
     e.preventDefault();
     if (newComment) {
       dispatch(postComment(resourceType, id, newComment, false, null, replyTo));
-      setNewComment(null);
+      setNewComment('');
       setOpen(false);
     }
   };
