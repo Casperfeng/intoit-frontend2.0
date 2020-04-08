@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import Question from 'components/Question/Question';
 import Alternatives from 'components/Alternatives/Alternatives';
@@ -9,9 +9,12 @@ import { School } from 'styled-icons/material/School';
 import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
+import { fetchComments } from 'redux/duck/commentDuck';
 import Card from '@material-ui/core/Card';
 import FlashCard from './FlashCard'
 import { questionTypes } from 'shared/constants';
+import Hint from './Hint';
+import ExerciseTabs from './Tabs';
 
 interface ExerciseProps {
   exercise: IQuestion;
@@ -32,6 +35,13 @@ export default function Exercise({ exercise }: ExerciseProps) {
   const [showFasit, setShowFasit] = useState(false);
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
+  useEffect(() => {
+    async function getComments() {
+      await dispatch(fetchComments(exercise.id));
+    }
+    getComments();
+    // eslint-disable-next-line
+  });
 
   const _showAnswer = (index: number) => {
     if (!hasAnswer) {
@@ -56,8 +66,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
         ? <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
         : <FlashCard showFasit={showFasit} answer={content.answer.text} setHasAnswer={() => setHasAnswer(true)} setShowFasit={() => setShowFasit(true)} />
       }
-
-      {/* After user has answer, show correct interactions */}
+      {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
           <School size={20} />
@@ -65,9 +74,12 @@ export default function Exercise({ exercise }: ExerciseProps) {
         </Explanation>
       )}
       {hasAnswer && (
-        <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
-          Neste
-        </NextButton>
+        <Wrapper>
+          <ExerciseTabs id={exercise.id} />
+          <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
+            Neste
+          </NextButton>
+        </Wrapper>
       )}
 
       {/* Placeholders: */}
