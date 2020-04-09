@@ -4,9 +4,9 @@ import colors from 'shared/colors';
 import devices from 'shared/media';
 
 export const CourseIllustration = styled.img`
-  max-height: 90px;
+  max-height: 80px;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin: 16px 0 32px;
   @media ${devices.mobileOnly} {
     display: none;
   }
@@ -68,6 +68,7 @@ export const StyledFavorite = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  z-index: 100;
   p {
     margin-left: 2px;
     margin-top: 2px;

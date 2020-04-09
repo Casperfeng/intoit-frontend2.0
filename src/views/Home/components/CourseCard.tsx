@@ -58,7 +58,8 @@ const CourseCard = ({
   const icon = courseCardInfo.icon;
   const dispatch = useDispatch();
 
-  const handleFavorite = () => {
+  const handleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
     dispatch(favCourse(id, !favorite));
   };
 
@@ -90,18 +91,18 @@ const CourseCard = ({
           <CourseName>{name}</CourseName>
           <SchoolCode>{code}</SchoolCode>
         </StyledCardActionArea>
+        <CourseStatus>
+          <StyledAccessTime>
+            <AccessTime size={22} />
+            {/* Remove hardcode date. Implement new date system with date-fns */}
+            <p>3d</p>
+          </StyledAccessTime>
+          <StyledFavorite color={color} onClick={handleFavorite} onMouseEnter={handleFavEnter} onMouseLeave={handleFavLeave}>
+            <FavoriteIcon />
+            <p>{numFavoritesAllTime}</p>
+          </StyledFavorite>
+        </CourseStatus>
       </StyledLink>
-      <CourseStatus>
-        <StyledAccessTime>
-          <AccessTime size={22} />
-          {/* Remove hardcode date. Implement new date system with date-fns */}
-          <p>3d</p>
-        </StyledAccessTime>
-        <StyledFavorite color={color} onClick={handleFavorite} onMouseEnter={handleFavEnter} onMouseLeave={handleFavLeave}>
-          <FavoriteIcon />
-          <p>{numFavoritesAllTime}</p>
-        </StyledFavorite>
-      </CourseStatus>
     </CourseCardWrapper>
   );
 };
