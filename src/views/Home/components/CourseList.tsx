@@ -68,6 +68,7 @@ export default function CourseList() {
             isArchived={course.is_archived}
             progression={course.progression}
             description={course.description}
+            useImage={true}
           />
         ))}
       </Content>
@@ -121,7 +122,4 @@ const Title = styled.h1`
 const SortingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  @media ${devices.mobileOnly} {
-    margin-top: -45px;
-  }
 `;
