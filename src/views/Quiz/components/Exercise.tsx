@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import Question from 'components/Question/Question';
 import Alternatives from 'components/Alternatives/Alternatives';
-// import { ThumbUpAlt } from 'styled-icons/material/ThumbUpAlt';
+import Vote from 'components/Vote/Vote';
 import colors from 'shared/colors';
 import { ArrowForward } from 'styled-icons/material/ArrowForward';
 import { School } from 'styled-icons/material/School';
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import { fetchComments } from 'redux/duck/commentDuck';
 import Card from '@material-ui/core/Card';
-import FlashCard from './FlashCard'
+import FlashCard from './FlashCard';
 import { questionTypes } from 'shared/constants';
 import Hint from './Hint';
 import ExerciseTabs from './Tabs';
@@ -21,12 +21,12 @@ interface ExerciseProps {
 }
 
 /**
-   * @summary
-   * Show the a single exercise  in quiz
-   * Render either a multiple choice question or a flash card
-   * @remarks
-   * TODO: We need a static exercise view to show in "edit exercise" when user want to see a list of exercises in topic later
-   */
+ * @summary
+ * Show the a single exercise  in quiz
+ * Render either a multiple choice question or a flash card
+ * @remarks
+ * TODO: We need a static exercise view to show in "edit exercise" when user want to see a list of exercises in topic later
+ */
 export default function Exercise({ exercise }: ExerciseProps) {
   const dispatch = useDispatch();
   const [hasAnswer, setHasAnswer] = useState(false);
@@ -56,16 +56,28 @@ export default function Exercise({ exercise }: ExerciseProps) {
   };
 
   const { content, username, type } = exercise;
-
+  console.log(exercise);
   return (
     <Wrapper>
       <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
 
       {/* Render either multiple choice or flashcard */}
-      {type === questionTypes.mc
-        ? <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
-        : <FlashCard showFasit={showFasit} answer={content.answer.text} setHasAnswer={() => setHasAnswer(true)} setShowFasit={() => setShowFasit(true)} />
-      }
+      {type === questionTypes.mc ? (
+        <Alternatives
+          alternatives={exercise.content.alternatives}
+          showAnswer={_showAnswer}
+          hasAnswer={hasAnswer}
+          answeredIndex={answeredIndex}
+          type={exercise.type}
+        />
+      ) : (
+        <FlashCard
+          showFasit={showFasit}
+          answer={content.answer.text}
+          setHasAnswer={() => setHasAnswer(true)}
+          setShowFasit={() => setShowFasit(true)}
+        />
+      )}
       {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
@@ -73,17 +85,18 @@ export default function Exercise({ exercise }: ExerciseProps) {
           <p>{exercise.explanation}</p>
         </Explanation>
       )}
+      {/* After user has answer, show correct interactions */}
       {hasAnswer && (
         <Wrapper>
           <ExerciseTabs id={exercise.id} />
-          <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
-            Neste
-          </NextButton>
+          <ButtonWrapper>
+            <Vote index={quiz.index} exercise={exercise} />
+            <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
+              Neste
+            </NextButton>
+          </ButtonWrapper>
         </Wrapper>
       )}
-
-      {/* Placeholders: */}
-      {/* <StyledThumbsUpAlt isPressed size={24} /> */}
     </Wrapper>
   );
 }
@@ -94,12 +107,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-// const StyledThumbsUpAlt = styled(ThumbUpAlt)`
-//   ${props => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
-// `;
-const NextButton = styled(Button)`
-  align-self: flex-end;
-`;
+const NextButton = styled(Button)``;
 
 const StyledArrowForward = styled(ArrowForward)`
   color: black;
@@ -123,4 +131,10 @@ const Explanation = styled(Card)`
     font-size: 14px;
     margin-left: 6px;
   }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
