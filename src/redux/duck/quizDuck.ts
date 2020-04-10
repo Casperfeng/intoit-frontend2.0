@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { LOCATION_CHANGE } from 'connected-react-router';
+import { clone } from 'lodash';
 
 interface Action {
   type: string;
   payload: any;
   index: number;
   altIndex: number;
+  votes: any;
 }
 
 // Actions
@@ -13,10 +15,11 @@ const PURGE_QUIZ = 'PURGE_QUIZ';
 const QUIZ_SET_EXERCISES = 'QUIZ_SET_EXERCISES';
 const SET_ANSWER = 'SET_ANSWER';
 const SET_INDEX = 'SET_INDEX';
+const SET_VOTES = 'SET_VOTES';
 
 const initialState: any = { hasPostedAnswers: false, exercises: [], index: 0 };
 
-export default function coursesReducer(state = initialState, action: Action) {
+export default function quizReducer(state = initialState, action: Action) {
   switch (action.type) {
     case LOCATION_CHANGE:
       return initialState;
@@ -37,6 +40,14 @@ export default function coursesReducer(state = initialState, action: Action) {
       };
     case SET_INDEX:
       return { ...state, index: action.index };
+    case SET_VOTES:
+      const exercise = {
+        ...state.exercises[action.index],
+        ...action.votes,
+      };
+      const exercisesClone = clone(state.exercises);
+      exercisesClone[action.index] = exercise;
+      return { ...state, exercises: exercisesClone };
     default:
       return state;
   }
@@ -59,3 +70,13 @@ export const setAnswer = (index, altIndex) => async dispatch =>
     index,
     altIndex,
   });
+
+export const postVote = (index, exerciseId, positive) => async dispatch => {
+  await axios.post(`/exercises/${exerciseId}/votes`, { positive });
+  dispatch(fetchVotes(index, exerciseId));
+};
+
+export const fetchVotes = (index, exerciseId) => async dispatch => {
+  const response = await axios.get(`/resources/${exerciseId}/votes`);
+  dispatch({ type: 'SET_VOTES', index, votes: response.data });
+};
