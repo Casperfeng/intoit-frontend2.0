@@ -52,14 +52,19 @@ export default function Vote({ index, exercise }: VoteProps) {
   );
 }
 
+interface IconProps {
+  hasVoted: boolean;
+  isPressed: boolean;
+}
+
 const StyledThumbsUpAlt = styled(ThumbUpAlt)`
-  ${props => (props.hasVoted ? `` : `cursor: pointer;`)}
-  ${props => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
+  ${(props: IconProps) => (props.hasVoted ? `` : `cursor: pointer;`)}
+  ${(props: IconProps) => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
 `;
 
 const StyledThumbsDownAlt = styled(ThumbDownAlt)`
-  ${props => (props.hasVoted ? `` : `cursor: pointer;`)}
-  ${props => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
+  ${(props: IconProps) => (props.hasVoted ? `` : `cursor: pointer;`)}
+  ${(props: IconProps) => (props.isPressed ? `color: ${iconColors.clicked}` : `color: ${iconColors.default}`)}
 `;
 
 const Wrapper = styled.div`
