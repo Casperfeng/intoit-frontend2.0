@@ -116,3 +116,14 @@ interface School {
   name: string;
   size: number;
 }
+
+interface VotedObject {
+  id: number;
+  has_voted;
+  upvotes: number;
+  downvotes: number;
+  has_upvoted: boolean;
+  has_downvoted: boolean;
+}
+
+type VotedExercise = VoteObject & IQuestion;

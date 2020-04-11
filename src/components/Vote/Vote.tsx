@@ -7,13 +7,13 @@ import { fetchVotes, postVote } from 'redux/duck/quizDuck';
 
 interface VoteProps {
   index: number;
-  exercise: any; // temporary
+  exercise: VotedExercise;
 }
 
 export default function Vote({ index, exercise }: VoteProps) {
   const dispatch = useDispatch();
   const [clickedButton, setClickedButton] = useState('');
-  const [hasClicked, setHasClicked] = useState(false);
+  const [hasClicked, setHasClicked] = useState<boolean>(false);
   const { has_voted, has_upvoted, has_downvoted, upvotes, downvotes, id } = exercise;
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Vote({ index, exercise }: VoteProps) {
   }, [exercise]);
 
   const onVote = (vote: string) => {
-    if (!(has_voted || (has_upvoted && vote === 'up') || (has_downvoted && vote === 'down'))) {
+    if (!(has_voted || hasClicked || (has_upvoted && vote === 'up') || (has_downvoted && vote === 'down'))) {
       setClickedButton(vote);
       setHasClicked(true);
       dispatch(postVote(index, id, vote === 'up'));
