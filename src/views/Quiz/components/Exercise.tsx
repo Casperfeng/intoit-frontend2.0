@@ -56,7 +56,6 @@ export default function Exercise({ exercise }: ExerciseProps) {
   };
 
   const { content, username, type } = exercise;
-  console.log(exercise);
   return (
     <Wrapper>
       <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
