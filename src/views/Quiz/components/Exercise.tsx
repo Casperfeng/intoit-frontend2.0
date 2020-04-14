@@ -88,12 +88,12 @@ export default function Exercise({ exercise }: ExerciseProps) {
       {hasAnswer && (
         <Wrapper>
           <ExerciseTabs id={exercise.id} />
-          <ButtonWrapper>
+          <ButtonsWrapper>
             <Vote index={quiz.index} exercise={exercise} />
-            <NextButton onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
+            <Button onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
               Neste
-            </NextButton>
-          </ButtonWrapper>
+            </Button>
+          </ButtonsWrapper>
         </Wrapper>
       )}
     </Wrapper>
@@ -105,8 +105,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-
-const NextButton = styled(Button)``;
 
 const StyledArrowForward = styled(ArrowForward)`
   color: black;
@@ -132,7 +130,7 @@ const Explanation = styled(Card)`
   }
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
