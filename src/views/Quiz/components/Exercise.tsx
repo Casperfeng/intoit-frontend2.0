@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import { fetchComments } from 'redux/duck/commentDuck';
 import Card from '@material-ui/core/Card';
-import FlashCard from './FlashCard'
+import FlashCard from './FlashCard';
+// import Flashcard from 'components/Flashcard/Flashcard';
+import MultipleChoice from 'components/MultipleChoice/MultipleChoice';
+
 import { questionTypes } from 'shared/constants';
 import Hint from './Hint';
 import ExerciseTabs from './Tabs';
@@ -19,14 +22,14 @@ import ExerciseTabs from './Tabs';
 interface ExerciseProps {
   exercise: IQuestion;
 }
-
 /**
-   * @summary
-   * Show the a single exercise  in quiz
-   * Render either a multiple choice question or a flash card
-   * @remarks
-   * TODO: We need a static exercise view to show in "edit exercise" when user want to see a list of exercises in topic later
-   */
+
+ * @summary
+ * Show the a single exercise  in quiz
+ * Render either a multiple choice question or a flash card
+ * @remarks
+ * TODO: We need a static exercise view to show in "edit exercise" when user want to see a list of exercises in topic later
+ */
 export default function Exercise({ exercise }: ExerciseProps) {
   const dispatch = useDispatch();
   const [hasAnswer, setHasAnswer] = useState(false);
@@ -59,13 +62,26 @@ export default function Exercise({ exercise }: ExerciseProps) {
 
   return (
     <Wrapper>
-      <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
-
+      {/* <Flashcard></Flashcard> */}
+      {/* <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} /> */}
+      {/* <Alternatives
+        alternatives={exercise.content.alternatives}
+        showAnswer={_showAnswer}
+        hasAnswer={hasAnswer}
+        answeredIndex={answeredIndex}
+        type={exercise.type}
+      /> */}
       {/* Render either multiple choice or flashcard */}
-      {type === questionTypes.mc
-        ? <Alternatives alternatives={exercise.content.alternatives} showAnswer={_showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} type={exercise.type} />
-        : <FlashCard showFasit={showFasit} answer={content.answer.text} setHasAnswer={() => setHasAnswer(true)} setShowFasit={() => setShowFasit(true)} />
-      }
+      {type === questionTypes.mc ? (
+        <MultipleChoice content={content} credit={username} />
+      ) : (
+        <FlashCard
+          showFasit={showFasit}
+          answer={content.answer.text}
+          setHasAnswer={() => setHasAnswer(true)}
+          setShowFasit={() => setShowFasit(true)}
+        />
+      )}
       {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
       {hasAnswer && exercise.explanation && (
         <Explanation variant="outlined">
@@ -81,7 +97,6 @@ export default function Exercise({ exercise }: ExerciseProps) {
           </NextButton>
         </Wrapper>
       )}
-
       {/* Placeholders: */}
       {/* <StyledThumbsUpAlt isPressed size={24} /> */}
     </Wrapper>
