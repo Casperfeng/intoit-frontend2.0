@@ -43,10 +43,11 @@ export default function Vote({ index, exercise }: VoteProps) {
   return (
     <Wrapper>
       <IconWrapper>
-        <StyledThumbsUpAlt isPressed={has_upvoted} hasVoted={has_voted || hasClicked} onClick={() => onVote('up')} size={22} /> {upvotes}
+        <StyledThumbsUpAlt isPressed={has_upvoted} hasVoted={has_voted || hasClicked} onClick={() => onVote('up')} size={22} /> <span>{upvotes}</span>
       </IconWrapper>
       <IconWrapper>
-        <StyledThumbsDownAlt isPressed={has_downvoted} hasVoted={has_voted || hasClicked} onClick={() => onVote('down')} size={22} /> {downvotes}
+        <StyledThumbsDownAlt isPressed={has_downvoted} hasVoted={has_voted || hasClicked} onClick={() => onVote('down')} size={22} />{' '}
+        <span>{downvotes}</span>
       </IconWrapper>
     </Wrapper>
   );
@@ -69,8 +70,15 @@ const StyledThumbsDownAlt = styled(ThumbDownAlt)`
 
 const Wrapper = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 const IconWrapper = styled.div`
-  margin: 0px 3px;
+  margin: 0 0 0 8px;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 3px;
+  }
 `;
