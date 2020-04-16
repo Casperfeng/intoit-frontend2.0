@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LinearProgress } from '@material-ui/core';
 import styled from 'styled-components';
 import BlazingBlob from 'assets/achievements/blazing_blob.png';
@@ -7,6 +7,9 @@ import ContentLayout from 'components/ContentLayout/ContentLayout';
 import Quizmaster from 'assets/achievements/Quizmaster.png';
 // import { Rowing, BorderAll } from 'styled-icons/material';
 // import { sizing } from '@material-ui/system';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from 'redux/duck/userDuck';
+import { fetchLevels } from 'redux/duck/resourceDuck';
 
 export default function ProfilePage() {
   const ProBar = styled(LinearProgress)`
@@ -15,6 +18,24 @@ export default function ProfilePage() {
     }
   `;
 
+  const dispatch = useDispatch();
+  const level = useSelector((state: ReduxState) => state.user.level);
+  const xp = useSelector((state: ReduxState) => state.user.experience);
+  const userName = useSelector((state: ReduxState) => state.user.username);
+  const levels = useSelector((state: ReduxState) => state.resource.levels);
+
+  console.log('levels :', level);
+  console.log('xp:', xp);
+
+  useEffect(
+    () => {
+      dispatch(fetchUser());
+      dispatch(fetchLevels());
+    },
+    // eslint-disable-next-line
+    [],
+  );
+
   //return <ProgressBarContainer>{ProBar}</ProgressBarContainer>;
   return (
     <ContentLayout>
@@ -22,10 +43,10 @@ export default function ProfilePage() {
         <Header>
           <img src={BlazingBlob} alt="profile" />
           <UserInfo>
-            <h2>Username</h2>
-            <p>nivå 4</p>
+            <h2>{userName}</h2>
+            <p>nivå {level}</p>
             <ProBar variant={'determinate'} value={67} />
-            <p> xp 400/500</p>
+            <p> xp {xp}</p>
           </UserInfo>
         </Header>
         <h2>Achievements</h2>

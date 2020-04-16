@@ -15,16 +15,21 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckIcon from '@material-ui/icons/Check';
+import { fetchUser } from 'redux/duck/userDuck';
 
 export default function Level() {
   const dispatch = useDispatch();
   const levels = useSelector((state: ReduxState) => state.resource.levels);
+  const level = useSelector((state: ReduxState) => state.user.level);
+  const xp = useSelector((state: ReduxState) => state.user.experience);
+  const userName = useSelector((state: ReduxState) => state.user.username);
 
   console.log('levels :', levels);
 
   useEffect(
     () => {
       dispatch(fetchLevels());
+      dispatch(fetchUser());
     },
     // eslint-disable-next-line
     [],
@@ -37,15 +42,19 @@ export default function Level() {
       <Wrapper>
         <AllInfo>
           <UserLevel>
-            {/* <Header>
-              <img src={BlazingBlob} alt="profile" />
-              <StyledTitle>SØT DELFIN</StyledTitle>
-            </Header> */}
-            {/* <UserInfo>
-              <p>nivå 4</p>
-              <ProBar variant={'determinate'} value={67} />
-              <p> xp 400/500</p>
-            </UserInfo> */}
+            {
+              <Header>
+                <img src={BlazingBlob} alt="profile" />
+                <StyledTitle>{userName}</StyledTitle>
+              </Header>
+            }
+            {
+              <UserInfo>
+                <p>nivå {level}</p>
+                <ProBar variant={'determinate'} value={67} />
+                <p> xp {xp}</p>
+              </UserInfo>
+            }
             <AllLevelContainer>
               {levels.map((element: any, i: number) => {
                 console.log('element :', element);
