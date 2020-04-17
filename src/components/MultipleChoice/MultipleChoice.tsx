@@ -5,14 +5,22 @@ import Question from 'components/Question/Question';
 import Alternatives from 'components/Alternatives/Alternatives';
 
 interface Props {
-  content: any;
-  credit: string;
+  exercise: IQuestion;
+  showAnswer: (int: number) => void;
+  answeredIndex: number;
+  hasAnswer: boolean;
 }
 
-export default function MultipleChoice({ content, credit }: Props) {
+export default function MultipleChoice({ exercise, showAnswer, answeredIndex, hasAnswer }: Props) {
   return (
     <Wrapper>
-      <Question text={content.question.text} credit={credit} imgSrc={content.question.img && content.question.img.src} />
+      <Question
+        text={exercise.content.question.text}
+        credit={exercise.username}
+        imgSrc={exercise.content.question.img && exercise.content.question.img.src}
+        margin="16px 5px"
+      />
+      <Alternatives alternatives={exercise.content.alternatives} showAnswer={showAnswer} hasAnswer={hasAnswer} answeredIndex={answeredIndex} />
     </Wrapper>
   );
 }

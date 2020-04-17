@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import { fetchComments } from 'redux/duck/commentDuck';
 import Card from '@material-ui/core/Card';
-import FlashCard from './FlashCard';
-// import Flashcard from 'components/Flashcard/Flashcard';
+// import FlashCard from './FlashCard';
+import Flashcard from 'components/Flashcard/Flashcard';
 import MultipleChoice from 'components/MultipleChoice/MultipleChoice';
 
 import { questionTypes } from 'shared/constants';
@@ -35,6 +35,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
   const [hasAnswer, setHasAnswer] = useState(false);
   const [answeredIndex, setAnsweredIndex] = useState(-1);
   // For flashcard only
+  // Move this into FlashCard
   const [showFasit, setShowFasit] = useState(false);
   const quiz = useSelector((state: ReduxState) => state.quiz);
 
@@ -73,14 +74,15 @@ export default function Exercise({ exercise }: ExerciseProps) {
       /> */}
       {/* Render either multiple choice or flashcard */}
       {type === questionTypes.mc ? (
-        <MultipleChoice content={content} credit={username} />
+        <MultipleChoice exercise={exercise} showAnswer={_showAnswer} answeredIndex={answeredIndex} hasAnswer={hasAnswer}/>
       ) : (
-        <FlashCard
-          showFasit={showFasit}
-          answer={content.answer.text}
-          setHasAnswer={() => setHasAnswer(true)}
-          setShowFasit={() => setShowFasit(true)}
-        />
+        <Flashcard exercise={exercise}/>
+        // <FlashCard
+        //   showFasit={showFasit}
+        //   answer={content.answer.text}
+        //   setHasAnswer={() => setHasAnswer(true)}
+        //   setShowFasit={() => setShowFasit(true)}
+        // />
       )}
       {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
       {hasAnswer && exercise.explanation && (
