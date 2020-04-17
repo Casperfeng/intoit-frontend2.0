@@ -39,6 +39,7 @@ const Navbar = ({ currentViewIsQuiz }: Props) => {
           {token ? (
             <>
               <IntoitLink to={'/'}>Hjem</IntoitLink>
+              <IntoitLink to={'/level'}>Nivå</IntoitLink>
               <IntoitLink to={'/om-oss'}>Om Intoit</IntoitLink>
               <IntoitLink to={'/login'} callback={logout}>
                 Logg ut

@@ -16,6 +16,9 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
           <IntoitLink to={'/'} linkType="Dropdown">
             Hjem
           </IntoitLink>
+          <IntoitLink to={'/level'} linkType="Dropdown">
+            Nivå
+          </IntoitLink>
           <IntoitLink to={'/profile'} linkType="Dropdown">
             Min profil
           </IntoitLink>
