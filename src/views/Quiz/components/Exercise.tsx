@@ -16,6 +16,7 @@ import FlashCard from './FlashCard';
 import { questionTypes } from 'shared/constants';
 import Hint from './Hint';
 import ExerciseTabs from './Tabs';
+import ModifyMultipleChoice from './ModifyMultipleChoice';
 
 interface ExerciseProps {
   exercise: IQuestion;
@@ -59,51 +60,62 @@ export default function Exercise({ exercise }: ExerciseProps) {
 
   const { content, username, type } = exercise;
   if (isEditing) {
-    return <Edit size={22} onClick={() => setIsEditing(!isEditing)} />;
-  }
-  return (
-    <Wrapper>
-      <Edit size={22} onClick={() => setIsEditing(!isEditing)} />
-      <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
+    return (
+      <div>
+        <ModifyMultipleChoice exercise={exercise} />
+        <Button color="primary" variant="contained">
+          Lagre
+        </Button>
+        <Button color="primary" variant="outlined" onClick={() => setIsEditing(!isEditing)}>
+          Avbryt
+        </Button>
+      </div>
+    );
+  } else {
+    return (
+      <Wrapper>
+        <Edit size={22} onClick={() => setIsEditing(!isEditing)} />
+        <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
 
-      {/* Render either multiple choice or flashcard */}
-      {type === questionTypes.mc ? (
-        <Alternatives
-          alternatives={exercise.content.alternatives}
-          showAnswer={_showAnswer}
-          hasAnswer={hasAnswer}
-          answeredIndex={answeredIndex}
-          type={exercise.type}
-        />
-      ) : (
-        <FlashCard
-          showFasit={showFasit}
-          answer={content.answer.text}
-          setHasAnswer={() => setHasAnswer(true)}
-          setShowFasit={() => setShowFasit(true)}
-        />
-      )}
-      {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
-      {hasAnswer && exercise.explanation && (
-        <Explanation variant="outlined">
-          <School size={20} />
-          <p>{exercise.explanation}</p>
-        </Explanation>
-      )}
-      {/* After user has answer, show correct interactions */}
-      {hasAnswer && (
-        <Wrapper>
-          <ExerciseTabs id={exercise.id} />
-          <ButtonsWrapper>
-            <Vote index={quiz.index} exercise={exercise} />
-            <Button onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
-              Neste
-            </Button>
-          </ButtonsWrapper>
-        </Wrapper>
-      )}
-    </Wrapper>
-  );
+        {/* Render either multiple choice or flashcard */}
+        {type === questionTypes.mc ? (
+          <Alternatives
+            alternatives={exercise.content.alternatives}
+            showAnswer={_showAnswer}
+            hasAnswer={hasAnswer}
+            answeredIndex={answeredIndex}
+            type={exercise.type}
+          />
+        ) : (
+          <FlashCard
+            showFasit={showFasit}
+            answer={content.answer.text}
+            setHasAnswer={() => setHasAnswer(true)}
+            setShowFasit={() => setShowFasit(true)}
+          />
+        )}
+        {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
+        {hasAnswer && exercise.explanation && (
+          <Explanation variant="outlined">
+            <School size={20} />
+            <p>{exercise.explanation}</p>
+          </Explanation>
+        )}
+        {/* After user has answer, show correct interactions */}
+        {hasAnswer && (
+          <Wrapper>
+            <ExerciseTabs id={exercise.id} />
+            <ButtonsWrapper>
+              <Vote index={quiz.index} exercise={exercise} />
+              <Button onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
+                Neste
+              </Button>
+            </ButtonsWrapper>
+          </Wrapper>
+        )}
+      </Wrapper>
+    );
+  }
 }
 
 const Wrapper = styled.div`

@@ -4,15 +4,19 @@ import { Grid, Typography, TextField } from '@material-ui/core';
 
 interface Props {
   title: string;
+  content?: string;
 }
 
-const QuestionInputChild = ({ title }: Props, ref) => {
-  const [value, setValue] = useState('');
+const QuestionInputChild = ({ title, content }: Props, ref) => {
+  const [value, setValue] = useState(content ? content : '');
 
-  useImperativeHandle(ref, () => ({
-    value,
-  }), [value])
-  
+  useImperativeHandle(
+    ref,
+    () => ({
+      value,
+    }),
+    [value],
+  );
 
   const handleChange = event => {
     setValue(event.target.value);
@@ -32,6 +36,6 @@ const QuestionInputChild = ({ title }: Props, ref) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default forwardRef(QuestionInputChild);
