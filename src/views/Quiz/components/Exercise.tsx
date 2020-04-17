@@ -62,13 +62,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
   if (isEditing) {
     return (
       <div>
-        <ModifyMultipleChoice exercise={exercise} />
-        <Button color="primary" variant="contained">
-          Lagre
-        </Button>
-        <Button color="primary" variant="outlined" onClick={() => setIsEditing(!isEditing)}>
-          Avbryt
-        </Button>
+        <ModifyMultipleChoice exercise={exercise} setIsEditing={setIsEditing} />
       </div>
     );
   } else {
