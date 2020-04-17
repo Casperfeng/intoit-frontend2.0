@@ -37,6 +37,22 @@ export default function Level() {
 
   const ProBar = styled(LinearProgress)``;
 
+  const calculateProgressBarValue = (currentLevel: number, currentExp: number) => {
+    // ? Andreas
+    // Siden første level er lik 0, så max level == 8 (lengden av levels-array hentet gjennom redux), minus 1, som er 7
+    const maxLevel = levels.length - 1;
+    
+    // Hvis brukeren er allerede på max level, progressbar har full verdi
+    if(currentLevel === maxLevel) {
+      return 100;
+    } else {
+       // Vi må da finne hvor mye exp man trenger til next level
+       const nextLevel = levels.find((element:any) => element.id === (currentLevel + 1));
+       // Vi kan da regne ut prosentandel av progressbaren
+       return currentExp / nextLevel.min_experience * 100
+    }
+  }
+
   return (
     <ContentLayout>
       <Wrapper>
@@ -51,7 +67,7 @@ export default function Level() {
             {
               <UserInfo>
                 <p>nivå {level}</p>
-                <ProBar variant={'determinate'} value={67} />
+                <ProBar variant={'determinate'} value={calculateProgressBarValue(level, xp)} />
                 <p> xp {xp}</p>
               </UserInfo>
             }
@@ -64,7 +80,7 @@ export default function Level() {
                       <LevelContainer>
                         <img alt="temp-achive" src={Quizmaster} />
                         <StyledLetters>{element.name}</StyledLetters>
-                        <StyledLetters>{element.min_experience}</StyledLetters>
+                        <StyledLetters>{element.min_experience} xp</StyledLetters>
                       </LevelContainer>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>aeffe</ExpansionPanelDetails>
