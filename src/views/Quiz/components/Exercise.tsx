@@ -4,6 +4,7 @@ import Question from 'components/Question/Question';
 import Alternatives from 'components/Alternatives/Alternatives';
 import Vote from 'components/Vote/Vote';
 import colors from 'shared/colors';
+import { Edit } from 'styled-icons/material';
 import { ArrowForward } from 'styled-icons/material/ArrowForward';
 import { School } from 'styled-icons/material/School';
 import Button from '@material-ui/core/Button';
@@ -29,6 +30,7 @@ interface ExerciseProps {
  */
 export default function Exercise({ exercise }: ExerciseProps) {
   const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
   const [hasAnswer, setHasAnswer] = useState(false);
   const [answeredIndex, setAnsweredIndex] = useState(-1);
   // For flashcard only
@@ -56,8 +58,12 @@ export default function Exercise({ exercise }: ExerciseProps) {
   };
 
   const { content, username, type } = exercise;
+  if (isEditing) {
+    return <Edit size={22} onClick={() => setIsEditing(!isEditing)} />;
+  }
   return (
     <Wrapper>
+      <Edit size={22} onClick={() => setIsEditing(!isEditing)} />
       <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
 
       {/* Render either multiple choice or flashcard */}
