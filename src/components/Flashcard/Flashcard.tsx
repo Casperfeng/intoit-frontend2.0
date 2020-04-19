@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import Card from '@material-ui/core/Card';
-import Question from 'components/Question/Question';
 import Button from '@material-ui/core/Button';
+import { Flip2 } from '@styled-icons/evaicons-solid';
+import Question from 'components/Question/Question';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components/macro';
+import { OutlinedButton } from 'components/Button/Button';
 
 interface Props {
   exercise: IQuestion;
@@ -10,25 +11,101 @@ interface Props {
 
 export default function Flashcard({ exercise }: Props) {
   console.log('exercise :', exercise);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
+
   return (
     <Wrapper>
-      <CardContent variant="outlined">
-        <Question
-          text={exercise.content.question.text}
-          credit={exercise.username}
-          imgSrc={exercise.content.question.img && exercise.content.question.img.src}
-        />
-      </CardContent>
-      <Button variant="outlined">FLIP CARD</Button>
+      <FlipCard>
+        {showQuestion && (
+          <QuestionCard>
+            <Question
+              text={exercise.content.question.text}
+              credit={exercise.username}
+              imgSrc={exercise.content.question.img && exercise.content.question.img.src}
+            />
+          </QuestionCard>
+        )}
+        <FlipCardInner isflipped={isFlipped}>
+          <FlipCardContent isflipped={isFlipped}>
+            {isFlipped ? (
+              <p>{exercise.content.answer.text}</p>
+            ) : (
+              <Question
+                text={exercise.content.question.text}
+                credit={exercise.username}
+                imgSrc={exercise.content.question.img && exercise.content.question.img.src}
+              />
+            )}
+          </FlipCardContent>
+        </FlipCardInner>
+      </FlipCard>
+
+      <ActionButtons>
+        <OutlinedButton margin="0 16px 0 0" onClick={() => setIsFlipped(!isFlipped)}>
+          <FlipIcon size={24} />
+          <span>FLIP CARD</span>
+        </OutlinedButton>
+        {isFlipped && (
+          <OutlinedButton onClick={() => setShowQuestion(!showQuestion)}>{showQuestion ? 'SKJUL SPØRSMÅL' : 'VIS SPØRSMÅL'}</OutlinedButton>
+        )}
+      </ActionButtons>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
-  /* width: 1000px; */
-  /* padding: 20px; */
+const Wrapper = styled.div``;
+
+const FlipCard = styled.div`
+  perspective: 1000px;
+  margin-top: 16px;
 `;
 
-const CardContent = styled(Card)`
+const FlipCardInner = styled.div<{ isflipped: boolean }>`
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
   padding: 20px;
+
+  ${props =>
+    props.isflipped &&
+    css`
+      transform: rotateY(180deg);
+    `}
+
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+`;
+
+const QuestionCard = styled.div`
+  padding: 20px;
+  margin-bottom: 16px;
+
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+`;
+
+const FlipCardContent = styled.div<{ isflipped: boolean }>`
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  ${props =>
+    props.isflipped &&
+    css`
+      transform: rotateY(180deg);
+    `}
+`;
+
+const ActionButtons = styled.div`
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FlipIcon = styled(Flip2)`
+  margin-right: 6px;
 `;
