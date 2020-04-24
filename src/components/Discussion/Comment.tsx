@@ -41,9 +41,19 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
   };
 
   const showFacebookPic = () =>
-    comment.facebook_id && comment.show_facebook_pic
-      ? `https://graph.facebook.com/${comment.facebook_id}/picture`
-      : require(`../../assets/badges/${comment.avatar}.png`);
+    {
+      try {
+        if (comment.facebook_id && comment.show_facebook_pic) {
+          return `https://graph.facebook.com/${comment.facebook_id}/picture`
+        } else {
+          return require(`../../assets/badges/${comment.avatar}.png`);
+        }
+      }
+      catch(err) {
+        return require(`../../assets/badges/0.png`)
+      }
+    }
+      
 
   return (
     <CommentWrapper reply={comment.reply_to}>
