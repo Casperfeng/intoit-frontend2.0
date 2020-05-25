@@ -10,6 +10,7 @@ interface ReduxState {
   resource: {
     feed: any[];
   };
+  userAlreadyExists?: boolean;
   comments: Comments;
   favoriteCourses: FavoriteCourses;
 }

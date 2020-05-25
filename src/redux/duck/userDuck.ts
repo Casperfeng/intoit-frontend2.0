@@ -12,11 +12,13 @@ const FETCH_USER = 'FETCH_USER';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_DEVICE_ID = 'SET_DEVICE_ID';
 const LOG_OUT = 'LOG_OUT';
+const USER_EXISTS = 'USER_EXISTS';
 
 const initialState = {
   token: '',
   device_id: '',
   facebook_id: '',
+  userAlreadyExists: false,
 };
 
 export default function userDuck(state = initialState, action: Action) {
@@ -29,6 +31,8 @@ export default function userDuck(state = initialState, action: Action) {
       return { token: '' };
     case FETCH_USER:
       return { ...action.payload, token: state.token };
+    case USER_EXISTS:
+      return { ...state, userAlreadyExists: true };
     default:
       return state;
   }
@@ -43,7 +47,7 @@ export const logout = () => async dispatch => {
   await dispatch({ type: 'LOG_OUT' });
   const persistor = getPersistor();
   // TODO: this does not seem to work for all ducks. consider adding purge case to reducer
-  await persistor.purge()
+  await persistor.purge();
   window.location.href = '/login';
 };
 
@@ -105,6 +109,6 @@ export const connectGuestToFacebook = (fbToken: string, device_id: string) => as
     await dispatch(fetchTokenByFb(fbToken));
     await dispatch(fetchUser());
   } catch (err) {
-    console.log('ERROR! User with that Facebook ID already exists');
+    dispatch({ type: 'USER_EXISTS' });
   }
 };
