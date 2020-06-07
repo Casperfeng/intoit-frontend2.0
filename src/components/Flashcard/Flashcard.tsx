@@ -4,15 +4,22 @@ import Question from 'components/Question/Question';
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { OutlinedButton } from 'components/Button/Button';
+import { AlternativeGroup, AlternativeButton } from 'components/Alternatives/AlternativesStyles';
 
 interface Props {
   exercise: IQuestion;
+  setHasAnswer: () => void;
 }
 
-export default function Flashcard({ exercise }: Props) {
-  console.log('exercise :', exercise);
+export default function Flashcard({ exercise, setHasAnswer }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const onFlipButton = () => {
+    setIsFlipped(!isFlipped);
+    setShowAnswer(true);
+  };
 
   return (
     <Wrapper>
@@ -42,7 +49,7 @@ export default function Flashcard({ exercise }: Props) {
       </FlipCard>
 
       <ActionButtons>
-        <OutlinedButton margin="0 16px 0 0" onClick={() => setIsFlipped(!isFlipped)}>
+        <OutlinedButton margin="0 16px 0 0" onClick={onFlipButton}>
           <FlipIcon size={24} />
           <span>FLIP CARD</span>
         </OutlinedButton>
@@ -50,6 +57,15 @@ export default function Flashcard({ exercise }: Props) {
           <OutlinedButton onClick={() => setShowQuestion(!showQuestion)}>{showQuestion ? 'SKJUL SPØRSMÅL' : 'VIS SPØRSMÅL'}</OutlinedButton>
         )}
       </ActionButtons>
+      {showAnswer && (
+        <FasitView>
+          <strong>Hadde du rett?</strong>
+          <AlternativeGroup orientation="vertical" color="primary" size="large">
+            <AlternativeButton onClick={setHasAnswer}>Ja</AlternativeButton>
+            <AlternativeButton onClick={setHasAnswer}>Nei</AlternativeButton>}
+          </AlternativeGroup>
+        </FasitView>
+      )}
     </Wrapper>
   );
 }
@@ -108,4 +124,12 @@ const ActionButtons = styled.div`
 
 const FlipIcon = styled(Flip2)`
   margin-right: 6px;
+`;
+
+const FasitView = styled.div`
+  display: flex;
+  flex-direction: column;
+  strong {
+    margin: 20px 0;
+  }
 `;

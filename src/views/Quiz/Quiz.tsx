@@ -41,11 +41,11 @@ export default function Quiz() {
           ) : quizIsFinished ? (
             <h1>Victory Screen</h1>
           ) : (
-                <>
-                  <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
-                  <Exercise exercise={quiz.exercises[quiz.index]} />
-                </>
-              )}
+            <>
+              <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
+              <Exercise exercise={quiz.exercises[quiz.index]} />
+            </>
+          )}
         </ContentBox>
       </ContentLayout>
     </Wrapper>

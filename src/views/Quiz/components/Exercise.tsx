@@ -74,9 +74,10 @@ export default function Exercise({ exercise }: ExerciseProps) {
       /> */}
       {/* Render either multiple choice or flashcard */}
       {type === questionTypes.mc ? (
-        <MultipleChoice exercise={exercise} showAnswer={_showAnswer} answeredIndex={answeredIndex} hasAnswer={hasAnswer}/>
+        <MultipleChoice exercise={exercise} showAnswer={_showAnswer} answeredIndex={answeredIndex} hasAnswer={hasAnswer} />
       ) : (
-        <Flashcard exercise={exercise}/>
+        <div>ef</div>
+        // <Flashcard exercise={exercise} />
         // <FlashCard
         //   showFasit={showFasit}
         //   answer={content.answer.text}

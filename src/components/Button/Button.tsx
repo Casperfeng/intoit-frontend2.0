@@ -38,7 +38,6 @@ export function DeleteButton({ children, bgcolor, margin, size, type, onClick }:
 }
 
 export function OutlinedButton({ children, bgcolor, margin, size, type, onClick }: Props) {
-  console.log('margin :', margin);
   return (
     <StyledButton type={type} variant="outlined" bgcolor={bgcolor} margin={margin} size={size} onClick={onClick}>
       {children}
