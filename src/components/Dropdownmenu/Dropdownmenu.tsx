@@ -43,7 +43,7 @@ export default function Dropdownmenu({ clicked }: DropdownProps) {
   );
 }
 
-const DropdownWrapper = styled.div`
+const DropdownWrapper = styled.div<{animation:boolean}>`
   z-index: 1;
   text-align: center;
   display: flex;

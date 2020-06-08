@@ -11,9 +11,14 @@ interface ReduxState {
     feed: any[];
     levels: any[];
   };
+  userAlreadyExists?: boolean;
+  comments: Comments;
+  favoriteCourses: FavoriteCourses;
 }
 
 type Courses = Course[];
+
+type FavoriteCourses = FavoriteCourses[];
 
 type Schools = School[];
 
@@ -37,7 +42,7 @@ interface Course {
   progression: number;
   n_favorites_all_time: 39;
   n_favorites_this_semester: number;
-  favorite?: boolean;
+  favorite: boolean;
 }
 interface User {
   id: string;
@@ -61,6 +66,7 @@ interface Topic {
 }
 
 interface IQuestion {
+  id: number;
   collection_id: number;
   content: any;
   modified: Date;
@@ -90,6 +96,17 @@ interface Quiz {
   index: integer;
 }
 
+interface Comment {
+  id: number;
+  message: String;
+  resource_id: number;
+  user_id: number;
+  title: String;
+  is_report: boolean;
+}
+
+type Comments = Comment[];
+
 interface Alternative {
   text: string;
   correct: boolean;
@@ -101,3 +118,14 @@ interface School {
   name: string;
   size: number;
 }
+
+interface VotedObject {
+  id: number;
+  has_voted;
+  upvotes: number;
+  downvotes: number;
+  has_upvoted: boolean;
+  has_downvoted: boolean;
+}
+
+type VotedExercise = VoteObject & IQuestion;

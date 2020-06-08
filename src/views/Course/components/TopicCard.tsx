@@ -45,7 +45,7 @@ export default function TopicCard({ id, name, hasMCExercises, size, hasFCExercis
             </Option>
         }
       </QuizOptions>
-      <QuestionCount variant="body2" component="p">
+      <QuestionCount>
         {size} spørsmål
       </QuestionCount>
     </Wrapper>

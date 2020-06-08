@@ -1,4 +1,5 @@
 const DEFAULT_BLUE_COLOR = '#0CAAD6';
+const BLUE_700_COLOR = '#0288D1';
 const GREEN_COLOR = '#009688';
 const RED_COLOR = '#9A0007';
 const YELLOW_COLOR = '#FBBC00';
@@ -12,6 +13,7 @@ const FADED_DEFAULT_COLOR = 'rgba(12, 170, 214, 0.5)';
 const colors = {
   default: DEFAULT_BLUE_COLOR,
   primary: DEFAULT_BLUE_COLOR,
+  interactive: BLUE_700_COLOR,
   green: GREEN_COLOR,
   red: RED_COLOR,
   yellow: YELLOW_COLOR,

@@ -28,6 +28,7 @@ export default function Level() {
 
   useEffect(
     () => {
+      console.log('happens');
       dispatch(fetchLevels());
       dispatch(fetchUser());
     },
@@ -41,16 +42,20 @@ export default function Level() {
     // ? Andreas
     // Siden første level er lik 0, så max level == 8 (lengden av levels-array hentet gjennom redux), minus 1, som er 7
     const maxLevel = levels.length - 1;
-    
+
     // Hvis brukeren er allerede på max level, progressbar har full verdi
-    if(currentLevel === maxLevel) {
+    if (currentLevel === maxLevel) {
       return 100;
     } else {
-       // Vi må da finne hvor mye exp man trenger til next level
-       const nextLevel = levels.find((element:any) => element.id === (currentLevel + 1));
-       // Vi kan da regne ut prosentandel av progressbaren
-       return currentExp / nextLevel.min_experience * 100
+      // Vi må da finne hvor mye exp man trenger til next level
+      const nextLevel = levels.find((element: any) => element.id === currentLevel + 1);
+      // Vi kan da regne ut prosentandel av progressbaren
+      return (currentExp / nextLevel.min_experience) * 100;
     }
+  };
+
+  if (!levels) {
+    return <h1>Loading...</h1>;
   }
 
   return (

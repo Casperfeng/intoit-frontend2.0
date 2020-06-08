@@ -11,7 +11,7 @@ import Title from '../../components/Title/Title';
 import styled from 'styled-components/macro';
 import CourseInfo from './components/CourseInfo'
 import TopicCard from './components/TopicCard';
-import { Button } from '@material-ui/core';
+import PrimaryButton from 'components/Button/Button';
 import devices from 'shared/media';
 
 interface RouterParams {
@@ -48,10 +48,10 @@ export default function Course(props: CourseProps) {
         <Title>Laster inn fag...</Title>
         <Animation type={'seagull'} />
       </> : <>
-          <CourseInfo name={courseInfo.name} description={courseInfo.description} />
+          <CourseInfo id={id} name={courseInfo.name} description={courseInfo.description} code={courseInfo.code} />
           <StyledLink to={`/lastUpdate/${id}`}><LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate> </StyledLink>
           <StyledLink to={`/courses/${id}/create-question`}>
-            <Button>NYTT SPØRSMÅL</Button>
+            <PrimaryButton size="large" >NYTT SPØRSMÅL</PrimaryButton>
           </StyledLink>
           <TopicList>
             {topics.map(topic => (

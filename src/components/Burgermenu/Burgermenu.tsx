@@ -25,7 +25,7 @@ export default function Burgermenu({ clicked }: BurgerMenuProps) {
     height: 7px;
   `;
 
-  const MenubarOne = styled(Menubar)`
+  const MenubarOne = styled(Menubar)<{animation:boolean}>`
     ${props =>
       props.animation &&
       css`
@@ -33,7 +33,7 @@ export default function Burgermenu({ clicked }: BurgerMenuProps) {
       `}
   `;
 
-  const MenubarTwo = styled(Menubar)`
+  const MenubarTwo = styled(Menubar)<{animation:boolean}>`
     ${props =>
       props.animation &&
       css`
@@ -41,7 +41,7 @@ export default function Burgermenu({ clicked }: BurgerMenuProps) {
       `}
   `;
 
-  const MenubarThree = styled(Menubar)`
+  const MenubarThree = styled(Menubar)<{animation:boolean}>`
     ${props =>
       props.animation &&
       css`

@@ -1,13 +1,15 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from 'redux/duck/coursesDuck';	
+import { fetchCourses } from 'redux/duck/coursesDuck';
 import devices from 'shared/media';
 import CourseCard from './CourseCard';
 import RadioButtons from './RadioButtons';
 import Sorting from './Sorting';
 import SearchBar from './SearchBar';
 import { orderBy } from 'lodash';
+import PrimaryButton from 'components/Button/Button';
+import { push } from 'connected-react-router';
 
 export default function CourseList() {
   const [sort, setSort] = useState({
@@ -18,10 +20,10 @@ export default function CourseList() {
   const [searchQuery, setSearchQuery] = useState('');
   const courses = useSelector((state: ReduxState) => state.courses);
 
-  const dispatch = useDispatch();	
-  useEffect(() => {	
-    dispatch(fetchCourses());	
-    // eslint-disable-next-line	
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCourses());
+    // eslint-disable-next-line
   }, []);
 
   const orderedCourses = orderBy(
@@ -29,6 +31,10 @@ export default function CourseList() {
     [sort.value],
     [sort.sortOrder],
   );
+
+  const onCreateCourseClick = () => {
+    dispatch(push('/courseeditor'));
+  };
 
   return (
     <Wrapper>
@@ -40,6 +46,9 @@ export default function CourseList() {
         </StyledFilters>
         <Sorting onSort={field => setSort(field)} />
       </SortingWrapper>
+      <PrimaryButton margin="16px 0" size="large" onClick={onCreateCourseClick}>
+        LAG NYTT EMNE
+      </PrimaryButton>
       <Content>
         {orderedCourses.map(course => (
           <CourseCard
@@ -59,6 +68,7 @@ export default function CourseList() {
             isArchived={course.is_archived}
             progression={course.progression}
             description={course.description}
+            useImage={true}
           />
         ))}
       </Content>
@@ -72,7 +82,7 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  gap: 32px;  
+  gap: 32px;
   margin-top: 16px;
 
   @media ${devices.desktopOnly} {
@@ -112,7 +122,4 @@ const Title = styled.h1`
 const SortingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  @media ${devices.mobileOnly} {
-    margin-top: -45px;
-  }
 `;

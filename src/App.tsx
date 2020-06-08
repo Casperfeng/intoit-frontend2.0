@@ -1,21 +1,13 @@
 import React from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
-import { Route, Switch } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import styled from 'styled-components/macro';
 import Navbar from './components/Navbar/Navbar';
-import Login from './views/Login/Login';
-import Home from './views/Home/Home';
-import AboutIntoit from './views/AboutIntoit/AboutIntoit';
-import Course from './views/Course/Course';
-import CreateQuestion from './views/CreateQuestion/CreateQuestion';
-import Quiz from './views/Quiz/Quiz';
-import ProfilePage from './views/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
 import LastUpdate from 'views/LastUpdates/LastUpdates';
 import Level from 'views/Levels/Level';
+import Routes from 'navigation/Routes';
 
 setConfig({
   showReactDomPatchNotification: false,
@@ -30,17 +22,7 @@ function App() {
     <StylesProvider injectFirst>
       <Main>
         <Navbar currentViewIsQuiz={currentViewIsQuiz} />
-        <Switch>
-          <Route exact path="/om-oss" component={AboutIntoit} />
-          <ProtectedRoute exact path="/courses/:id" component={Course} />
-          <ProtectedRoute exact path="/courses/:id/create-question" component={CreateQuestion} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/profile" component={ProfilePage} />
-          <ProtectedRoute exact path="/lastUpdate/:id" component={LastUpdate} />
-          <ProtectedRoute exact path="/level" component={Level} />
-          <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/quiz/:id/:type?" component={Quiz} />
-        </Switch>
+        <Routes />
       </Main>
     </StylesProvider>
   );
