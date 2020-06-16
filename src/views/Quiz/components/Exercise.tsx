@@ -7,7 +7,7 @@ import colors from 'shared/colors';
 import { Edit } from 'styled-icons/material';
 import { ArrowForward } from 'styled-icons/material/ArrowForward';
 import { School } from 'styled-icons/material/School';
-import Button from '@material-ui/core/Button';
+import { Button, Box } from '@material-ui/core/';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import { fetchComments } from 'redux/duck/commentDuck';
@@ -68,7 +68,6 @@ export default function Exercise({ exercise }: ExerciseProps) {
   } else {
     return (
       <Wrapper>
-        <Edit size={22} onClick={() => setIsEditing(!isEditing)} />
         <Question text={content.question.text} credit={username} imgSrc={content.question.img && content.question.img.src} />
 
         {/* Render either multiple choice or flashcard */}
@@ -88,7 +87,12 @@ export default function Exercise({ exercise }: ExerciseProps) {
             setShowFasit={() => setShowFasit(true)}
           />
         )}
-        {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
+        <Box display="flex" flexDirection="row" p={2}>
+          <Button color="primary" onClick={() => setIsEditing(!isEditing)} startIcon={<Edit size={22} />}>
+            Rediger
+          </Button>
+          {exercise.has_hint && exercise.hint && <Hint hint={exercise.hint} />}
+        </Box>
         {hasAnswer && exercise.explanation && (
           <Explanation variant="outlined">
             <School size={20} />

@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { fetchQuiz } from '../../redux/duck/quizDuck';
 import Exercise from './components/Exercise';
-import { LinearProgress } from '@material-ui/core';
+import { Container, Paper, LinearProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
-import ContentLayout from 'components/ContentLayout/ContentLayout';
 import colors from 'shared/colors';
 import IntoitLogo from 'assets/icons/logo-white.png';
 import { Link } from 'react-router-dom';
@@ -33,21 +32,21 @@ export default function Quiz() {
         <img src={IntoitLogo} alt="intoit-logo" />
       </IntoitLogoWhite>
 
-      <ContentLayout width={'max-content'} maxWidth={'700px'}>
-        <ContentBox>
+      <Container maxWidth="sm">
+        <Content>
           {quizIsLoading ? (
             // TODO: Add animasjon
             <h1>Henter quiz...</h1>
           ) : quizIsFinished ? (
             <h1>Victory Screen</h1>
           ) : (
-                <>
-                  <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
-                  <Exercise exercise={quiz.exercises[quiz.index]} />
-                </>
-              )}
-        </ContentBox>
-      </ContentLayout>
+            <>
+              <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
+              <Exercise exercise={quiz.exercises[quiz.index]} />
+            </>
+          )}
+        </Content>
+      </Container>
     </Wrapper>
   );
 }
@@ -76,18 +75,9 @@ const IntoitLogoWhite = styled(Link)`
   }
 `;
 
-const ContentBox = styled.div`
+const Content = styled(Paper)`
+  margin-bottom: 30px;
   padding: 30px;
-  margin-top: 128px;
-  background-color: white;
-  border-radius: 3px;
-  min-width: 500px;
-
-  @media ${devices.mobileOnly} {
-    max-width: 100%;
-    min-width: initial;
-    padding: 20px;
-  }
 `;
 
 const QuizProgress = styled(LinearProgress)`

@@ -3,8 +3,7 @@ import QuestionInput from 'views/CreateQuestion/components/QuestionInput';
 import Choices from 'views/CreateQuestion/components/Choices';
 import AddImage from 'views/CreateQuestion/components/AddImage';
 import Optional from 'views/CreateQuestion/components/Optional';
-import Button from '@material-ui/core/Button';
-import { Grid, TextField } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 import axios from 'axios';
 
 interface Props {
@@ -39,7 +38,7 @@ export default function ModifyMultipleChoice({ exercise, setIsEditing }: Props) 
     };
     payload.modify_reason = modifyReason;
 
-    const response = await axios.put(`/exercises/${exercise.id}?img=false`, {
+    const response = await axios.put(`/exercises/${exercise.id}`, {
       entities: payload,
     });
 
@@ -73,12 +72,18 @@ export default function ModifyMultipleChoice({ exercise, setIsEditing }: Props) 
           onChange={handleModifyReasonChange}
         />
       </Grid>
-      <Button color="primary" variant="contained" onClick={onEditSubmit}>
-        Lagre
-      </Button>
-      <Button color="primary" variant="outlined" onClick={() => setIsEditing(false)}>
-        Avbryt
-      </Button>
+      <Grid item container direction="row" spacing={2}>
+        <Grid item>
+          <Button color="primary" variant="contained" onClick={onEditSubmit}>
+            Lagre
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button color="primary" variant="outlined" onClick={() => setIsEditing(false)}>
+            Avbryt
+          </Button>
+        </Grid>
+      </Grid>
     </Grid>
   );
 }
