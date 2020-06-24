@@ -9,6 +9,8 @@ const LIGHT_GREY_COLOR = '#DADADA';
 const BLACK_LIGHT_COLOR = '#2B3648';
 const BLUE_GREY_COLOR = '#37474F';
 const FADED_DEFAULT_COLOR = 'rgba(12, 170, 214, 0.5)';
+const CORRECT_COLOR = '#38C05D';
+const ERROR_COLOR = '#F47265';
 
 const colors = {
   default: DEFAULT_BLUE_COLOR,
@@ -22,6 +24,8 @@ const colors = {
   lightGrey: LIGHT_GREY_COLOR,
   blackLight: BLACK_LIGHT_COLOR,
   blueGrey: BLUE_GREY_COLOR,
+  correct: CORRECT_COLOR,
+  error: ERROR_COLOR,
 };
 
 export const subjectColors = {
