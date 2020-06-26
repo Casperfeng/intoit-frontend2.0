@@ -9,6 +9,7 @@ import colors from 'shared/colors';
 import IntoitLogo from 'assets/icons/logo-white.png';
 import { Link } from 'react-router-dom';
 import devices from 'shared/media';
+import VictoryScreen from './components/VictoryScreen';
 
 export default function Quiz() {
   let { id, type } = useParams();
@@ -38,7 +39,7 @@ export default function Quiz() {
             // TODO: Add animasjon
             <h1>Henter quiz...</h1>
           ) : quizIsFinished ? (
-            <h1>Victory Screen</h1>
+            <VictoryScreen quiz={quiz} />
           ) : (
             <>
               <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
