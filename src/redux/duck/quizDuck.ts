@@ -56,6 +56,7 @@ export default function quizReducer(state = initialState, action: Action) {
 // Action creators
 
 export const fetchQuiz = (collectionId, fetchAll, fetchType, isBest) => async dispatch => {
+  // TODO: Change to correct size (6?)
   const all = fetchAll ? 'size=3' : '';
   const type = fetchType ? 'type=' + fetchType : '';
   const response = await (isBest
