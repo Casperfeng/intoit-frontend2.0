@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Card from '@material-ui/core/Card';
 import Question from 'components/Question/Question';
 import Alternatives from 'components/Alternatives/Alternatives';
 

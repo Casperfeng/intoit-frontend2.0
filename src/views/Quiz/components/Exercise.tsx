@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
-import Question from 'components/Question/Question';
-import Alternatives from 'components/Alternatives/Alternatives';
 import Vote from 'components/Vote/Vote';
 import colors from 'shared/colors';
 import { Edit } from 'styled-icons/material';
@@ -12,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from 'redux/duck/quizDuck';
 import { fetchComments } from 'redux/duck/commentDuck';
 import Card from '@material-ui/core/Card';
-// import FlashCard from './FlashCard';
 import Flashcard from 'components/Flashcard/Flashcard';
 import MultipleChoice from 'components/MultipleChoice/MultipleChoice';
 import { questionTypes } from 'shared/constants';
@@ -60,6 +57,10 @@ export default function Exercise({ exercise }: ExerciseProps) {
     }
   };
 
+  const nextQuestion = (index: number) => {
+    dispatch(setAnswer(quiz.index, index));
+  };
+
   const { content, username, type } = exercise;
   if (isEditing) {
     return (
@@ -96,7 +97,7 @@ export default function Exercise({ exercise }: ExerciseProps) {
             <ExerciseTabs id={exercise.id} />
             <ButtonsWrapper>
               <Vote index={quiz.index} exercise={exercise} />
-              <Button onClick={() => _showAnswer(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
+              <Button onClick={() => nextQuestion(answeredIndex)} endIcon={<StyledArrowForward size={20} />}>
                 Neste
               </Button>
             </ButtonsWrapper>

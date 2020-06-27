@@ -62,7 +62,7 @@ export default function Flashcard({ exercise, setHasAnswer }: Props) {
           <strong>Hadde du rett?</strong>
           <AlternativeGroup orientation="vertical" color="primary" size="large">
             <AlternativeButton onClick={setHasAnswer}>Ja</AlternativeButton>
-            <AlternativeButton onClick={setHasAnswer}>Nei</AlternativeButton>}
+            <AlternativeButton onClick={setHasAnswer}>Nei</AlternativeButton>
           </AlternativeGroup>
         </FasitView>
       )}
