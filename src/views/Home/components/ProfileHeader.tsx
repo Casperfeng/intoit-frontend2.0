@@ -40,7 +40,7 @@ const Wrapper = styled.section`
   }
 
   img {
-    width: 117px;
+    height: 117px;
     object-fit: contain;
     margin-right: 20px;
   }
