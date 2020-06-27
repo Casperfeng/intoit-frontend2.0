@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function Question({ text, credit, imgSrc, margin }: Props) {
-  console.log('margin :', margin);
+  // console.log('margin :', margin);
   return (
     <Wrapper margin={margin}>
       <QuestionText>{text}</QuestionText>
