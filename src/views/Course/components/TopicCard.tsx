@@ -76,7 +76,7 @@ const Wrapper = styled(Card)`
 const QuizOptions = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 150px;
+  height: 110px;
   flex: 1;
 `;
 

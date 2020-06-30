@@ -59,7 +59,7 @@ export default function Course(props: CourseProps) {
             <PrimaryButton size="large">NYTT SPØRSMÅL</PrimaryButton>
           </StyledLink>
           <TopicList>
-            {/* {topics.map(topic => (
+            {topics.map(topic => (
               <TopicCard
                 id={topic.id}
                 name={topic.name}
@@ -68,15 +68,15 @@ export default function Course(props: CourseProps) {
                 size={topic.size}
                 key={topic.id}
               />
-            ))} */}
-            <TopicCard
+            ))}
+            {/* <TopicCard
               id={topics[0].id}
               name={topics[0].name}
               hasMCExercises={topics[0].mc_size > 0}
               hasFCExercises={topics[0].fc_size > 0}
               size={topics[0].size}
               key={topics[0].id}
-            />
+            /> */}
           </TopicList>
         </>
       )}
