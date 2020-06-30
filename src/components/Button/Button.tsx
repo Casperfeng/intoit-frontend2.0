@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import colors from 'shared/colors';
 
 interface Props {
-  children?: string;
+  children?: any;
   bgcolor?: string;
   margin?: string;
   size?: 'small' | 'medium' | 'large';
@@ -37,12 +37,24 @@ export function DeleteButton({ children, bgcolor, margin, size, type, onClick }:
   );
 }
 
+export function OutlinedButton({ children, bgcolor, margin, size, type, onClick }: Props) {
+  return (
+    <StyledButton type={type} variant="outlined" bgcolor={bgcolor} margin={margin} size={size} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
+}
+
 const StyledButton = styled(Button)<{ bgcolor?: string; margin?: string }>`
   min-width: 140px;
   max-width: fit-content;
 
   &.MuiButton-containedPrimary {
     background-color: ${props => (props.bgcolor ? props.bgcolor : colors.default)};
+    margin: ${props => (props.margin ? props.margin : 0)};
+  }
+
+  &.MuiButton-outlined {
     margin: ${props => (props.margin ? props.margin : 0)};
   }
 `;

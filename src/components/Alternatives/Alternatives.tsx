@@ -1,18 +1,17 @@
 import React from 'react';
 import { AlternativeGroup, AlternativeButton } from './AlternativesStyles';
+import styled from 'styled-components/macro';
 
 interface AlternativesProps {
   alternatives: Alternatives;
   showAnswer: (index: number) => void;
   hasAnswer: boolean;
   answeredIndex: number;
-  type: string;
 }
 
-export default function Alternatives({ alternatives, showAnswer, hasAnswer, answeredIndex, type }: AlternativesProps) {
-  if (type === 'mc') {
+export default function Alternatives({ alternatives, showAnswer, hasAnswer, answeredIndex }: AlternativesProps) {
     return (
-      <AlternativeGroup orientation="vertical" color="primary" size="large">
+      <AlternativesWrapper orientation="vertical" color="primary" size="large">
         {alternatives.map((alt: Alternative, i) => {
           let textColor = 'black';
           if (hasAnswer) {
@@ -35,10 +34,9 @@ export default function Alternatives({ alternatives, showAnswer, hasAnswer, answ
             </AlternativeButton>
           );
         })}
-      </AlternativeGroup>
+      </AlternativesWrapper>
     );
-  } else {
-    return <div>yo</div>
-  }
 }
+
+const AlternativesWrapper = styled(AlternativeGroup)`width: 100%`
 
