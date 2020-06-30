@@ -3,6 +3,7 @@ import { LinearProgress } from '@material-ui/core';
 import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLevels } from 'redux/duck/resourceDuck';
+import Activities from './Activities';
 
 import BlazingBlob from 'assets/achievements/blazing_blob.png';
 // import { userInfo } from 'os';
@@ -24,11 +25,8 @@ export default function Level() {
   const xp = useSelector((state: ReduxState) => state.user.experience);
   const userName = useSelector((state: ReduxState) => state.user.username);
 
-  console.log('levels :', levels);
-
   useEffect(
     () => {
-      console.log('happens');
       dispatch(fetchLevels());
       dispatch(fetchUser());
     },
@@ -78,7 +76,6 @@ export default function Level() {
             }
             <AllLevelContainer>
               {levels.map((element: any, i: number) => {
-                console.log('element :', element);
                 return (
                   <ExpansionPanel key={i}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -91,10 +88,9 @@ export default function Level() {
                     <ExpansionPanelDetails>
                       <List>
                         {element.activities.map(
-                          e =>
+                          (e, i) =>
                             e.description && (
-                              <li>
-                                {' '}
+                              <li key={i}>
                                 <CheckIcon fontSize="small" /> {e.description}
                               </li>
                             ),
@@ -104,105 +100,9 @@ export default function Level() {
                   </ExpansionPanel>
                 );
               })}
-
-              {/* <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <LevelContainer>
-                    <img alt="temp-achive" src={Quizmaster} />
-                    <StyledLetters>Nivå 1</StyledLetters>
-                    <StyledLetters>25xp</StyledLetters>
-                  </LevelContainer>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <LevelDetailsContainer>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText> Legge til forklaring</StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText> Legge til hint</StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText>Lage et emne </StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText>Lage et spørsmål</StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText>Lage et tema</StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText>Stemme på kommentarer</StyledText>
-                    </LevelDetails>
-                    <LevelDetails>
-                      <CheckIcon fontSize="small" />
-                      <StyledText>Stemme på spørsmål</StyledText>
-                    </LevelDetails>
-                  </LevelDetailsContainer>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <LevelContainer>
-                    <img alt="temp-achive" src={Quizmaster} />
-                    <StyledLetters>Nivå 2</StyledLetters>
-                    <StyledLetters>250xp</StyledLetters>
-                  </LevelContainer>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails></ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <LevelContainer>
-                    <img alt="temp-achive" src={Quizmaster} />
-                    <StyledLetters>Nivå 3</StyledLetters>
-                    <StyledLetters>2000xp</StyledLetters>
-                  </LevelContainer>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails></ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <LevelContainer>
-                    <img alt="temp-achive" src={Quizmaster} />
-                    <StyledLetters>Nivå 4</StyledLetters>
-                    <StyledLetters>15000xp</StyledLetters>
-                  </LevelContainer>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails></ExpansionPanelDetails>
-              </ExpansionPanel> */}
             </AllLevelContainer>
           </UserLevel>
-          <LevelUpInfo>
-            <h3>Hvordan går jeg opp i nivå?</h3>
-            <Xp>+5xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <div>Noen stemmer opp din kommentarer</div>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+25xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+50px</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+100xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+125xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+200xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+300px</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+500xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-            <Xp>+1000xp</Xp>
-            <div>Noen stemmer opp din kommentarer</div>
-          </LevelUpInfo>
+          <Activities />
         </AllInfo>
       </Wrapper>
     </ContentLayout>
@@ -273,25 +173,12 @@ const AllInfo = styled.div`
   flex-wrap: no-wrap;
   width: 100%;
 `;
-const LevelUpInfo = styled.div`
-  padding: 20px;
-  margin-left: 100px;
-  margin-top: 100px;
-  background-color: rgba(196, 196, 196, 0.5);
-  color: black;
-  width: 40%;
-`;
 
 const UserLevel = styled.div`
   float: left;
   width: 60%;
   display: flex;
   flex-direction: column;
-`;
-
-const Xp = styled.h5`
-  margin-top: 15px;
-  margin-bottom: 5px;
 `;
 
 const List = styled.ul`

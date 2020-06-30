@@ -11,6 +11,7 @@ interface ReduxState {
   resource: {
     feed: any[];
     levels: any[];
+    activities: any[];
   };
   userAlreadyExists?: boolean;
   comments: Comments;
