@@ -88,8 +88,19 @@ export default function Level() {
                         <StyledLetters>{element.min_experience} xp</StyledLetters>
                       </LevelContainer>
                     </ExpansionPanelSummary>
-                    {/* ANDREAS: MAP element.activites under */}
-                    <ExpansionPanelDetails>MAP element.activities</ExpansionPanelDetails>
+                    <ExpansionPanelDetails>
+                      <List>
+                        {element.activities.map(
+                          e =>
+                            e.description && (
+                              <li>
+                                {' '}
+                                <CheckIcon fontSize="small" /> {e.description}
+                              </li>
+                            ),
+                        )}
+                      </List>
+                    </ExpansionPanelDetails>
                   </ExpansionPanel>
                 );
               })}
@@ -281,4 +292,8 @@ const UserLevel = styled.div`
 const Xp = styled.h5`
   margin-top: 15px;
   margin-bottom: 5px;
+`;
+
+const List = styled.ul`
+  list-style-type: none;
 `;
