@@ -88,7 +88,8 @@ export default function Level() {
                         <StyledLetters>{element.min_experience} xp</StyledLetters>
                       </LevelContainer>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>aeffe</ExpansionPanelDetails>
+                    {/* ANDREAS: MAP element.activites under */}
+                    <ExpansionPanelDetails>MAP element.activities</ExpansionPanelDetails>
                   </ExpansionPanel>
                 );
               })}
@@ -166,7 +167,7 @@ export default function Level() {
               </ExpansionPanel> */}
             </AllLevelContainer>
           </UserLevel>
-          {/* <LevelUpInfo>
+          <LevelUpInfo>
             <h3>Hvordan går jeg opp i nivå?</h3>
             <Xp>+5xp</Xp>
             <div>Noen stemmer opp din kommentarer</div>
@@ -190,7 +191,7 @@ export default function Level() {
             <div>Noen stemmer opp din kommentarer</div>
             <Xp>+1000xp</Xp>
             <div>Noen stemmer opp din kommentarer</div>
-          </LevelUpInfo> */}
+          </LevelUpInfo>
         </AllInfo>
       </Wrapper>
     </ContentLayout>
