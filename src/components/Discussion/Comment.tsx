@@ -42,7 +42,7 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
 
   const showFacebookPic = () =>
     comment.facebook_id && comment.show_facebook_pic
-      ? `https://graph.facebook.com/${comment.facebook_id}/picture`
+      ? `https://graph.facebook.com/${comment.facebook_id}/picture?redirect=0`
       : require(`../../assets/badges/${comment.avatar}.png`);
 
   return (
@@ -93,6 +93,9 @@ const Top = styled.div`
 const Avatar = styled.img`
   height: 50px;
   width: 50px;
+  border-radius: 50%;
+  border-color: #000;
+  border-width: 10px;
   cursor: pointer;
 `;
 
