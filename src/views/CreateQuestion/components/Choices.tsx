@@ -3,29 +3,35 @@ import styled from 'styled-components/macro';
 import { Grid, FormControl, TextField, InputAdornment, IconButton, Button, Typography } from '@material-ui/core';
 import { Clear, Add } from '@styled-icons/material';
 
-function ChoicesChild(props, ref) {
-  const [choices, setChoices] = useState([
-    {
-      text: '',
-      placeholder: 'Korrekt svar',
-      correct: true,
-    },
-    {
-      text: '',
-      placeholder: 'Feil svar',
-      correct: false,
-    },
-    {
-      text: '',
-      placeholder: 'Feil svar',
-      correct: false,
-    },
-  ]);
+const defaultChoices: Alternatives = [
+  {
+    text: '',
+    correct: true,
+  },
+  {
+    text: '',
+    correct: false,
+  },
+  {
+    text: '',
+    correct: false,
+  },
+];
 
-  useImperativeHandle(ref, () => ({
-    choices,
-  }), [choices])
-  
+interface Props {
+  choiceTexts?: Alternatives;
+}
+
+function ChoicesChild({ choiceTexts }: Props, ref) {
+  const [choices, setChoices] = useState(choiceTexts ? choiceTexts : defaultChoices);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      choices,
+    }),
+    [choices],
+  );
 
   const handleChange = (event, i) => {
     const newChoices = [...choices];
@@ -34,7 +40,7 @@ function ChoicesChild(props, ref) {
   };
 
   const handleAddChoice = () => {
-    setChoices(oldChoices => [...oldChoices, { text: '', placeholder: 'Feil svar', correct: false }]);
+    setChoices(oldChoices => [...oldChoices, { text: '', correct: false }]);
   };
 
   const handleClickRemoveChoice = i => {
@@ -53,13 +59,13 @@ function ChoicesChild(props, ref) {
       {choices.map((choice, i) => (
         <Grid key={i} item xs={12}>
           <FormControl fullWidth>
-            {i === 0 ? (
+            {choice.correct ? (
               <CorrectTextField
                 multiline
                 key={i}
                 onChange={e => handleChange(e, i)}
-                value={choices[i].text}
-                placeholder={choices[i].placeholder}
+                value={choice.text}
+                placeholder={choice.correct ? 'Korrekt svar' : 'Feil svar'}
                 variant="outlined"
               />
             ) : (
@@ -67,8 +73,8 @@ function ChoicesChild(props, ref) {
                 multiline
                 key={i}
                 onChange={e => handleChange(e, i)}
-                value={choices[i].text}
-                placeholder={choices[i].placeholder}
+                value={choice.text}
+                placeholder={choice.correct ? 'Korrekt svar' : 'Feil svar'}
                 variant="outlined"
                 InputProps={
                   i >= 3

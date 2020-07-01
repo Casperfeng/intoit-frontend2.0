@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import FacebookLoginComponent from 'react-facebook-login/dist/facebook-login-render-props';
 import { connectGuestToFacebook } from 'redux/duck/userDuck';
 import { FACEBOOK_APP_ID } from 'shared/constants';
+import FacebookLogin from 'components/Auth/FacebookLogin';
 
 export default function ConnectGuest() {
   const dispatch = useDispatch();
   const device_id = useSelector((state: ReduxState) => state.user.device_id);
   const facebook_id = useSelector((state: ReduxState) => state.user.facebook_id);
   const token = useSelector((state: ReduxState) => state.user.token);
+  const userExists = useSelector((state: ReduxState) => state.user.userAlreadyExists);
 
   async function connectToFacebook(response) {
     await dispatch(connectGuestToFacebook(response.accessToken, device_id));
@@ -20,12 +22,17 @@ export default function ConnectGuest() {
       {/* Only show the component if the user is registered as a guest */}
       {token && !facebook_id && (
         <Wrapper>
-          <FacebookLoginComponent
-            appId={FACEBOOK_APP_ID}
-            autoLoad={false}
-            callback={connectToFacebook}
-            render={renderProps => <FacebookButton onClick={renderProps.onClick}>{'Koble brukeren til Facebook'}</FacebookButton>}
-          />
+          {userExists ? (
+            <FacebookLogin />
+          ) : (
+            <FacebookLoginComponent
+              appId={FACEBOOK_APP_ID}
+              autoLoad={false}
+              callback={connectToFacebook}
+              render={renderProps => <FacebookButton onClick={renderProps.onClick}>{'Koble brukeren til Facebook'}</FacebookButton>}
+            />
+          )}
+          {userExists && <ErrorText>Denne Facebook kontoen har allerede registrert en bruker. Vil du logge inn isteden?</ErrorText>}
         </Wrapper>
       )}
     </>
@@ -33,12 +40,16 @@ export default function ConnectGuest() {
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 5px;
-  height: 50px;
+  margin-bottom: 30px;
 `;
 
 const FacebookButton = styled.button`
+  display: block;
   background-color: #4c69ba;
   background-image: linear-gradient(#4c69ba, #3b55a0);
   box-sizing: border-box;
@@ -66,4 +77,9 @@ const FacebookButton = styled.button`
   :focus {
     outline: none;
   }
+`;
+
+const ErrorText = styled.div`
+  color: red;
+  margin: 7px 7px 20px 7px;
 `;

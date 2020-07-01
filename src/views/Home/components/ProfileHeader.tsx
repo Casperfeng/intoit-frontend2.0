@@ -1,13 +1,26 @@
-import FakeProfilePicture from 'assets/achievements/mediocre_ocra.png';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import colors from 'shared/colors';
+import { fetchFriends } from 'redux/duck/friendsDuck';
+import FakeProfilePicture from 'assets/achievements/mediocre_ocra.png';
 
 export default function ProfileHeader() {
+  //const dispatch = useDispatch;
+  const user = useSelector((state: ReduxState) => state.user);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchFriends(user.fbToken, user.facebook_id));
+    }
+    // eslint-disable-next-line
+  }, [user]);
+
   return (
     <Wrapper>
       <WelcomeMessage>
-        Velkommen tilbake, søt delfin. Vi har savnet deg{' '}
+        {`Velkommen tilbake, ${user.username}. Vi har savnet deg!`}
         <span role="img" aria-label="flirt">
           😘
         </span>
@@ -15,9 +28,9 @@ export default function ProfileHeader() {
       <Level>
         <img alt="profile-avater" src={FakeProfilePicture} />
         <div>
-          <h1>SØT DELFIN</h1>
-          <p>Level 10</p>
-          <p>50000xp</p>
+          <h1>{user.username}</h1>
+          <p>{`Level ${user.level}`}</p>
+          <p>{`${user.experience} xp`}</p>
         </div>
       </Level>
       <hr />
@@ -31,6 +44,7 @@ const Wrapper = styled.section`
 
   h1 {
     margin: 24px 0 0;
+    text-transform: uppercase;
   }
 
   hr {

@@ -1,5 +1,6 @@
 interface ReduxState {
   courses: Courses;
+  friends: any;
   courseInfo: any;
   user: any;
   dropdown: Dropdown;
@@ -10,6 +11,7 @@ interface ReduxState {
   resource: {
     feed: any[];
   };
+  userAlreadyExists?: boolean;
   comments: Comments;
   favoriteCourses: FavoriteCourses;
 }

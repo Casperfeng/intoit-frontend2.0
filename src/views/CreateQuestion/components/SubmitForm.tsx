@@ -8,7 +8,7 @@ interface Props {
   onSubmit: () => void;
 }
 
-export default function SubmitForm({onSubmit}:Props) {
+export default function SubmitForm({ onSubmit }: Props) {
   const param = useParams();
 
   return (
