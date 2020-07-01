@@ -83,6 +83,7 @@ const Top = styled.div`
   line-height: 50px;
   h5 {
     cursor: pointer;
+    margin-left: 8px;
   }
   div {
     margin-left: auto;
