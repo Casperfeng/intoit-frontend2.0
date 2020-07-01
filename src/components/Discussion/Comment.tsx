@@ -42,7 +42,7 @@ export default function Comment({ comment, inQuiz, setReplyTo }: CommentProps) {
 
   const showFacebookPic = () =>
     comment.facebook_id && comment.show_facebook_pic
-      ? `https://graph.facebook.com/${comment.facebook_id}/picture?redirect=0`
+      ? `https://graph.facebook.com/${comment.facebook_id}/picture`
       : require(`../../assets/badges/${comment.avatar}.png`);
 
   return (
