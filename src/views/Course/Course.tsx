@@ -4,15 +4,18 @@ import { match } from 'react-router-dom';
 import { fetchCourse } from '../../redux/duck/courseDetailedDuck';
 import { fetchTopics } from '../../redux/duck/topicDuck';
 import { fetchFeeds } from 'redux/duck/resourceDuck';
+import { fetchComments } from 'redux/duck/commentDuck';
 import StyledLink from 'components/StyledLink/StyledLink';
 import ContentLayout from '../../components/ContentLayout/ContentLayout';
 import Animation from '../../components/Animation/Animation';
 import Title from '../../components/Title/Title';
 import styled from 'styled-components/macro';
-import CourseInfo from './components/CourseInfo'
+import CourseInfo from './components/CourseInfo';
 import TopicCard from './components/TopicCard';
 import PrimaryButton from 'components/Button/Button';
 import devices from 'shared/media';
+import Discussion from 'components/Discussion/Discussion';
+import Divider from '@material-ui/core/Divider';
 
 interface RouterParams {
   id: string;
@@ -36,6 +39,7 @@ export default function Course(props: CourseProps) {
       await dispatch(fetchCourse(id));
       await dispatch(fetchTopics(id));
       await dispatch(fetchFeeds(id));
+      await dispatch(fetchComments(id));
       setLoading(false);
     }
     retrieveCourse();
@@ -44,14 +48,19 @@ export default function Course(props: CourseProps) {
 
   return (
     <ContentLayout>
-      {isLoading ? <>
-        <Title>Laster inn fag...</Title>
-        <Animation type={'seagull'} />
-      </> : <>
+      {isLoading ? (
+        <>
+          <Title>Laster inn fag...</Title>
+          <Animation type={'seagull'} />
+        </>
+      ) : (
+        <>
           <CourseInfo id={id} name={courseInfo.name} description={courseInfo.description} code={courseInfo.code} />
-          <StyledLink to={`/lastUpdate/${id}`}><LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate> </StyledLink>
+          <StyledLink to={`/lastUpdate/${id}`}>
+            <LastUpdate>Siste oppdatteringer ({feed.length})</LastUpdate>{' '}
+          </StyledLink>
           <StyledLink to={`/courses/${id}/create-question`}>
-            <PrimaryButton size="large" >NYTT SPØRSMÅL</PrimaryButton>
+            <PrimaryButton size="large">NYTT SPØRSMÅL</PrimaryButton>
           </StyledLink>
           <TopicList>
             {topics.map(topic => (
@@ -65,9 +74,12 @@ export default function Course(props: CourseProps) {
               />
             ))}
           </TopicList>
-        </>}
+          <StyledDivider />
+          <Discussion resourceType="subjects" id={id} />
+        </>
+      )}
     </ContentLayout>
-  )
+  );
 }
 
 const TopicList = styled.div`
@@ -94,7 +106,7 @@ const TopicList = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 24px;
   }
-  
+
   gap: 32px;
 `;
 
@@ -102,6 +114,10 @@ const LastUpdate = styled.p`
   text-align: end;
   text-transform: uppercase;
   margin-bottom: 16px;
-  color: #2196F3;
+  color: #2196f3;
   font-weight: 500;
-`
+`;
+
+const StyledDivider = styled(Divider)`
+  margin: 35px 0px;
+`;

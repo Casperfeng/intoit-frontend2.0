@@ -81,7 +81,9 @@ export default function Discussion({ resourceType, id }: DiscussionProps) {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  max-width: 500px;
+`;
 
 const NewComment = styled.div`
   cursor: pointer;
