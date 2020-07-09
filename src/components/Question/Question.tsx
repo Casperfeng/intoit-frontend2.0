@@ -3,23 +3,22 @@ import styled from 'styled-components/macro';
 import colors from 'shared/colors';
 
 interface Props {
-  text: string,
-  credit?: string,
-  imgSrc?: string,
+  text: string;
+  credit?: string;
+  imgSrc?: string;
+  margin?: string;
 }
 
-export default function Question({ text, credit, imgSrc }: Props) {
+export default function Question({ text, credit, imgSrc, margin }: Props) {
+  // console.log('margin :', margin);
   return (
-    <Wrapper>
-      <QuestionText>
-        {text}
-      </QuestionText>
+    <Wrapper margin={margin}>
+      <QuestionText>{text}</QuestionText>
       {imgSrc && <img alt="question related" src={imgSrc} />}
       <Credit>Laget av {credit}</Credit>
     </Wrapper>
-  )
+  );
 }
-
 
 const Credit = styled.p`
   font-size: 12px;
@@ -27,7 +26,7 @@ const Credit = styled.p`
   font-weight: 300;
   color: ${colors.blackLight};
   text-align: end;
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
 `;
 
 const QuestionText = styled.h1`
@@ -36,13 +35,14 @@ const QuestionText = styled.h1`
   line-height: 1.5;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ margin?: string }>`
   display: flex;
   flex-direction: column;
-  margin: 20px 0 5px;
+  /* margin: 20px 0 5px; */
+  margin: ${props => (props.margin ? props.margin : 0)};
 
   img {
     max-width: 100%;
     object-fit: contain;
   }
-`
+`;

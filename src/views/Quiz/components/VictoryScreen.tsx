@@ -6,6 +6,10 @@ import QuestionSummary from 'components/QuestionSummary/QuestionSummary';
 import StyledLink from 'components/StyledLink/StyledLink';
 import { Typography, Grid, Button } from '@material-ui/core';
 import { ArrowBack, ArrowForward } from '@styled-icons/material';
+import Animation from 'components/Animation/Animation';
+import { postQuizResult } from 'redux/duck/quizDuck';
+import { isUndefined } from 'util';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   quiz: Quiz;
@@ -18,6 +22,7 @@ export default function VictoryScreen({ quiz, moreQuiz }: Props) {
   const [feedbackText, setFeedbackText] = useState('');
   const [numCorrectAnswers, setNumCorrectAnswers] = useState(0);
   const courseInfo = useSelector((state: ReduxState) => state.courseInfo);
+  const dispatch = useDispatch();
 
   const getFeedback = p => {
     switch (true) {
@@ -45,11 +50,27 @@ export default function VictoryScreen({ quiz, moreQuiz }: Props) {
   };
 
   useEffect(() => {
-    const correctAnswers = quiz.exercises.filter(ex => (ex.type === 'mc' ? ex.content.alternatives[ex.altIndex].correct : ex.altIndex === 0));
+    const quizResult: any = [];
+    // TODO: What about flashcard?
+    quiz.exercises.forEach(ex => {
+      if (ex.type === 'mc') {
+        if (ex.content.alternatives[ex.altIndex].correct) {
+          const exResult: any = { exerciseId: ex.id, isCorrect: true };
+          quizResult.push(exResult);
+        } else {
+          const exResult: any = { exerciseId: ex.id, isCorrect: false };
+          quizResult.push(exResult);
+        }
+      }
+    });
+
+    console.log('quizResult :>> ', quizResult);
+    const correctAnswers = quizResult.filter(ex => ex.isCorrect);
     const percent = (correctAnswers.length / quiz.exercises.length) * 100;
     setPercentage(percent);
     setNumCorrectAnswers(correctAnswers.length);
     getFeedback(percent);
+    dispatch(postQuizResult(quizResult));
   }, [quiz.exercises]);
 
   return (

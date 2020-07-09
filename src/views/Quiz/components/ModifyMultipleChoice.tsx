@@ -15,7 +15,7 @@ export default function ModifyMultipleChoice({ exercise, setIsEditing }: Props) 
   const [modifyReason, setModifyReason] = useState('');
   const questionRef = useRef({});
   const alternativesRef = useRef({});
-  //const optionalRef = useRef({});
+  // const optionalRef = useRef({});
 
   const handleModifyReasonChange = e => {
     setModifyReason(e.target.value);
@@ -24,22 +24,22 @@ export default function ModifyMultipleChoice({ exercise, setIsEditing }: Props) 
   const onEditSubmit = async () => {
     const question: any = questionRef.current;
     const alternatives: any = alternativesRef.current;
-    //const hint:any = hintRef.current;
-    //const explanation:any = explanationRef.current;
 
-    const payload = exercise;
-    //payload.hint = hint.value;
-    //payload.explanation = explanation.value;
-    payload.content = {
+    const content = {
       question: {
         text: question.value,
       },
       alternatives: alternatives.choices.map(alt => ({ text: alt.text, correct: alt.correct })),
     };
-    payload.modify_reason = modifyReason;
+
+    const exercisePayload = {
+      content: content,
+      type: exercise.type,
+    };
 
     const response = await axios.put(`/exercises/${exercise.id}`, {
-      entities: payload,
+      exercise: exercisePayload,
+      modify_reason: modifyReason,
     });
 
     if (response) {

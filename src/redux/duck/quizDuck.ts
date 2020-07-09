@@ -16,6 +16,7 @@ const QUIZ_SET_EXERCISES = 'QUIZ_SET_EXERCISES';
 const SET_ANSWER = 'SET_ANSWER';
 const SET_INDEX = 'SET_INDEX';
 const SET_VOTES = 'SET_VOTES';
+const POST_ANSWERS = 'POST_ANSWERS';
 
 const initialState: any = { hasPostedAnswers: false, exercises: [], index: 0 };
 
@@ -48,14 +49,19 @@ export default function quizReducer(state = initialState, action: Action) {
       const exercisesClone = clone(state.exercises);
       exercisesClone[action.index] = exercise;
       return { ...state, exercises: exercisesClone };
+    case POST_ANSWERS:
+      return {
+        ...state,
+        hasPostedAnswers: true,
+      };
     default:
       return state;
   }
 }
 
 // Action creators
-
 export const fetchQuiz = (collectionId, fetchAll, fetchType, isBest) => async dispatch => {
+  // TODO: Change to correct size (6?)
   const all = fetchAll ? 'size=3' : '';
   const type = fetchType ? 'type=' + fetchType : '';
   const response = await (isBest
@@ -81,6 +87,14 @@ export const fetchVotes = (index, exerciseId) => async dispatch => {
   dispatch({ type: 'SET_VOTES', index, votes: response.data });
 };
 
+
 export const purgeQuiz = () => async dispatch => {
   dispatch({ type: 'PURGE_QUIZ' });
+
+export const postQuizResult = exercisesResult => async dispatch => {
+  // TODO: Toast-popup should show up here
+  const response = await axios.post(`/answers/`, exercisesResult);
+
+  console.log('response', response);
+  dispatch({ type: POST_ANSWERS });
 };

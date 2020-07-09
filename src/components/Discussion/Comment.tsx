@@ -83,6 +83,7 @@ const Top = styled.div`
   line-height: 50px;
   h5 {
     cursor: pointer;
+    margin-left: 8px;
   }
   div {
     margin-left: auto;
@@ -93,6 +94,9 @@ const Top = styled.div`
 const Avatar = styled.img`
   height: 50px;
   width: 50px;
+  border-radius: 50%;
+  border-color: #000;
+  border-width: 10px;
   cursor: pointer;
 `;
 

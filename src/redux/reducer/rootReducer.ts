@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import courseReducer from 'redux/duck/coursesDuck';
 import courseDetailedReducer from 'redux/duck/courseDetailedDuck';
+import friendsReducer from 'redux/duck/friendsDuck';
 import userReducer from 'redux/duck/userDuck';
 import dropdownReducer from 'redux/duck/dropdownDuck';
 import topicReducer from 'redux/duck/topicDuck';
@@ -14,6 +15,7 @@ import favoritesReducer from 'redux/duck/favoritesDuck';
 const createRootReducer = history =>
   combineReducers({
     router: connectRouter(history),
+    friends: friendsReducer,
     courses: courseReducer,
     courseInfo: courseDetailedReducer,
     user: userReducer,
