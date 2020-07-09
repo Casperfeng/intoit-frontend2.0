@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../../../shared/colors';
 import Card from '@material-ui/core/Card';
 import { WbIncandescent } from '@styled-icons/material-outlined/';
+import Button from '@material-ui/core/Button';
 
 interface HintProps {
   hint?: String;
@@ -17,9 +18,12 @@ export default function Hint({ hint }: HintProps) {
 
   return (
     <Wrapper>
-      <IconWrapper onClick={() => setShowHint(!showHint)}>
+      <Button color="primary" startIcon={<StyledIcon size={22} />} onClick={() => setShowHint(!showHint)}>
+        Hint
+      </Button>
+      {/* <IconWrapper onClick={() => setShowHint(!showHint)}>
         <StyledIcon size={24} /> HINT
-      </IconWrapper>
+      </IconWrapper> */}
       {showHint && (
         <HintCard variant="outlined">
           <StyledIcon size={20} />
