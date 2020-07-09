@@ -80,3 +80,7 @@ export const fetchVotes = (index, exerciseId) => async dispatch => {
   const response = await axios.get(`/resources/${exerciseId}/votes`);
   dispatch({ type: 'SET_VOTES', index, votes: response.data });
 };
+
+export const purgeQuiz = () => async dispatch => {
+  dispatch({ type: 'PURGE_QUIZ' });
+};

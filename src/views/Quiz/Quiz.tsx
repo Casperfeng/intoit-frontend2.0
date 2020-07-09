@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
-import { fetchQuiz } from '../../redux/duck/quizDuck';
+import { fetchQuiz, purgeQuiz } from '../../redux/duck/quizDuck';
 import Exercise from './components/Exercise';
 import { LinearProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
@@ -25,6 +25,11 @@ export default function Quiz() {
     retrieveQuiz();
   }, [dispatch, id, type]);
 
+  const moreQuiz = async () => {
+    purgeQuiz();
+    await dispatch(fetchQuiz(id, true, type, false));
+  };
+
   const quizIsLoading = !quiz.exercises.length && quiz.index === 0;
   const quizIsFinished = quiz.exercises.length > 0 && quiz.exercises.length === quiz.index;
 
@@ -40,7 +45,7 @@ export default function Quiz() {
             // TODO: Add animasjon
             <h1>Henter quiz...</h1>
           ) : quizIsFinished ? (
-            <VictoryScreen quiz={quiz} />
+            <VictoryScreen quiz={quiz} moreQuiz={moreQuiz} />
           ) : (
             <>
               <QuizProgress variant="determinate" value={(100 / quiz.exercises.length) * quiz.index} />
@@ -79,7 +84,7 @@ const IntoitLogoWhite = styled(Link)`
 
 const ContentBox = styled.div`
   padding: 30px;
-  margin-top: 128px;
+  margin-top: 16px;
   background-color: white;
   border-radius: 3px;
   min-width: 500px;

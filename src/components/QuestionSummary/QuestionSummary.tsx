@@ -22,7 +22,6 @@ const renderMcSummary = ex => {
           </CustomDiv>
         );
       })}
-      ;
     </List>
   );
 };
