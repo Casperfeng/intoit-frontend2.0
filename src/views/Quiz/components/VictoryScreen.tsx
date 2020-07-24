@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import QuestionSummary from 'components/QuestionSummary/QuestionSummary';
@@ -12,9 +13,10 @@ import { useDispatch } from 'react-redux';
 
 interface Props {
   quiz: Quiz;
+  moreQuiz: Function;
 }
 
-export default function VictoryScreen({ quiz }: Props) {
+export default function VictoryScreen({ quiz, moreQuiz }: Props) {
   const [percentage, setPercentage] = useState(0);
   const [animation, setAnimation] = useState('');
   const [feedbackText, setFeedbackText] = useState('');
@@ -87,23 +89,18 @@ export default function VictoryScreen({ quiz }: Props) {
           {/* TODO: Add percentage for Flashcards */}
           <ProgressBar progress={percentage} />
         </Grid>
-
-        <Grid item container direction="row">
-          <Grid item>
-            <StyledLink to={`/courses/${courseInfo.id}/`}>
-              <Button size="small" startIcon={<ArrowBack size={24} />}>
-                Tilbake til {courseInfo.name}
-              </Button>
-            </StyledLink>
-          </Grid>
-          <Grid item>
-            <StyledLink to={`/quiz/${quiz.exercises[0].collection_id}/${quiz.exercises[0].type}`}>
-              <Button size="small" endIcon={<ArrowForward size={24} />}>
-                Flere spørsmål
-              </Button>
-            </StyledLink>
-          </Grid>
-        </Grid>
+        <ButtonsWrapper>
+          <StyledLink to={`/courses/${courseInfo.id}/`}>
+            <Button size="small" startIcon={<ArrowBack size={24} />}>
+              {courseInfo.name}
+            </Button>
+          </StyledLink>
+          <StyledLink to={`/quiz/${quiz.exercises[0].collection_id}/${quiz.exercises[0].type}`}>
+            <Button onClick={() => moreQuiz()} size="small" endIcon={<ArrowForward size={24} />}>
+              Flere spørsmål
+            </Button>
+          </StyledLink>
+        </ButtonsWrapper>
       </Grid>
 
       <Grid item>
@@ -123,3 +120,9 @@ export default function VictoryScreen({ quiz }: Props) {
     </Grid>
   );
 }
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
