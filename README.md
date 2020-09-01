@@ -1,7 +1,7 @@
 # Deprecated
 
 ## Why are the production/dev id's displayed publicly?
-As of August 2020, the project is no longer being developed/maintained.
+As of mid 2020, the project is no longer being developed/maintained.
 
 # Installation
 
