@@ -1,14 +1,12 @@
-import { Card } from '@material-ui/core';
+import { Card, CardActions } from '@material-ui/core';
 import styled from 'styled-components/macro';
 import colors from 'shared/colors';
 import devices from 'shared/media';
 
 export const CourseIllustration = styled.img`
-  max-width: 70%;
-  max-height: 125px;
+  max-height: 80px;
   object-fit: contain;
-  margin: auto;
-
+  margin: 16px 0 32px;
   @media ${devices.mobileOnly} {
     display: none;
   }
@@ -17,11 +15,11 @@ export const CourseIllustration = styled.img`
 const CourseCardWrapper = styled(Card)`
   display: flex;
   flex-direction: column;
-  min-height: 270px;
+  justify-content: space-between;
   border: 0;
-  padding: 16px;
-  ${(props: { color: string }) => `
+  ${(props: { color: string; minheight: string }) => `
     border: 2px solid ${props.color};
+    min-height: ${props.minheight}
   `}
 
   transition: all 0.2s ease-in-out;
@@ -33,6 +31,14 @@ const CourseCardWrapper = styled(Card)`
   @media ${devices.mobileOnly} {
     min-height: 50px;
   }
+`;
+
+export const StyledCardActionArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 16px;
 `;
 
 export const CourseName = styled.p`
@@ -61,7 +67,8 @@ export const StyledAccessTime = styled.div`
 export const StyledFavorite = styled.div`
   display: flex;
   align-items: center;
-
+  cursor: pointer;
+  z-index: 100;
   p {
     margin-left: 2px;
     margin-top: 2px;
@@ -73,10 +80,10 @@ export const StyledFavorite = styled.div`
   `}
 `;
 
-export const CourseStatus = styled.div`
+export const CourseStatus = styled(CardActions)`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  padding: 16px;
 `;
 
 export default CourseCardWrapper;

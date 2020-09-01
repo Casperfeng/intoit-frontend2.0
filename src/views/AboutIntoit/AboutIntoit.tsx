@@ -25,7 +25,6 @@ export default function AboutIntoit() {
             <CurrentTeamMembers />
           </CurrentTeam>
           <DivideLine hideOnDesktop />
-
           <ThanksNote>
             <h2>EN STOR TAKK TIL...</h2>
             <InvolvedPeople />
@@ -37,7 +36,6 @@ export default function AboutIntoit() {
 }
 
 const Wrapper = styled.div`
-  padding: 32px 0;
   display: flex;
   flex-direction: column;
   place-content: center;
@@ -55,11 +53,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const DivideLine = styled.hr`
+const DivideLine = styled.hr<{hideOnDesktop?:boolean}>`
   margin: 36px auto;
   width: 40%;
 
-  ${(props: { hideOnDesktop: boolean }) => props.hideOnDesktop && `@media ${devices.laptop} { display:none; }`}
+  ${(props => props.hideOnDesktop && `@media ${devices.laptop} { display:none; };`)}
 `;
 
 const CurrentTeam = styled.div`

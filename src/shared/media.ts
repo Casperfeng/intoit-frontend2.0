@@ -4,8 +4,8 @@ const sizes = {
   mobileL: '480px',
   tablet: '768px',
   laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2560px',
+  desktop: '1440px',
+  wideScreen: '2560px',
 };
 
 const devices = {
@@ -15,9 +15,10 @@ const devices = {
   tabletOnly: `(max-width: ${sizes.tablet})`,
   laptop: `(min-width: ${sizes.laptop})`,
   laptopOnly: `(max-width: ${sizes.laptop})`,
-  laptopL: `(min-width: ${sizes.laptopL})`,
   desktop: `(min-width: ${sizes.desktop})`,
-  desktopL: `(min-width: ${sizes.desktop})`,
+  desktopOnly: `(max-width: ${sizes.desktop})`,
+  wideScreen: `(min-width: ${sizes.desktop})`,
+  wideScreenOnly: `(min-width: ${sizes.desktop})`,
 };
 
 export default devices;

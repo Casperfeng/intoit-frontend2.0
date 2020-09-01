@@ -9,6 +9,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import configureStore, { history } from 'redux/configureStore';
 import { ConnectedRouter } from 'connected-react-router';
 import GlobalStyle from 'shared/globalStyle';
+import ReactGA from 'react-ga';
+import { GOOGLE_ANALYTICS_ID } from 'shared/constants';
 
 const store = configureStore();
 const persistor = persistStore(store);
@@ -16,6 +18,8 @@ const persistor = persistStore(store);
 export function getPersistor() {
   return persistor;
 }
+
+ReactGA.initialize(GOOGLE_ANALYTICS_ID);
 
 ReactDOM.render(
   <Provider store={store}>

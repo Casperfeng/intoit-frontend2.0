@@ -1,84 +1,120 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import StyledLink from 'components/StyledLink/StyledLink';
+import { FilterNone } from '@styled-icons/material/FilterNone'
+import { ListOl } from '@styled-icons/boxicons-regular/ListOl';
+import colors from 'shared/colors';
 
 interface TopicCardProps {
   id: number;
   name: string;
-  subjectId: number;
   size: number;
+  hasMCExercises: boolean;
+  hasFCExercises: boolean;
 }
 
-export default function TopicCard({ id, name, subjectId, size }: TopicCardProps) {
+export default function TopicCard({ id, name, hasMCExercises, size, hasFCExercises }: TopicCardProps) {
   return (
-    <CardContainer>
-      <StyledTitle>{name}</StyledTitle>
-      <BottomContainer>
-        <CardActions>
-          <StyledButton size="small"> Flashcards</StyledButton>
-        </CardActions>
-        <StyledNumberQuestions variant="body2" component="p">
-          Flashcards
-        </StyledNumberQuestions>
-      </BottomContainer>
-      <BottomContainer>
-        <CardActions>
-          <StyledLink to={`/quiz/${id}`}>
-            <StyledButton size="small"> ta quiz</StyledButton>
+    <Wrapper>
+      <h2>{name}</h2>
+      <QuizOptions>
+        {hasMCExercises ?
+          <StyledLink to={`/quiz/${id}/mc`}>
+            <Option>
+              <ListOl size={32} />
+                  Flervalg
+            </Option>
           </StyledLink>
-        </CardActions>
-        <StyledNumberQuestions variant="body2" component="p">
-          {size} spørsmål
-        </StyledNumberQuestions>
-      </BottomContainer>
-    </CardContainer>
+          : <Option disabled>
+            <ListOl size={32} color={'grey'} />
+                 Flervalg
+            </Option>
+        }
+        {hasFCExercises ?
+          <StyledLink to={`/quiz/${id}/fc`}>
+            <Option>
+              <FilterNone size={26} />
+              Flashcard
+            </Option>
+          </StyledLink>
+          : <Option disabled>
+            <ListOl size={32} />
+            Flashcard
+            </Option>
+        }
+      </QuizOptions>
+      <QuestionCount>
+        {size} spørsmål
+      </QuestionCount>
+    </Wrapper>
   );
 }
 
-const CardContainer = styled(Card)`
+const Wrapper = styled(Card)`
   padding: 15px;
-  width: 200px;
-  height: 110px;
-  margin: 10px;
-  :hover {
-    width: 220px;
-    height: 120px;
-    margin: 0px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  min-height: 165px;
+  
+  &.MuiCard-root {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &:hover {
+    transform: scale(1.025) translateY(-2px);
+  }
+
+  h2 { 
+    font-size: 21px;
+    font-weight: 500;
   }
 `;
 
-const StyledButton = styled(Button)`
-  && {
-    text-transform: lowercase;
-    text-transform: capitalize;
+
+const QuizOptions = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex: 1;
+`
+
+const Option = styled(Button)`
+  &.MuiButtonBase-root {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center
+  }
+
+  .MuiButton-label {
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+  }
+
+  svg {
+    min-height: 38px;
+  }
+
+  &.Mui-disabled {
+    svg{
+      color: lightgrey;
+    }
+  }
+
+  &:hover {
+    * {
+       color: ${colors.primary};
+    }
   }
 `;
 
-const StyledTitle = styled(Typography)`
-  padding-left: 12px;
-  font-size: 32;
-  text-align: left;
-  && {
-    color: black;
-  }
-`;
-const BottomContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const StyledNumberQuestions = styled(Typography)`
-  && {
-    font-size: 12px;
-    color: gray;
+const QuestionCount = styled.p`
+    font-size: 14px;
+    color: ${colors.blackLight};
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-  }
 `;
