@@ -87,9 +87,9 @@ export const fetchVotes = (index, exerciseId) => async dispatch => {
   dispatch({ type: 'SET_VOTES', index, votes: response.data });
 };
 
-
 export const purgeQuiz = () => async dispatch => {
   dispatch({ type: 'PURGE_QUIZ' });
+};
 
 export const postQuizResult = exercisesResult => async dispatch => {
   // TODO: Toast-popup should show up here
